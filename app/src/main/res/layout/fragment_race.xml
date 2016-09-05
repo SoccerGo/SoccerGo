@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33a333">
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:background="@drawable/race_up"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/right"
+            android:background="@drawable/invite_race"
+            android:text="发起比赛"
+            android:textColor="#fff"
+            android:textSize="23sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/race_down">
+
+        <Button
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/right"
+            android:background="@drawable/join_race"
+            android:text="加入比赛"
+            android:textColor="#fff"
+            android:textSize="23sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
