@@ -18,5 +18,6 @@ public class SplashActivity extends AppCompatActivity
         // 跳转到登入界面
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 }
