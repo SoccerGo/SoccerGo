@@ -6,6 +6,6 @@
         android:thicknessRatio="8" android:useLevel="false">
         <gradient android:type="sweep" android:useLevel="false"
             android:startColor="#FFFFFF" android:centerColor="#FFDC35"
-            android:centerY="0.50" android:endColor="#CE0000" />
+            android:centerY="0.5" android:endColor="#CE0000" />
     </shape>
 </rotate>
