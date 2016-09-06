@@ -12,7 +12,10 @@
         android:layout_height="wrap_content"
         android:background="@drawable/shape_more_green_to_white"
         android:orientation="horizontal"
-        android:padding="25dp">
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="35dp"
+        android:paddingBottom="35dp">
 
         <heracles.soccergo.Tools.RoundImageView
             android:layout_width="80dp"
@@ -69,7 +72,7 @@
         android:layout_height="wrap_content"
         android:background="#fff"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -103,7 +106,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
@@ -111,7 +114,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
                 android:src="@drawable/daily_task"/>
@@ -126,7 +129,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
@@ -134,7 +137,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
                 android:src="@drawable/football_mall"/>
@@ -156,7 +159,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
@@ -164,7 +167,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
                 android:src="@drawable/special_photography"/>
@@ -179,7 +182,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
@@ -187,7 +190,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
                 android:src="@drawable/setting"/>
