@@ -74,17 +74,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             case R.id.ivRace:
                 ft.hide(raceFragment);
+                ivRace.setImageResource(R.drawable.race);
                 break;
             case R.id.ivClub:
                 ft.hide(clubFragment);
+                ivClub.setImageResource(R.drawable.club);
                 break;
             case R.id.ivHome:
                 ft.hide(homeFragment);
                 break;
             case R.id.ivCommunity:
+                ivCommunity.setImageResource(R.drawable.community);
                 break;
             case R.id.ivMore:
                 ft.hide(moreFragment);
+                ivMore.setImageResource(R.drawable.more);
                 break;
         }
 
@@ -93,20 +97,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.ivRace:
                 ft.show(raceFragment);
                 currentFragmentID = R.id.ivRace;
+                ivRace.setImageResource(R.drawable.race2);
                 break;
             case R.id.ivClub:
                 ft.show(clubFragment);
                 currentFragmentID = R.id.ivClub;
+                ivClub.setImageResource(R.drawable.club2);
                 break;
             case R.id.ivHome:
                 ft.show(homeFragment);
                 currentFragmentID = R.id.ivHome;
                 break;
             case R.id.ivCommunity:
+                currentFragmentID = R.id.ivCommunity;
+                ivCommunity.setImageResource(R.drawable.community2);
                 break;
             case R.id.ivMore:
                 ft.show(moreFragment);
                 currentFragmentID = R.id.ivMore;
+                ivMore.setImageResource(R.drawable.more2);
                 break;
         }
 
