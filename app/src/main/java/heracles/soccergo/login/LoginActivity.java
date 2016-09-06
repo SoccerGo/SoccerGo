@@ -1,12 +1,9 @@
 package heracles.soccergo.login;
 
-import android.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Dialog;
 import android.os.Bundle;
-import android.support.v7.view.ContextThemeWrapper;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 
 import heracles.soccergo.R;
@@ -37,14 +34,11 @@ public class LoginActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this,R.style.ProgBarTheme_AlphaBackground);
-                builder.setView(LayoutInflater.from(LoginActivity.this).inflate(R.layout.dialog_progbar,null));
-                AlertDialog progBarDialog = builder.create();
-                progBarDialog.show();
-//                WindowManager.LayoutParams lp = progBarDialog.getWindow().getAttributes();
-//                lp.width=200;
-//                lp.height=200;
-//                progBarDialog.getWindow().setAttributes(lp);
+                Dialog dialog = new Dialog(LoginActivity.this,R.style.ProgBarTheme_AlphaBackground);
+                dialog.setContentView(R.layout.dialog_progbar);
+                dialog.setCancelable(true);
+                dialog.show();
+
 //                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 //                startActivity(intent);
             }
