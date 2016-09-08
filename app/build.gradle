@@ -22,6 +22,9 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+    task clean(type: Delete) {
+        delete rootProject.buildDir
+    }
 }
 
 repositories{

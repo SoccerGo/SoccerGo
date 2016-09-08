@@ -27,7 +27,8 @@
             android:background="@drawable/invite_race"
             android:text="发起比赛"
             android:textColor="#fff"
-            android:textSize="23sp"/>
+            android:textSize="23sp"
+            android:id="@+id/btnHoldRace" />
 
     </LinearLayout>
 
@@ -46,7 +47,8 @@
             android:background="@drawable/join_race"
             android:text="加入比赛"
             android:textColor="#fff"
-            android:textSize="23sp"/>
+            android:textSize="23sp"
+            android:id="@+id/btnJoinRace" />
 
     </LinearLayout>
 
