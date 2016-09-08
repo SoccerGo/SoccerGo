@@ -39,6 +39,12 @@
         <activity android:name=".MainActivity">
         </activity>
 
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
