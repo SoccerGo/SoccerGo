@@ -67,12 +67,13 @@
                 android:textSize="16dp"
                 android:layout_marginLeft="15dp"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="right"
                 android:text="忘记密码？"
-                android:layout_marginLeft="140dp"
                 android:textSize="16dp"
                 android:textColor="#fff"
+                android:paddingRight="10dp"
                 android:id="@+id/tvLostPwd" />
         </LinearLayout>
     </LinearLayout>

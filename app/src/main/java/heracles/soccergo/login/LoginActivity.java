@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -21,6 +22,7 @@ public class LoginActivity extends AppCompatActivity
 {
     private Button btnLogin;
     private Dialog progressDialog;
+    private TextView tvRegister;
 
     // MOB短信验证属性
     private static String APPKEY = "16ec22ed56244";
@@ -48,7 +50,17 @@ public class LoginActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-//                showProgressDialog();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tvRegister.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //                showProgressDialog();
                 SMSSDK.initSDK(LoginActivity.this, APPKEY, APPSECRET);
 
                 //打开注册页面
@@ -77,15 +89,14 @@ public class LoginActivity extends AppCompatActivity
 
     private void registerUser(String country, String phone)
     {
-        if(Test.flag)
+        if (Test.flag)
             Toast.makeText(LoginActivity.this, "注册成功,电话：" + phone + " " + "国家：" + country, Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
     }
 
     private void getWidget()
     {
         btnLogin = (Button) findViewById(R.id.btnLogin);
+        tvRegister = (TextView) findViewById(R.id.tvRegister);
     }
 
     private void showProgressDialog()
