@@ -1,9 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".club.ClubFragment"
-    android:orientation="vertical">
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -34,205 +33,18 @@
             android:textColor="#227bd9"
             android:textSize="18dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"/>
     </RelativeLayout>
 
-    <GridLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvClub"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:rowCount="3"
-        android:columnCount="3"
-        android:layout_margin="12dp">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp">
-            <ImageView
-                android:layout_width="95dp"
-                android:layout_height="95dp"
-                android:layout_marginBottom="5dp"
-                android:src="@drawable/club_asia"
-                android:layout_gravity="center"
-                android:id="@+id/ivClub00" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="大连ASIA俱乐部"
-                android:textColor="#000000"
-                android:textSize="12dp"
-                android:gravity="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp">
-            <ImageView
-                android:layout_width="95dp"
-                android:layout_height="95dp"
-                android:layout_marginBottom="5dp"
-                android:layout_gravity="center"
-                android:src="@drawable/club_hanoi"
-                android:id="@+id/ivClub01" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="12dp"
-                android:textColor="#000000"
-                android:text="哈诺伊俱乐部"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp">
-            <ImageView
-                android:layout_width="95dp"
-                android:layout_height="95dp"
-                android:layout_marginBottom="5dp"
-                android:src="@drawable/club_feige"
-                android:layout_gravity="center"
-                android:id="@+id/ivClub02" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="12dp"
-                android:text="菲戈俱乐部"
-                android:textColor="#000000"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp">
-            <ImageView
-                android:layout_width="95dp"
-                android:layout_height="95dp"
-                android:layout_marginBottom="5dp"
-                android:src="@drawable/club_wawatou"
-                android:layout_gravity="center"
-                android:id="@+id/ivClub10" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="12dp"
-                android:text="大连娃娃头俱乐部"
-                android:textColor="#000000"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp">
-            <ImageView
-                android:layout_width="95dp"
-                android:layout_height="95dp"
-                android:layout_marginBottom="5dp"
-                android:src="@drawable/club_terengganu"
-                android:layout_gravity="center"
-                android:id="@+id/ivClub11" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="12dp"
-                android:text="特刃加努俱乐部"
-                android:textColor="#000000"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_row="1"
-            android:layout_column="2"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp">
-            <ImageView
-                android:layout_width="95dp"
-                android:layout_height="95dp"
-                android:layout_marginBottom="5dp"
-                android:src="@drawable/club_caqiangzouhuo"
-                android:layout_gravity="center"
-                android:id="@+id/ivClub12" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="12dp"
-                android:text="擦枪走火俱乐部"
-                android:textColor="#000000"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp">
-            <ImageView
-                android:layout_width="95dp"
-                android:layout_height="95dp"
-                android:layout_marginBottom="5dp"
-                android:src="@drawable/club_zuqiuxiaojiang"
-                android:layout_gravity="center"
-                android:id="@+id/ivClub20" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="12dp"
-                android:text="足球小将俱乐部"
-                android:textColor="#000000"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_row="2"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp">
-            <ImageView
-                android:layout_width="95dp"
-                android:layout_height="95dp"
-                android:layout_marginBottom="5dp"
-                android:src="@drawable/club_nama"
-                android:layout_gravity="center"
-                android:id="@+id/ivClub21" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="12dp"
-                android:text="讷马足球俱乐部"
-                android:textColor="#000000"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_row="2"
-            android:layout_column="2"
-            android:layout_columnWeight="1"
-            android:layout_margin="5dp">
-            <ImageView
-                android:layout_width="95dp"
-                android:layout_height="95dp"
-                android:layout_marginBottom="5dp"
-                android:src="@drawable/club_ganjingzi"
-                android:layout_gravity="center"
-                android:id="@+id/ivClub22" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="12dp"
-                android:text="大连甘井子区俱乐部"
-                android:textColor="#000000"/>
-        </LinearLayout>
-    </GridLayout>
+        android:layout_gravity="center"
+        android:padding="12dp"
+        >
+
+    </android.support.v7.widget.RecyclerView>
     <Button
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -242,4 +54,5 @@
         android:text="进入查看排行榜，加入更多俱乐部"
         android:textColor="#ffffff"
         android:id="@+id/btnBrowseMoreClub" />
+
 </LinearLayout>

@@ -3,11 +3,15 @@ package heracles.soccergo.club;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -15,7 +19,10 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.Test;
@@ -26,6 +33,9 @@ import heracles.soccergo.Tools.Test;
 public class ClubFragment extends Fragment
 {
     private TextView tvCityLocate;
+    private RecyclerView rvClub;
+    private List<Map<String,Object>> clubDatas;
+    private RVClubAdapter clubAdapter;
 
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
@@ -62,12 +72,82 @@ public class ClubFragment extends Fragment
 
     private void setWidget()
     {
+        initClubDatas();
 
+        //设置rvClub
+        clubAdapter = new RVClubAdapter(getContext(),clubDatas);
+        rvClub.setAdapter(clubAdapter);
+        rvClub.setLayoutManager(new GridLayoutManager(getContext(),3));
+        rvClub.setItemAnimator(new DefaultItemAnimator());//添加默认动画效果
+        clubAdapter.setOnItemClickListener(new RVClubAdapter.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(View view, int position)
+            {
+                Toast.makeText(getContext(),(String)clubDatas.get(position).get("name"),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position)
+            {
+
+            }
+        });
+    }
+
+    private void initClubDatas()
+    {
+        clubDatas = new ArrayList<>();
+        Map<String,Object> club = new HashMap<>();
+        club.put("name","大连ASIA俱乐部");
+        club.put("img",R.drawable.club_asia);
+        clubDatas.add(club);
+
+        club = new HashMap<>();
+        club.put("name","哈诺伊俱乐部");
+        club.put("img",R.drawable.club_hanoi);
+        clubDatas.add(club);
+
+        club = new HashMap<>();
+        club.put("name","菲戈俱乐部");
+        club.put("img",R.drawable.club_feige);
+        clubDatas.add(club);
+
+        club = new HashMap<>();
+        club.put("name","大连娃娃头俱乐部");
+        club.put("img",R.drawable.club_wawatou);
+        clubDatas.add(club);
+
+        club = new HashMap<>();
+        club.put("name","特刃加努俱乐部");
+        club.put("img",R.drawable.club_asia);
+        clubDatas.add(club);
+
+        club = new HashMap<>();
+        club.put("name","擦枪走火俱乐部");
+        club.put("img",R.drawable.club_caqiangzouhuo);
+        clubDatas.add(club);
+
+        club = new HashMap<>();
+        club.put("name","足球小将俱乐部");
+        club.put("img",R.drawable.club_zuqiuxiaojiang);
+        clubDatas.add(club);
+
+        club = new HashMap<>();
+        club.put("name","讷马足球俱乐部");
+        club.put("img",R.drawable.club_nama);
+        clubDatas.add(club);
+
+        club = new HashMap<>();
+        club.put("name","大连甘井子区俱乐部");
+        club.put("img",R.drawable.club_ganjingzi);
+        clubDatas.add(club);
     }
 
     private void getWidget()
     {
         tvCityLocate = (TextView) getActivity().findViewById(R.id.tvCityLocate);
+        rvClub = (RecyclerView) getActivity().findViewById(R.id.rvClub);
     }
 
     // 百度定位回调
