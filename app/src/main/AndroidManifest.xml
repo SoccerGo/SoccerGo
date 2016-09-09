@@ -36,12 +36,11 @@
         </activity>
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".MainActivity" />
-
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <service
             android:name="com.baidu.location.f"
@@ -53,7 +52,8 @@
             android:value="rPbpFmXDoFGVqS9Tao2vp40P5Tkr3tEb" />
 
         <activity android:name=".race.HoldRaceActivity" />
-        <activity android:name=".race.JoinRaceActivity"></activity>
+        <activity android:name=".race.JoinRaceActivity" />
+        <activity android:name=".more.MyWalletActivity"></activity>
     </application>
 
 </manifest>

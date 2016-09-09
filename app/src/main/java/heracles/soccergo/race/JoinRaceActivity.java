@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -22,7 +24,6 @@ import heracles.soccergo.R;
 public class JoinRaceActivity extends AppCompatActivity {
     private Button btnHoldRace,btnItemJoin;
     private ListView lvJoinRace;
-    private TextView tvItemTitle,tvItemLocale,tvItemSize,tvItemCost,tvItemTime;
     private List<Map<String,Object>> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class JoinRaceActivity extends AppCompatActivity {
     }
 
     private void getWidget() {
-        btnHoldRace = (Button) findViewById(R.id.btnJoinRace);
+        btnHoldRace = (Button) findViewById(R.id.btnHoldRace);
         lvJoinRace = (ListView) findViewById(R.id.lvJoinRace);
     }
 
@@ -56,6 +57,14 @@ public class JoinRaceActivity extends AppCompatActivity {
     private void initList() {
         list = new ArrayList<>();
         Map<String,Object> map = new HashMap<>();
+        map.put("title","快来约战！");
+        map.put("locale","东软学院三期球场");
+        map.put("size","五人制");
+        map.put("cost","免费");
+        map.put("time","7月17日 17:00");
+        list.add(map);
+
+        map = new HashMap<>();
         map.put("title","");
         map.put("locale","");
         map.put("size","");
@@ -63,7 +72,12 @@ public class JoinRaceActivity extends AppCompatActivity {
         map.put("time","");
         list.add(map);
 
-
+        map.put("title","");
+        map.put("locale","");
+        map.put("size","");
+        map.put("cost","");
+        map.put("time","");
+        list.add(map);
     }
 
     class JoinRaceAdapter extends BaseAdapter{
@@ -89,7 +103,26 @@ public class JoinRaceActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            return null;
+            if(convertView == null){
+                LayoutInflater inflater = LayoutInflater.from(context);
+                convertView = inflater.inflate(R.layout.item_join_race_listview,null);
+            }
+            if(position % 2 != 0){
+                convertView.setBackgroundColor(getColor(R.color.colorDeepGreen));
+            }
+            TextView tvItemTitle = (TextView) convertView.findViewById(R.id.tvItemTitle);
+            TextView tvItemLocale = (TextView) convertView.findViewById(R.id.tvItemLocale);
+            TextView tvItemSize = (TextView) convertView.findViewById(R.id.tvItemSize);
+            TextView tvItemCost = (TextView) convertView.findViewById(R.id.tvItemCost);
+            TextView tvItemTime = (TextView) convertView.findViewById(R.id.tvItemTime);
+
+            tvItemTitle.setText(list.get(position).get("title").toString());
+            tvItemLocale.setText(list.get(position).get("locale").toString());
+            tvItemSize.setText(list.get(position).get("size").toString());
+            tvItemCost.setText(list.get(position).get("cost").toString());
+            tvItemTime.setText(list.get(position).get("time").toString());
+
+            return convertView;
         }
     }
 }
