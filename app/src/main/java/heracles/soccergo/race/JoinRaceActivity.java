@@ -57,6 +57,8 @@ public class JoinRaceActivity extends AppCompatActivity
             }
         });
         initList();
+
+        //初始化适配器以及添加监听
         joinRaceAdapter = new RVJoinRaceAdapter(JoinRaceActivity.this,list);
         rvJoinRace.setAdapter(joinRaceAdapter);
         rvJoinRace.setLayoutManager(new LinearLayoutManager(this));
@@ -69,7 +71,6 @@ public class JoinRaceActivity extends AppCompatActivity
                 Toast.makeText(JoinRaceActivity.this,(String)list.get(position).get("title"),Toast.LENGTH_SHORT).show();
             }
         });
-//        lvJoinRace.setAdapter(new JoinRaceAdapter(this));
     }
 
     private void initList()
