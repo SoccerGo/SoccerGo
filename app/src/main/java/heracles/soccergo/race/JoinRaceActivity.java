@@ -2,10 +2,9 @@ package heracles.soccergo.race;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Paint;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import heracles.soccergo.R;
+import heracles.soccergo.Tools.Test;
 
 public class JoinRaceActivity extends AppCompatActivity {
     private Button btnHoldRace,btnItemJoin;
@@ -108,7 +108,10 @@ public class JoinRaceActivity extends AppCompatActivity {
                 convertView = inflater.inflate(R.layout.item_join_race_listview,null);
             }
             if(position % 2 != 0){
-                convertView.setBackgroundColor(getColor(R.color.colorDeepGreen));
+                if(Test.flag)
+                    Log.d("color", String.valueOf(getResources().getColor(R.color.colorDeepGreen)));
+                convertView.setBackgroundColor(getResources().getColor(R.color.colorDeepGreen));
+
             }
             TextView tvItemTitle = (TextView) convertView.findViewById(R.id.tvItemTitle);
             TextView tvItemLocale = (TextView) convertView.findViewById(R.id.tvItemLocale);
