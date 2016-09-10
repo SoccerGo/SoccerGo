@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.ivHome:
                 ft.hide(homeFragment);
+                ivHome.setImageResource(R.drawable.home);
                 break;
             case R.id.ivCommunity:
                 ivCommunity.setImageResource(R.drawable.community);
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.ivHome:
                 ft.show(homeFragment);
                 currentFragmentID = R.id.ivHome;
+                ivHome.setImageResource(R.drawable.home2);
                 break;
             case R.id.ivCommunity:
                 currentFragmentID = R.id.ivCommunity;
