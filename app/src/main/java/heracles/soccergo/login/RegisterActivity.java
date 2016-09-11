@@ -1,5 +1,6 @@
 package heracles.soccergo.login;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -37,16 +38,16 @@ public class RegisterActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        initWeight();
+        initWidget();
     }
 
-    private void initWeight()
+    private void initWidget()
     {
-        getWeight();
-        setWeight();
+        getWidget();
+        setWidget();
     }
 
-    private void setWeight()
+    private void setWidget()
     {
         ivBack.setOnClickListener(new View.OnClickListener()
         {
@@ -72,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity
                 } else
                 {
                     mPassword = String.valueOf((int)(Math.random()*10000));
-                    new GetMsg().execute();
+                  //  new GetMsg().execute();
                 }
             }
         });
@@ -98,7 +99,10 @@ public class RegisterActivity extends AppCompatActivity
                 }
                 else if (mPassword.equals(password))
                 {
-                    Toast.makeText(RegisterActivity.this, "验证通过", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegisterActivity.this,Register2Activity.class);
+                    intent.putExtra("tel",tel);
+                    startActivity(intent);
+                    finish();
                 } else
                 {
                     Toast.makeText(RegisterActivity.this, "验证码错误", Toast.LENGTH_SHORT).show();
@@ -107,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity
         });
     }
 
-    private void getWeight()
+    private void getWidget()
     {
         ivBack = (ImageView) findViewById(R.id.ivBack);
         etTel = (EditText) findViewById(R.id.etTel);

@@ -1,15 +1,174 @@
 package heracles.soccergo.login;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+
+import heracles.soccergo.MainActivity;
 import heracles.soccergo.R;
+import heracles.soccergo.Tools.CONSTANT;
+import heracles.soccergo.Tools.Test;
 
-public class Register2Activity extends AppCompatActivity {
+public class Register2Activity extends AppCompatActivity
+{
+    private EditText etPassword;
+    private EditText etPassword2;
+    private Button btnSuccess;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register2);
+
+        initWidget();
+    }
+
+    private void initWidget()
+    {
+        getWidget();
+        setWidget();
+    }
+
+    private void setWidget()
+    {
+        btnSuccess.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                String psw = etPassword.getText().toString();
+                String psw2 = etPassword2.getText().toString();
+
+                if (psw.isEmpty())
+                {
+                    etPassword.setError("请输入密码");
+                } else if (psw2.isEmpty())
+                {
+                    etPassword2.setError("请输入密码");
+                } else if (psw.length() < 6)
+                {
+                    etPassword.setError("密码长度需要大于6");
+                } else if (psw2.length() < 6)
+                {
+                    etPassword2.setError("密码长度需要大于6");
+                } else if (psw.length() > 16)
+                {
+                    etPassword.setError("密码长度需要小于6");
+                } else if (psw2.length() > 16)
+                {
+                    etPassword2.setError("密码长度需要小于6");
+                } else if (!psw.equals(psw2))
+                {
+                    etPassword2.setError("密码输入不一致");
+
+                } else
+                {
+                    if (Test.flag)
+                        Toast.makeText(Register2Activity.this, "密码一致", Toast.LENGTH_SHORT).show();
+                    //获得手机号
+                    String tel = getIntent().getStringExtra("tel");
+                    new HttpRegister(tel,psw).start();
+
+                }
+
+            }
+        });
+    }
+
+    private void getWidget()
+    {
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        etPassword2 = (EditText) findViewById(R.id.etPassword2);
+        btnSuccess = (Button) findViewById(R.id.btnSuccess);
+    }
+
+    class HttpRegister extends Thread
+    {
+        private String password;
+        private String tel;
+
+        public HttpRegister(String tel,String password)
+        {
+            this.password = password;
+            this.tel = tel;
+        }
+
+        @Override
+        public void run()
+        {
+            try
+            {
+                URL httpUrl = new URL(CONSTANT.HOST + "Heracles/app/user/register");
+                HttpURLConnection httpURLConnection = (HttpURLConnection) httpUrl.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setConnectTimeout(5000);
+                OutputStream out = httpURLConnection.getOutputStream();
+                final String content = "user_name=" + tel + "&password=" + password;
+                out.write(content.getBytes());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                StringBuffer result = new StringBuffer();
+                String str;
+                while ((str = reader.readLine()) != null)
+                {
+                    result.append(str);
+                }
+                if (Test.flag)
+                    Log.d("result", result.toString());
+
+                //解析返回值，判断是否登入成功
+                JSONObject jsonObject = new JSONObject(result.toString());
+                int ret = jsonObject.getInt("success");
+                switch (ret)
+                {
+                    case CONSTANT.SUCCESS:
+                        Intent intent = new Intent(Register2Activity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        break;
+                    case CONSTANT.ERROR:
+                        Toast.makeText(Register2Activity.this,jsonObject.getString("error"),Toast.LENGTH_LONG).show();
+                        break;
+                }
+                if (ret == 1)
+                {
+                    Intent intent = new Intent(Register2Activity.this, MainActivity.class);
+                    intent.putExtra("loginWay", "tel");
+                    intent.putExtra("msg", result.toString());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+
+            } catch (MalformedURLException e)
+            {
+                e.printStackTrace();
+            } catch (ProtocolException e)
+            {
+                e.printStackTrace();
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            } catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
 }

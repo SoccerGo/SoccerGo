@@ -3,11 +3,12 @@ package heracles.soccergo.login;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
-import heracles.soccergo.MainActivity;
 import heracles.soccergo.R;
 
 public class LoginActivity extends AppCompatActivity
@@ -15,10 +16,10 @@ public class LoginActivity extends AppCompatActivity
     private Button btnLogin;
     private Dialog progressDialog;
     private Button btnRegister;
+    private EditText etUser;
+    private EditText etPassword;
 
-    // MOB短信验证属性
-    private static String APPKEY = "16ec22ed56244";
-    private static String APPSECRET = "bd81b89c1084304dd39bf806946eed5e";
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,8 +43,24 @@ public class LoginActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
+                String user = etUser.getText().toString();
+                String password = etPassword.getText().toString();
+                if(user.isEmpty())
+                {
+                    etUser.setError("请输入用户名");
+                }
+                else if(password.isEmpty())
+                {
+                    etPassword.setError("请输入密码");
+                }
+                else if(password.length()<6)
+                {
+                    etPassword.setError("需要密码长度大于6");
+                }
+                else
+                {
+                    new LoginThread(LoginActivity.this,user,password,handler).start();
+                }
             }
         });
 
@@ -52,17 +69,20 @@ public class LoginActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
 //                showProgressDialog();
             }
         });
+
     }
 
     private void getWidget()
     {
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnRegister = (Button) findViewById(R.id.btnRegister);
+        etUser = (EditText) findViewById(R.id.etUser);
+        etPassword = (EditText) findViewById(R.id.etPassword);
     }
 
     private void showProgressDialog()

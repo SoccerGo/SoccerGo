@@ -42,7 +42,7 @@
             android:hint="用户名/邮箱/手机号"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
-            android:id="@+id/etLoginname" />
+            android:id="@+id/etUser" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:inputType="textPassword"
-            android:id="@+id/etPwd" />
+            android:id="@+id/etPassword" />
 
         <LinearLayout
             android:layout_width="match_parent"
