@@ -5,5 +5,5 @@ package heracles.soccergo.Tools;
  */
 public class User
 {
-    
+
 }

@@ -25,6 +25,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="宋智恒"
@@ -32,17 +33,20 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/tvEnglishName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Steven Song"/>
 
             <TextView
+                android:id="@+id/tvAge"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="6岁"/>
 
             <TextView
+                android:id="@+id/tvClubInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="飞哥俱乐部 9号/后卫"/>
@@ -98,41 +102,48 @@
             android:background="#a6eda5">
 
             <TextView
+                android:id="@+id/tvName2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="中文名：宋智恒"/>
 
             <TextView
+                android:id="@+id/tvEnglishName2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="英文名：Steven Song"
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/tvAge2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="年龄：6岁"
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/tvBirthday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="生日：2009年10月10日"
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/tvClub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="俱乐部：飞哥俱乐部"
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/tvShirtNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="球衣号：9号"
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/tvLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="常用位置：后卫"
@@ -159,6 +170,7 @@
                     android:textSize="20sp"/>
 
                 <TextView
+                    android:id="@+id/tvAbilityValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="78"

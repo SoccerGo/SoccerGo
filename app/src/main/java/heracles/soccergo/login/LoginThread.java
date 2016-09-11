@@ -20,6 +20,7 @@ import java.net.URL;
 
 import heracles.soccergo.MainActivity;
 import heracles.soccergo.Tools.CONSTANT;
+import heracles.soccergo.Tools.ProgressDialog;
 import heracles.soccergo.Tools.Test;
 
 /**
@@ -32,6 +33,7 @@ public class LoginThread extends Thread
     private Handler mHandler;
     private Context mContext;
     private String mUrl = CONSTANT.HOST + "Heracles/app/user/Login/";
+    private ProgressDialog progressDialog;
 
 
     public LoginThread(Context context,String user, String password, Handler handler)
@@ -40,12 +42,13 @@ public class LoginThread extends Thread
         this.mPassword = password;
         this.mContext = context;
         this.mHandler = handler;
+        progressDialog = new ProgressDialog(mContext);
+        progressDialog.show();
     }
 
     @Override
     public void run()
     {
-
         try
         {
             // 连接web,提交帐号密码
@@ -74,8 +77,10 @@ public class LoginThread extends Thread
             switch (ret)
             {
                 case CONSTANT.SUCCESS:
+
                     Intent intent = new Intent(mContext, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("userInfo",result.toString());
                     mContext.startActivity(intent);
                     break;
                 case CONSTANT.ERROR:
@@ -109,5 +114,7 @@ public class LoginThread extends Thread
         {
             e.printStackTrace();
         }
+
+        progressDialog.close();
     }
 }

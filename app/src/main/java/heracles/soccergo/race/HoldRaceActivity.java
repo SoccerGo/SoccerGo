@@ -1,8 +1,8 @@
 package heracles.soccergo.race;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -70,11 +70,16 @@ public class HoldRaceActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        etAddress.setText(data.getStringExtra("address"));
-        if(Test.flag)
+        if(data!=null)
         {
-            Log.d("city",data.getStringExtra("city"));
-            Log.d("province", data.getStringExtra("province"));
+            String address = data.getStringExtra("address");
+            if(address!=null)
+                etAddress.setText(address);
+            if(Test.flag)
+            {
+                Log.d("city",data.getStringExtra("city"));
+                Log.d("province", data.getStringExtra("province"));
+            }
         }
     }
 }

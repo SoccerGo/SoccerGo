@@ -1,6 +1,5 @@
 package heracles.soccergo.login;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,12 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import heracles.soccergo.R;
-import heracles.soccergo.Tools.ProgressDialog;
 
 public class LoginActivity extends AppCompatActivity
 {
     private Button btnLogin;
-    private ProgressDialog progressDialog;
     private Button btnRegister;
     private EditText etUser;
     private EditText etPassword;
@@ -46,8 +43,6 @@ public class LoginActivity extends AppCompatActivity
             {
                 String user = etUser.getText().toString();
                 String password = etPassword.getText().toString();
-                progressDialog = new ProgressDialog(LoginActivity.this);
-                progressDialog.show();
                 if(user.isEmpty())
                 {
                     etUser.setError("请输入用户名");
