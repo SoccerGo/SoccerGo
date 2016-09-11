@@ -10,11 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import heracles.soccergo.R;
+import heracles.soccergo.Tools.ProgressDialog;
 
 public class LoginActivity extends AppCompatActivity
 {
     private Button btnLogin;
-    private Dialog progressDialog;
+    private ProgressDialog progressDialog;
     private Button btnRegister;
     private EditText etUser;
     private EditText etPassword;
@@ -45,6 +46,8 @@ public class LoginActivity extends AppCompatActivity
             {
                 String user = etUser.getText().toString();
                 String password = etPassword.getText().toString();
+                progressDialog = new ProgressDialog(LoginActivity.this);
+                progressDialog.show();
                 if(user.isEmpty())
                 {
                     etUser.setError("请输入用户名");
@@ -71,7 +74,7 @@ public class LoginActivity extends AppCompatActivity
             {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
-//                showProgressDialog();
+
             }
         });
 
@@ -83,19 +86,6 @@ public class LoginActivity extends AppCompatActivity
         btnRegister = (Button) findViewById(R.id.btnRegister);
         etUser = (EditText) findViewById(R.id.etUser);
         etPassword = (EditText) findViewById(R.id.etPassword);
-    }
-
-    private void showProgressDialog()
-    {
-        progressDialog = new Dialog(LoginActivity.this, R.style.ProgBarTheme_AlphaBackground);
-        progressDialog.setContentView(R.layout.dialog_progbar);
-        progressDialog.setCancelable(true);
-        progressDialog.show();
-    }
-
-    private void closeProgressDialog()
-    {
-        progressDialog.dismiss();
     }
 
 }

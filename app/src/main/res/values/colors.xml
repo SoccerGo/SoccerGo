@@ -10,5 +10,5 @@
     <color name="grey">#7b7b7b</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
-    <color name="AlphaWhite">#56ffffff</color>
+    <color name="AlphaWhite">#afffffff</color>
 </resources>

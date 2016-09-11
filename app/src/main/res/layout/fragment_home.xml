@@ -144,7 +144,7 @@
         <LinearLayout
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -166,7 +166,68 @@
                     android:textColor="#df0f0f"/>
 
             </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp">
+                <heracles.soccergo.Tools.RadarView
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/radarView" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="速度"
+                    android:id="@+id/textView8"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="射门"
+                    android:id="@+id/textView53"
+                    android:layout_below="@+id/textView8"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="30dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="防守"
+                    android:id="@+id/textView54"
+                    android:layout_alignTop="@+id/textView53"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="盘带"
+                    android:id="@+id/textView55"
+                    android:layout_below="@+id/radarView"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="力量"
+                    android:id="@+id/textView56"
+                    android:layout_alignBottom="@+id/radarView"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="30dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="传球"
+                    android:id="@+id/textView57"
+                    android:layout_alignBottom="@+id/textView56"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
 
         </LinearLayout>
 
