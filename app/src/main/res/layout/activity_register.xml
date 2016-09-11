@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请验证你的手机"
+        android:id="@+id/textView2"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/login_alpha"
+        android:paddingTop="25dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText8"
+            android:hint="中国+86"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff" />
+
+        <EditText
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText9"
+            android:layout_alignTop="@+id/editText8"
+            android:layout_toEndOf="@+id/editText8"
+            android:hint="手机号"
+            android:paddingLeft="12dp"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:text="验  证"
+            android:id="@+id/button18"
+            android:background="@drawable/gradient_white_to_grey"
+            android:textColor="#656565"
+            android:layout_alignBottom="@+id/editText9"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="9dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 验证码发送至您的手机"
+            android:id="@+id/textView14"
+            android:layout_below="@+id/editText8"
+            android:layout_alignStart="@+id/editText8"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:paddingTop="8dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText10"
+            android:layout_below="@+id/textView14"
+            android:layout_alignStart="@+id/textView14"
+            android:hint="验证码"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:paddingTop="15dp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/ivBack"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/back_icon_left"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="8dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/relativeLayout4">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我已阅读并同意"
+            android:id="@+id/checkBox2"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:checked="true"
+            android:textSize="12dp"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="《足球小将用户注册和使用协议》"
+            android:id="@+id/textView18"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/checkBox2"
+            android:textSize="12dp"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="下一步"
+        android:id="@+id/button19"
+        android:layout_below="@+id/relativeLayout4"
+        android:layout_centerHorizontal="true"
+        android:textSize="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/gradient_white_to_grey" />
+
+</RelativeLayout>
