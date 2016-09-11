@@ -1,6 +1,7 @@
 package heracles.soccergo.race;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +30,7 @@ import com.tencent.tencentmap.mapsdk.maps.model.Marker;
 import com.tencent.tencentmap.mapsdk.maps.model.MarkerOptions;
 
 import heracles.soccergo.R;
+import heracles.soccergo.Tools.Test;
 
 public class FootballMapActivity extends FragmentActivity
 {
@@ -37,6 +39,8 @@ public class FootballMapActivity extends FragmentActivity
     private Handler handler = new Handler();
     private DemoLocationSource locationSource;
     private TencentMap tencentMap;
+
+    private Intent intent = new Intent();
 
     private boolean first = true;
 
@@ -76,6 +80,8 @@ public class FootballMapActivity extends FragmentActivity
             {
                 // TODO Auto-generated method stub
                 Log.d("maker", marker.getTitle());
+                intent.putExtra("address",marker.getTitle());
+                setResult(100,intent);
                 finish();
             }
         };
@@ -112,7 +118,8 @@ public class FootballMapActivity extends FragmentActivity
             // TODO Auto-generated method stub
             if (arg1 == TencentLocation.ERROR_OK && mChangedListener != null)
             {
-                Log.d("maplocation", "location: " + arg0.getCity() + " " + arg0.getProvider());
+                if(Test.flag)
+                    Log.d("maplocation", "location: " + arg0.getCity() + " " + arg0.getProvider());
                 Location location = new Location(arg0.getProvider());
                 location.setLatitude(arg0.getLatitude());
                 location.setLongitude(arg0.getLongitude());
@@ -120,6 +127,9 @@ public class FootballMapActivity extends FragmentActivity
                 mChangedListener.onLocationChanged(location);
                 if (first)
                 {
+                    intent.putExtra("city",arg0.getCity());
+                    intent.putExtra("province",arg0.getProvince());
+
                     CameraUpdate cameraSigma = CameraUpdateFactory.newCameraPosition(new CameraPosition(
                             new LatLng(arg0.getLatitude(), arg0.getLongitude()), //新的中心点坐标
                             15,  //新的缩放级别
@@ -128,7 +138,7 @@ public class FootballMapActivity extends FragmentActivity
 //移动地图
                     tencentMap.moveCamera(cameraSigma);
                     TencentSearch tencentSearch = new TencentSearch(FootballMapActivity.this);
-                    SearchParam.Region r = new SearchParam.Region().poi("大连");
+                    SearchParam.Region r = new SearchParam.Region().poi(arg0.getCity());
                     SearchParam param = new SearchParam().keyword("足球场").boundary(r);
                     tencentSearch.search(param, new HttpResponseListener()
                     {
@@ -143,11 +153,10 @@ public class FootballMapActivity extends FragmentActivity
                                 SearchResultObject oj = (SearchResultObject) baseObject;
                                 if (oj.data != null)
                                 {
-                                    String result = "搜索大连地区含有足球场的poi\n\n";
                                     for (SearchResultObject.SearchResultData data : oj.data)
                                     {
-                                        Log.v("demo", "title:" + data.title + "  坐标:" + data.location.lat + " " + data.location.lng);
-                                        result += data.address + "\n";
+                                        if(Test.flag)
+                                            Log.v("demo", "title:" + data.title + "  坐标:" + data.location.lat + " " + data.location.lng);
                                         LatLng latLng = new LatLng(data.location.lat, data.location.lng);
                                         tencentMap.addMarker(new MarkerOptions().position(latLng).title(data.title));
                                     }
