@@ -62,15 +62,14 @@
         android:id="@+id/button13"
         android:layout_below="@+id/linearLayout4"
         android:layout_alignStart="@+id/linearLayout4"
-        android:textColor="@drawable/btn_corners_sml_textcolor_selector"
-        android:background="@drawable/btn_corners_sml_bg_selector" />
+        android:background="@drawable/btn_corners_sml_bg_selector"
+        />
 
     <Button
         android:layout_width="90dp"
         android:layout_height="30dp"
         android:text="球  衣"
         android:id="@+id/button14"
-        android:textColor="@drawable/btn_corners_sml_textcolor_selector"
         android:background="@drawable/btn_corners_sml_bg_selector"
         android:layout_alignTop="@+id/button13"
         android:layout_toEndOf="@+id/button13" />
@@ -80,7 +79,6 @@
         android:layout_height="30dp"
         android:text="球  鞋"
         android:id="@+id/button15"
-        android:textColor="@drawable/btn_corners_sml_textcolor_selector"
         android:background="@drawable/btn_corners_sml_bg_selector"
         android:layout_alignTop="@+id/button14"
         android:layout_toEndOf="@+id/button14" />
@@ -90,7 +88,6 @@
         android:layout_height="30dp"
         android:text="训练道具"
         android:id="@+id/button16"
-        android:textColor="@drawable/btn_corners_sml_textcolor_selector"
         android:background="@drawable/btn_corners_sml_bg_selector"
         android:layout_alignTop="@+id/button15"
         android:layout_toEndOf="@+id/button15" />
