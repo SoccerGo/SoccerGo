@@ -13,6 +13,11 @@
         <!-- 隐藏标题 -->
         <item name="android:windowNoTitle">true</item>
     </style>
+    
+    <style name="Dialog_Alpha_Notitle" parent="@android:style/Theme.Holo.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/AlphaWhite</item>
+    </style>
 
     <style name="helabi_value">
         <item name="android:textSize">22dp</item>
