@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请输入你的密码"
+        android:id="@+id/textView2"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/login_alpha"
+        android:paddingTop="25dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText8"
+            android:hint="请设置你的密码"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:inputType="textPassword"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText10"
+            android:hint="请再输入一次"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:paddingTop="15dp"
+            android:focusableInTouchMode="true"
+            android:layout_below="@+id/editText8"
+            android:layout_alignParentStart="true"
+            android:inputType="textPassword"/>
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/ivBack"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/back_icon_left"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="完  成"
+        android:id="@+id/button19"
+        android:textSize="16dp"
+        android:background="@drawable/gradient_white_to_grey"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
