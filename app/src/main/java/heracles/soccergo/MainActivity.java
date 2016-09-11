@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import heracles.soccergo.club.ClubFragment;
+import heracles.soccergo.community.CommunityFragment;
 import heracles.soccergo.home.HomeFragment;
 import heracles.soccergo.more.MoreFragment;
 import heracles.soccergo.race.RaceFragment;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Fragment homeFragment;
     private Fragment moreFragment;
     private Fragment raceFragment;
+    private Fragment communityFragment;
     private int currentFragmentID = -1;
 
     @Override
@@ -85,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ivHome.setImageResource(R.drawable.home);
                 break;
             case R.id.ivCommunity:
+                ft.hide(communityFragment);
                 ivCommunity.setImageResource(R.drawable.community);
                 break;
             case R.id.ivMore:
@@ -111,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ivHome.setImageResource(R.drawable.home2);
                 break;
             case R.id.ivCommunity:
+                ft.show(communityFragment);
                 currentFragmentID = R.id.ivCommunity;
                 ivCommunity.setImageResource(R.drawable.community2);
                 break;
@@ -135,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             homeFragment = new HomeFragment();
             moreFragment = new MoreFragment();
             raceFragment = new RaceFragment();
+            communityFragment = new CommunityFragment();
 
             return null;
         }
@@ -145,8 +150,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.add(R.id.llMainLayout,homeFragment, "homeFragment").add(R.id.llMainLayout,clubFragment, "clubFragment")
-                    .add(R.id.llMainLayout,moreFragment, "moreFragment").add(R.id.llMainLayout,raceFragment, "raceFragment");
-            ft.show(homeFragment).hide(clubFragment).hide(moreFragment).hide(raceFragment).commit();
+                    .add(R.id.llMainLayout,moreFragment, "moreFragment").add(R.id.llMainLayout,raceFragment, "raceFragment")
+            .add(R.id.llMainLayout,communityFragment,"communityFragment");
+            ft.show(homeFragment).hide(clubFragment).hide(moreFragment).hide(raceFragment).hide(communityFragment).commit();
             currentFragmentID = R.id.ivHome;
         }
     }

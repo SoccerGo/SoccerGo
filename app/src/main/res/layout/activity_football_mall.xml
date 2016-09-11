@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="heracles.soccergo.more.FootballMallActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#33a333"
+        android:id="@+id/relativeLayout12"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="3dp"
+            android:src="@drawable/back_icon_left"
+            android:id="@+id/imageView18" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="足球商城"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="16dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_below="@+id/relativeLayout12"
+        android:layout_centerHorizontal="true"
+        android:background="#cccccc"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:id="@+id/linearLayout4">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/editText7"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:drawableRight="@drawable/search"
+            android:drawablePadding="5dp"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:text="足  球"
+        android:id="@+id/button13"
+        android:layout_below="@+id/linearLayout4"
+        android:layout_alignStart="@+id/linearLayout4"
+        android:textColor="@drawable/btn_corners_sml_textcolor_selector"
+        android:background="@drawable/btn_corners_sml_bg_selector" />
+
+    <Button
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:text="球  衣"
+        android:id="@+id/button14"
+        android:textColor="@drawable/btn_corners_sml_textcolor_selector"
+        android:background="@drawable/btn_corners_sml_bg_selector"
+        android:layout_alignTop="@+id/button13"
+        android:layout_toEndOf="@+id/button13" />
+
+    <Button
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:text="球  鞋"
+        android:id="@+id/button15"
+        android:textColor="@drawable/btn_corners_sml_textcolor_selector"
+        android:background="@drawable/btn_corners_sml_bg_selector"
+        android:layout_alignTop="@+id/button14"
+        android:layout_toEndOf="@+id/button14" />
+
+    <Button
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:text="训练道具"
+        android:id="@+id/button16"
+        android:textColor="@drawable/btn_corners_sml_textcolor_selector"
+        android:background="@drawable/btn_corners_sml_bg_selector"
+        android:layout_alignTop="@+id/button15"
+        android:layout_toEndOf="@+id/button15" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView2"
+        android:layout_below="@+id/button13"
+        android:layout_alignStart="@+id/button13" />
+
+</RelativeLayout>

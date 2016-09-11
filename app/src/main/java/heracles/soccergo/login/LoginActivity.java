@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity
 {
     private Button btnLogin;
     private Dialog progressDialog;
-    private TextView tvRegister;
+    private Button btnRegister;
 
     // MOB短信验证属性
     private static String APPKEY = "16ec22ed56244";
@@ -55,34 +55,36 @@ public class LoginActivity extends AppCompatActivity
             }
         });
 
-        tvRegister.setOnClickListener(new View.OnClickListener()
+        btnRegister.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                //                showProgressDialog();
-                SMSSDK.initSDK(LoginActivity.this, APPKEY, APPSECRET);
-
-                //打开注册页面
-                RegisterPage registerPage = new RegisterPage();
-                registerPage.setRegisterCallback(new EventHandler()
-                {
-                    public void afterEvent(int event, int result, Object data)
-                    {
-                        // 解析注册结果
-                        if (result == SMSSDK.RESULT_COMPLETE)
-                        {
-                            @SuppressWarnings("unchecked")
-                            HashMap<String, Object> phoneMap = (HashMap<String, Object>) data;
-                            String country = (String) phoneMap.get("country");
-                            String phone = (String) phoneMap.get("phone");
-
-                            // 提交用户信息（此方法可以不调用）
-                            registerUser(country, phone);
-                        }
-                    }
-                });
-                registerPage.show(LoginActivity.this);
+                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
+//                showProgressDialog();
+//                SMSSDK.initSDK(LoginActivity.this, APPKEY, APPSECRET);
+//
+//                //打开注册页面
+//                RegisterPage registerPage = new RegisterPage();
+//                registerPage.setRegisterCallback(new EventHandler()
+//                {
+//                    public void afterEvent(int event, int result, Object data)
+//                    {
+//                        // 解析注册结果
+//                        if (result == SMSSDK.RESULT_COMPLETE)
+//                        {
+//                            @SuppressWarnings("unchecked")
+//                            HashMap<String, Object> phoneMap = (HashMap<String, Object>) data;
+//                            String country = (String) phoneMap.get("country");
+//                            String phone = (String) phoneMap.get("phone");
+//
+//                            // 提交用户信息（此方法可以不调用）
+//                            registerUser(country, phone);
+//                        }
+//                    }
+//                });
+//                registerPage.show(LoginActivity.this);
             }
         });
     }
@@ -96,7 +98,7 @@ public class LoginActivity extends AppCompatActivity
     private void getWidget()
     {
         btnLogin = (Button) findViewById(R.id.btnLogin);
-        tvRegister = (TextView) findViewById(R.id.tvRegister);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
     }
 
     private void showProgressDialog()

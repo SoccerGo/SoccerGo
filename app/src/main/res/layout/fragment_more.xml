@@ -110,14 +110,16 @@
                 android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
-                android:src="@drawable/purse"/>
+                android:src="@drawable/purse"
+                android:id="@+id/ivPurse" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
-                android:src="@drawable/daily_task"/>
+                android:src="@drawable/daily_task"
+                android:id="@+id/ivDailyTask" />
 
         </LinearLayout>
 
@@ -133,14 +135,16 @@
                 android:layout_marginRight="2dp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
-                android:src="@drawable/personal_trainer"/>
+                android:src="@drawable/personal_trainer"
+                android:id="@+id/ivPrivateCoach" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
-                android:src="@drawable/football_mall"/>
+                android:src="@drawable/football_mall"
+                android:id="@+id/ivFootballMall" />
 
         </LinearLayout>
 

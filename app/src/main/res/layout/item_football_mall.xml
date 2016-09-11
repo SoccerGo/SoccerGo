@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/layout_border_top_green"
+    android:paddingTop="26dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp">
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:id="@+id/imageView19"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:background="#c4c4c4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="阿迪达斯儿童球衣"
+        android:id="@+id/textView44"
+        android:layout_alignTop="@+id/imageView19"
+        android:layout_toEndOf="@+id/imageView19"
+        android:textSize="17dp"
+        android:textColor="#000000"
+        android:layout_marginLeft="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="可任意选球队，球衣号，印刷名字服务"
+        android:id="@+id/textView45"
+        android:paddingTop="5dp"
+        android:layout_below="@+id/textView44"
+        android:layout_alignStart="@+id/textView44" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2899"
+        android:id="@+id/textView46"
+        android:layout_alignBottom="@+id/imageView19"
+        android:layout_alignStart="@+id/textView45"
+        android:textSize="25dp"
+        android:textColor="#101010" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="赫拉"
+        android:id="@+id/textView47"
+        android:layout_alignBottom="@+id/textView46"
+        android:layout_toEndOf="@+id/textView46"
+        android:paddingBottom="3dp" />
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="购  买"
+        android:id="@+id/button17"
+        android:layout_alignBottom="@+id/textView47"
+        android:layout_alignEnd="@+id/textView45"
+        android:background="@color/LightGreen" />
+</RelativeLayout>

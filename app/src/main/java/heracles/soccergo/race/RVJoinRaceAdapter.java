@@ -62,8 +62,8 @@ public class RVJoinRaceAdapter extends RecyclerView.Adapter<JoinRaceViewHolder>
         if (position % 2 != 0)
         {
             if (Test.flag)
-                Log.d("color", String.valueOf(mContext.getResources().getColor(R.color.colorDeepGreen)));
-            holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.colorDeepGreen));
+                Log.d("color", String.valueOf(mContext.getResources().getColor(R.color.DeepGreen)));
+            holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.DeepGreen));
 
         }
 

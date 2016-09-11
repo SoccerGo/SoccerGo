@@ -83,7 +83,7 @@
         android:text="登    录"
         android:id="@+id/btnLogin"
         android:layout_marginTop="31dp"
-        android:background="#f2f2f2"
+        android:background="@drawable/gradient_white_to_grey"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_below="@+id/linearLayout"
@@ -94,7 +94,7 @@
         android:layout_height="35dp"
         android:background="#95206920"
         android:text="你是鲜肉？来这里注册吧"
-        android:id="@+id/tvRegister"
+        android:id="@+id/btnRegister"
         android:textColor="#ffffff"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
