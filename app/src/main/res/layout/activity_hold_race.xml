@@ -153,7 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="还没有场地？立马去预约"
-            android:id="@+id/textView8"
+            android:id="@+id/tvFootballMap"
             android:layout_marginTop="11dp"
             android:layout_marginEnd="9dp"
             android:layout_below="@+id/editText5"
@@ -166,7 +166,7 @@
             android:text="报名费用："
             android:id="@+id/textView9"
             android:textSize="16dp"
-            android:layout_below="@+id/textView8"
+            android:layout_below="@+id/tvFootballMap"
             android:layout_alignParentStart="true"
             android:layout_marginTop="22dp"
             android:textColor="#ffffff" />

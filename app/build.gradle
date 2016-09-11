@@ -22,24 +22,15 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
-    task clean(type: Delete) {
-        delete rootProject.buildDir
-    }
-}
-
-repositories{
-    flatDir{
-        dirs 'libs' //就是你放aar的目录地址
-    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0-alpha2'
-    compile files('libs/BaiduLBS_Android.jar')
+    //noinspection GradleCompatible
     compile 'com.android.support:recyclerview-v7:23.3.0'
-    compile files('libs/MobCommons-2016.0714.1402.jar')
-    compile name:'SMSSDK-2.1.1',ext:'aar'
-    compile name:'SMSSDKGUI-2.1.1',ext:'aar'
+    compile files('libs/TencentMapSDK_Vector_v3.0.3.jar')
+    compile files('libs/TencentLocationSDK_v4.8.8.3.jar')
+    compile files('libs/TencentSearch1.1.3.jar')
 }
