@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.RadarView;
 import heracles.soccergo.Tools.Test;
+import heracles.soccergo.Tools.User;
 import heracles.soccergo.Tools.User_abilities_club_club;
 import heracles.soccergo.Tools.Utils;
 
@@ -105,6 +106,7 @@ public class HomeFragment extends Fragment
             {
                 JSONObject jsonObject = new JSONObject(json);
                 user = JSON.parseObject(jsonObject.getString("data"),User_abilities_club_club.class);
+                User.setUser(user);
             } catch (JSONException e)
             {
                 e.printStackTrace();

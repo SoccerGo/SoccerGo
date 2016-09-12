@@ -5,5 +5,10 @@ package heracles.soccergo.Tools;
  */
 public class User
 {
+    public static User_abilities_club_club mUserInfo;
 
+    public static void setUser(User_abilities_club_club userInfo)
+    {
+        mUserInfo = userInfo;
+    }
 }

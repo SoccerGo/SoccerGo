@@ -39,13 +39,13 @@ public class RVJoinRaceAdapter extends RecyclerView.Adapter<JoinRaceViewHolder>
 
     public interface OnItemBtnClickListener
     {
-        void onItemBtnClick(View view,int position);
+        void onItemBtnClick(View view, int position);
     }
 
     @Override
     public JoinRaceViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View view = mInflater.inflate(R.layout.item_join_race_listview,parent,false);
+        View view = mInflater.inflate(R.layout.item_join_race_listview, parent, false);
         JoinRaceViewHolder joinRaceViewHolder = new JoinRaceViewHolder(view);
         return joinRaceViewHolder;
     }
@@ -53,11 +53,11 @@ public class RVJoinRaceAdapter extends RecyclerView.Adapter<JoinRaceViewHolder>
     @Override
     public void onBindViewHolder(final JoinRaceViewHolder holder, int position)
     {
-        holder.tvItemTitle.setText((String)mDatas.get(position).get("title"));
-        holder.tvItemSize.setText((String)mDatas.get(position).get("size"));
-        holder.tvItemLocale.setText((String)mDatas.get(position).get("local"));
-        holder.tvItemTime.setText((String)mDatas.get(position).get("time"));
-        holder.tvItemCost.setText((String)mDatas.get(position).get("cost"));
+        holder.tvItemTitle.setText((String) mDatas.get(position).get("title"));
+        holder.tvItemSize.setText(String.valueOf(mDatas.get(position).get("size")) + "人制");
+        holder.tvItemLocale.setText((String) mDatas.get(position).get("local"));
+        holder.tvItemTime.setText((String) mDatas.get(position).get("time"));
+        holder.tvItemCost.setText(String.valueOf(mDatas.get(position).get("cost"))+"元/人");
 
         if (position % 2 != 0)
         {
@@ -67,14 +67,14 @@ public class RVJoinRaceAdapter extends RecyclerView.Adapter<JoinRaceViewHolder>
 
         }
 
-        if(mOnItemClickListener != null)
+        if (mOnItemClickListener != null)
         {
             holder.btnItemJoin.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
-                    mOnItemClickListener.onItemBtnClick(holder.btnItemJoin,holder.getLayoutPosition());
+                    mOnItemClickListener.onItemBtnClick(holder.btnItemJoin, holder.getLayoutPosition());
                 }
             });
         }
@@ -83,7 +83,10 @@ public class RVJoinRaceAdapter extends RecyclerView.Adapter<JoinRaceViewHolder>
     @Override
     public int getItemCount()
     {
-        return mDatas.size();
+        if(mDatas == null)
+            return 0;
+        else
+            return mDatas.size();
     }
 }
 

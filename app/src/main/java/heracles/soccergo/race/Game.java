@@ -13,7 +13,7 @@ public class Game {
 	private String		user_id;  		//用户id
 	private String 		game_name;		//比赛标题
 	private int    		game_standard;	//比赛规模 人数X2
-	private Date   		game_data;    	//比赛日期
+	private Date   		game_date;    	//比赛日期
 	private String 		game_address;	//地点
 	private int    		cost;        	//费用
 	private int    		join_num;    	//参加人数
@@ -44,11 +44,11 @@ public class Game {
 	public void setGame_standard(int game_standard) {
 		this.game_standard = game_standard;
 	}
-	public Date getGame_data() {
-		return game_data;
+	public Date getGame_date() {
+		return game_date;
 	}
-	public void setGame_data(Date game_data) {
-		this.game_data = game_data;
+	public void setGame_date(Date game_data) {
+		this.game_date = game_data;
 	}
 	public String getGame_address() {
 		return game_address;
@@ -71,7 +71,7 @@ public class Game {
 	@Override
 	public String toString() {
 		return "Game [game_id=" + game_id + ", user_id=" + user_id + ", game_name=" + game_name + ", game_standard="
-				+ game_standard + ", game_data=" + game_data + ", game_address=" + game_address + ", cost=" + cost
+				+ game_standard + ", game_data=" + game_date + ", game_address=" + game_address + ", cost=" + cost
 				+ ", join_num=" + join_num + "]";
 	}
 	

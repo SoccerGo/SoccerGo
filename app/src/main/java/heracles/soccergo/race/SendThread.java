@@ -1,7 +1,6 @@
 package heracles.soccergo.race;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
@@ -18,7 +17,6 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-import heracles.soccergo.MainActivity;
 import heracles.soccergo.Tools.CONSTANT;
 import heracles.soccergo.Tools.ProgressDialog;
 import heracles.soccergo.Tools.Test;
@@ -28,18 +26,26 @@ import heracles.soccergo.Tools.Test;
  */
 public class SendThread extends Thread
 {
-    private String mPassword;
-    private String mUser;
+    private String game_name;
+    private String user_id;
+    private String game_standard;
+    private String game_date;
+    private String game_address;
+    private String cost;
     private Handler mHandler;
     private Context mContext;
-    private String mUrl = CONSTANT.HOST + "Heracles/app/user/Login/";
+    private String mUrl = CONSTANT.HOST + "Game/addGame";
     private ProgressDialog progressDialog;
 
 
-    public SendThread(Context context, String user, String password, Handler handler)
+    public SendThread(Context context,Handler handler, String user_id, String game_name,String game_standard,String game_date,String game_address,String cost)
     {
-        this.mUser = user;
-        this.mPassword = password;
+        this.user_id = user_id;
+        this.game_name = game_name;
+        this.game_standard = game_standard;
+        this.game_date = game_date;
+        this.game_address = game_address;
+        this.cost = cost;
         this.mContext = context;
         this.mHandler = handler;
         progressDialog = new ProgressDialog(mContext);
@@ -57,7 +63,8 @@ public class SendThread extends Thread
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setConnectTimeout(5000);
             OutputStream out = httpURLConnection.getOutputStream();
-            final String content = "user_name=" + mUser + "&password=" + mPassword;
+            final String content = "game_name=" + game_name + "&user_id=" + user_id+"&game_standard="+game_standard+
+                    "&game_date="+game_date+"&game_address="+game_address+"&cost="+cost;
             out.write(content.getBytes());
 
             //读取服务器返回结果
@@ -78,10 +85,6 @@ public class SendThread extends Thread
             {
                 case CONSTANT.SUCCESS:
 
-                    Intent intent = new Intent(mContext, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("userInfo",result.toString());
-                    mContext.startActivity(intent);
                     break;
                 case CONSTANT.ERROR:
                     mHandler.post(new Runnable()

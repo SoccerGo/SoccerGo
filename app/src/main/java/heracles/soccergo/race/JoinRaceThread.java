@@ -1,7 +1,6 @@
-package heracles.soccergo.login;
+package heracles.soccergo.race;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
@@ -18,28 +17,27 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-import heracles.soccergo.MainActivity;
 import heracles.soccergo.Tools.CONSTANT;
 import heracles.soccergo.Tools.ProgressDialog;
 import heracles.soccergo.Tools.Test;
 
 /**
- * Created by 10539 on 2016/9/6.
+ * Created by 10539 on 2016/9/12.
  */
-public class LoginThread extends Thread
+public class JoinRaceThread extends Thread
 {
-    private String mPassword;
-    private String mUser;
+    private String userID;
+    private String gameID;
     private Handler mHandler;
     private Context mContext;
-    private String mUrl = CONSTANT.HOST + "app/user/Login/";
+    private String mUrl = CONSTANT.HOST + "Game/joinGame";
     private ProgressDialog progressDialog;
 
 
-    public LoginThread(Context context,String user, String password, Handler handler)
+    public JoinRaceThread(Context context, Handler handler, String userID, String gameID)
     {
-        this.mUser = user;
-        this.mPassword = password;
+        this.userID = userID;
+        this.gameID = gameID;
         this.mContext = context;
         this.mHandler = handler;
         progressDialog = new ProgressDialog(mContext);
@@ -57,7 +55,7 @@ public class LoginThread extends Thread
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setConnectTimeout(5000);
             OutputStream out = httpURLConnection.getOutputStream();
-            final String content = "user_name=" + mUser + "&password=" + mPassword;
+            final String content = "user_id=" + userID + "&game_id=" + gameID;
             out.write(content.getBytes());
 
             //读取服务器返回结果
@@ -77,11 +75,15 @@ public class LoginThread extends Thread
             switch (ret)
             {
                 case CONSTANT.SUCCESS:
+                    mHandler.post(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            Toast.makeText(mContext, "加入成功", Toast.LENGTH_LONG).show();
+                        }
+                    });
 
-                    Intent intent = new Intent(mContext, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("userInfo",result.toString());
-                    mContext.startActivity(intent);
                     break;
                 case CONSTANT.ERROR:
                     mHandler.post(new Runnable()

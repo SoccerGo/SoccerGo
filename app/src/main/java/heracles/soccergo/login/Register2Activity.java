@@ -21,7 +21,6 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-import heracles.soccergo.MainActivity;
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.CONSTANT;
 import heracles.soccergo.Tools.Test;
@@ -139,7 +138,7 @@ public class Register2Activity extends AppCompatActivity
                 switch (ret)
                 {
                     case CONSTANT.SUCCESS:
-                        Intent intent = new Intent(Register2Activity.this, MainActivity.class);
+                        Intent intent = new Intent(Register2Activity.this, LoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         break;
@@ -147,15 +146,6 @@ public class Register2Activity extends AppCompatActivity
                         Toast.makeText(Register2Activity.this,jsonObject.getString("error"),Toast.LENGTH_LONG).show();
                         break;
                 }
-                if (ret == 1)
-                {
-                    Intent intent = new Intent(Register2Activity.this, MainActivity.class);
-                    intent.putExtra("loginWay", "tel");
-                    intent.putExtra("msg", result.toString());
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                }
-
             } catch (MalformedURLException e)
             {
                 e.printStackTrace();
