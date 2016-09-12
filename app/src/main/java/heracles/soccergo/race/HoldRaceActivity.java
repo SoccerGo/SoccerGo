@@ -17,6 +17,12 @@ public class HoldRaceActivity extends AppCompatActivity
     private Button btnJoinRace;
     private TextView tvFootballMap;
     private EditText etAddress;
+    private EditText etName;
+    private EditText etSize;
+    private EditText etDate;
+    private EditText edTime;
+    private EditText etPrice;
+    private Button btnSend;
 
     public static final int GETADDRESS = 100;
 
@@ -57,6 +63,15 @@ public class HoldRaceActivity extends AppCompatActivity
                 startActivityForResult(intent,GETADDRESS);
             }
         });
+
+        btnSend.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+            }
+        });
     }
 
     private void getWidget()
@@ -64,6 +79,12 @@ public class HoldRaceActivity extends AppCompatActivity
         btnJoinRace = (Button) findViewById(R.id.btnJoinRace);
         tvFootballMap = (TextView) findViewById(R.id.tvFootballMap);
         etAddress = (EditText) findViewById(R.id.etAddress);
+        etName = (EditText) findViewById(R.id.etName);
+        etSize = (EditText) findViewById(R.id.etSize);
+        etDate = (EditText) findViewById(R.id.etDate);
+        edTime = (EditText) findViewById(R.id.edTime);
+        etPrice = (EditText) findViewById(R.id.etPrice);
+        btnSend = (Button) findViewById(R.id.btnSend);
     }
 
     @Override
