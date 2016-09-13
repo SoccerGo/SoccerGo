@@ -22,6 +22,14 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'armeabi'
+            universalApk false
+        }
+    }
 }
 
 dependencies {
@@ -35,4 +43,5 @@ dependencies {
     compile files('libs/TencentSearch1.1.3.jar')
     compile files('libs/fastjson-1.1.2.jar')
     compile files('libs/json-lib-2.4-jdk15.jar')
+    compile 'com.facebook.fresco:fresco:0.12.0'
 }

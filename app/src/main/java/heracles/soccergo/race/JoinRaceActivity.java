@@ -34,6 +34,7 @@ import java.util.Map;
 
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.CONSTANT;
+import heracles.soccergo.Tools.ProgressDialog;
 import heracles.soccergo.Tools.Test;
 import heracles.soccergo.Tools.User;
 
@@ -45,6 +46,7 @@ public class JoinRaceActivity extends AppCompatActivity
     private List<Map<String, Object>> list;
 
     private List<Game> games;
+    private ProgressDialog progressDialog;
 
     private Handler handler = new Handler();
 
@@ -67,6 +69,7 @@ public class JoinRaceActivity extends AppCompatActivity
     {
         btnHoldRace = (Button) findViewById(R.id.btnHoldRace);
         rvJoinRace = (RecyclerView) findViewById(R.id.rvJoinRace);
+        progressDialog = new ProgressDialog(JoinRaceActivity.this);
     }
 
     private void setWidget()
@@ -103,6 +106,7 @@ public class JoinRaceActivity extends AppCompatActivity
     protected void onResume()
     {
         super.onResume();
+        progressDialog.show();
         new GetRaceInfo().execute();
     }
 
@@ -183,6 +187,7 @@ public class JoinRaceActivity extends AppCompatActivity
                     new JoinRaceThread(JoinRaceActivity.this, handler, User.mUserInfo.getUser_id(), String.valueOf(list.get(position).get("id"))).start();
                 }
             });
+            progressDialog.close();
         }
     }
 }

@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import heracles.soccergo.R;
+import heracles.soccergo.Tools.ProgressDialog;
 import heracles.soccergo.Tools.RadarView;
 import heracles.soccergo.Tools.Test;
 import heracles.soccergo.Tools.User;
@@ -95,9 +96,12 @@ public class HomeFragment extends Fragment
     class UpdateUI extends AsyncTask<Void, Integer, Void>
     {
         private String json;
+        private ProgressDialog progressDialog;
         public UpdateUI(String json)
         {
             this.json = json;
+            progressDialog = new ProgressDialog(getContext());
+            progressDialog.show();
         }
         @Override
         protected Void doInBackground(Void... params)
@@ -136,6 +140,7 @@ public class HomeFragment extends Fragment
 
             tvAbilityValue.setText(String.valueOf ((int) ((user.getPandai()+user.getChuanqiu()+user.getShoot_grade()+user.getScore()+
                                 user.getFangshou()+user.getLiliang())*100.0/600)));
+            progressDialog.close();
         }
     }
 }
