@@ -6,11 +6,17 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.tencent.map.geolocation.TencentLocation;
+import com.tencent.map.geolocation.TencentLocationListener;
+import com.tencent.map.geolocation.TencentLocationManager;
+import com.tencent.map.geolocation.TencentLocationRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import heracles.soccergo.R;
+import heracles.soccergo.Tools.Test;
 
 /**
  * Created by 10539 on 2016/9/5.
@@ -28,6 +35,10 @@ public class ClubFragment extends Fragment
     private RecyclerView rvClub;
     private List<Map<String,Object>> clubDatas;
     private RVClubAdapter clubAdapter;
+
+    private TencentLocationManager locationManager;
+    private TencentLocationRequest locationRequest;
+    private TencentLocationListener locationListener;
 
     @Nullable
     @Override
@@ -41,6 +52,33 @@ public class ClubFragment extends Fragment
     {
         super.onActivityCreated(savedInstanceState);
         initWidget();
+
+        initLocation();
+    }
+
+    private void initLocation()
+    {
+        locationManager = TencentLocationManager.getInstance(getContext());
+        locationRequest = TencentLocationRequest.create()
+                .setRequestLevel(TencentLocationRequest.REQUEST_LEVEL_ADMIN_AREA)// 设置定位level
+                .setInterval(600000); // 设置定位周期
+        locationListener = new MyLocation();
+        int err = locationManager.requestLocationUpdates(locationRequest, locationListener);
+        Log.d("err", String.valueOf(err));
+        switch (err)
+        {
+            case 1:
+                Toast.makeText(getContext(),"设备缺少使用腾讯定位服务需要的基本条件",Toast.LENGTH_LONG).show();
+                break;
+            case 2:
+                Toast.makeText(getContext(),"manifest 中配置的 key 不正确",Toast.LENGTH_LONG).show();
+                break;
+            case 3:
+                Toast.makeText(getContext(),"自动加载libtencentloc",Toast.LENGTH_LONG).show();
+                break;
+            default:
+                break;
+        }
     }
 
     private void initWidget()
@@ -127,5 +165,32 @@ public class ClubFragment extends Fragment
     {
         tvCityLocate = (TextView) getActivity().findViewById(R.id.tvCityLocate);
         rvClub = (RecyclerView) getActivity().findViewById(R.id.rvClub);
+    }
+
+    private class MyLocation implements TencentLocationListener
+    {
+
+        @Override
+        public void onLocationChanged(TencentLocation tencentLocation, int i, String s)
+        {
+            if(Test.flag)
+                Log.d("city",tencentLocation.getCity());
+            tvCityLocate.setText(tencentLocation.getCity());
+        }
+
+        @Override
+        public void onStatusUpdate(String s, int i, String s1)
+        {
+
+        }
+    }
+
+    @Override
+    public void onDestroyView()
+    {
+        locationManager.removeUpdates(locationListener);
+        locationManager = null;
+        locationRequest = null;
+        locationListener = null;
     }
 }
