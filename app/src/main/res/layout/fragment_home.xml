@@ -15,7 +15,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/more_img"/>
+            android:src="@drawable/more_img"
+            android:id="@+id/rivIcon"/>
 
         <LinearLayout
             android:layout_weight="1"

@@ -19,6 +19,11 @@
         <item name="android:windowBackground">@drawable/dialog_alpha_corners</item>
     </style>
 
+    <style name="Dialog_Notitle" parent="@android:style/Theme.Holo.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/dialog_corners</item>
+    </style>
+
     <style name="helabi_value">
         <item name="android:textSize">22dp</item>
         <item name="android:color">@color/deepRed</item>

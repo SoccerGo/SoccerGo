@@ -44,7 +44,7 @@
             android:layout_width="80dp"
             android:layout_height="25dp"
             android:text="职业"
-            android:id="@+id/button10"
+            android:id="@+id/btnPro"
             android:background="@drawable/btn_corners_mid_bg_selector"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
@@ -53,7 +53,7 @@
             android:layout_width="80dp"
             android:layout_height="25dp"
             android:text="业余"
-            android:id="@+id/button11"
+            android:id="@+id/btnParttime"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:background="@drawable/btn_corners_mid_bg_selector" />
@@ -61,8 +61,8 @@
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView"
+        android:layout_height="match_parent"
+        android:id="@+id/lvPrivateCoach"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/relativeLayout11" />
 

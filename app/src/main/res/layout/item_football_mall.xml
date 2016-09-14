@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:id="@+id/imageView19"
+        android:id="@+id/iv_image"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:background="#c4c4c4" />
@@ -19,9 +19,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="阿迪达斯儿童球衣"
-        android:id="@+id/textView44"
-        android:layout_alignTop="@+id/imageView19"
-        android:layout_toEndOf="@+id/imageView19"
+        android:id="@+id/tvItemName"
+        android:layout_alignTop="@+id/iv_image"
+        android:layout_toEndOf="@+id/iv_image"
         android:textSize="17dp"
         android:textColor="#000000"
         android:layout_marginLeft="10dp"/>
@@ -29,18 +29,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="可任意选球队，球衣号，印刷名字服务"
-        android:id="@+id/textView45"
+        android:id="@+id/tvItemContent"
         android:paddingTop="5dp"
-        android:layout_below="@+id/textView44"
-        android:layout_alignStart="@+id/textView44" />
+        android:layout_below="@+id/tvItemName"
+        android:layout_alignStart="@+id/tvItemName" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2899"
-        android:id="@+id/textView46"
-        android:layout_alignBottom="@+id/imageView19"
-        android:layout_alignStart="@+id/textView45"
+        android:id="@+id/tvPrice"
+        android:layout_alignBottom="@+id/iv_image"
+        android:layout_alignStart="@+id/tvItemContent"
         android:textSize="25dp"
         android:textColor="#101010" />
 
@@ -49,16 +49,16 @@
         android:layout_height="wrap_content"
         android:text="赫拉"
         android:id="@+id/textView47"
-        android:layout_alignBottom="@+id/textView46"
-        android:layout_toEndOf="@+id/textView46"
+        android:layout_alignBottom="@+id/tvPrice"
+        android:layout_toEndOf="@+id/tvPrice"
         android:paddingBottom="3dp" />
 
     <Button
         android:layout_width="80dp"
         android:layout_height="30dp"
         android:text="购  买"
-        android:id="@+id/button17"
+        android:id="@+id/btnPay"
         android:layout_alignBottom="@+id/textView47"
-        android:layout_alignEnd="@+id/textView45"
+        android:layout_alignEnd="@+id/tvItemContent"
         android:background="@color/LightGreen" />
 </RelativeLayout>

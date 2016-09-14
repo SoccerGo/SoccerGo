@@ -18,16 +18,16 @@
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/imageView17"
         android:layout_marginLeft="15dp"
-        android:id="@+id/textView34" />
+        android:id="@+id/tvName" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="29岁"
-        android:id="@+id/textView33"
-        android:layout_below="@+id/textView34"
-        android:layout_alignStart="@+id/textView34"
+        android:id="@+id/tvAge"
+        android:layout_below="@+id/tvName"
+        android:layout_alignStart="@+id/tvName"
         android:layout_marginTop="5dp" />
 
     <TextView
@@ -35,10 +35,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="大连东北财经大学体育教师"
-        android:id="@+id/textView35"
+        android:id="@+id/tvJob"
         android:paddingLeft="10dp"
-        android:layout_alignTop="@id/textView33"
-        android:layout_toEndOf="@+id/textView33"
+        android:layout_alignTop="@id/tvAge"
+        android:layout_toEndOf="@+id/tvAge"
         android:singleLine="true"/>
 
     <TextView
@@ -47,8 +47,8 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="评分："
         android:id="@+id/textView36"
-        android:layout_below="@+id/textView33"
-        android:layout_alignStart="@+id/textView33"
+        android:layout_below="@+id/tvAge"
+        android:layout_alignStart="@+id/tvAge"
         android:layout_marginTop="15dp" />
 
     <TextView
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="4.85"
-        android:id="@+id/textView37"
+        android:id="@+id/tvRate"
         android:layout_alignTop="@id/textView36"
         android:layout_toEndOf="@+id/textView36" />
 
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="平时十分热爱足球运动，现在在东财担任一个体育老师，希望在周末能教教孩子们踢球，同时也..."
-        android:id="@+id/textView38"
+        android:id="@+id/tvContent"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/textView36"
         android:layout_alignStart="@+id/textView36" />
@@ -75,8 +75,8 @@
         android:layout_height="wrap_content"
         android:text="更多"
         android:id="@+id/textView39"
-        android:layout_below="@+id/textView38"
-        android:layout_alignEnd="@+id/textView38" />
+        android:layout_below="@+id/tvContent"
+        android:layout_alignEnd="@+id/tvContent" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
         android:layout_alignBottom="@id/textView40"
         android:layout_toRightOf="@id/textView40"
         android:text="13342278939"
-        android:id="@+id/textView41"/>
+        android:id="@+id/tvTel"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,14 +108,14 @@
         android:text="520"
         android:layout_toRightOf="@id/textView42"
         android:layout_alignBottom="@id/textView42"
-        android:id="@+id/textView43" />
+        android:id="@+id/tvPrice" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:text="联  系"
-        android:id="@+id/button12"
-        android:layout_alignBottom="@+id/textView43"
+        android:id="@+id/btnConnect"
+        android:layout_alignBottom="@+id/tvPrice"
         android:layout_alignParentEnd="true"
         android:background="@drawable/gradient_white_to_grey" />
 
