@@ -8,11 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+
 import java.util.List;
 import java.util.Map;
 
 import heracles.soccergo.R;
-import heracles.soccergo.Tools.RoundImageView;
 
 /**
  * Created by 10539 on 2016/9/13.
@@ -56,7 +57,7 @@ public class RVCommunityAdapter extends RecyclerView.Adapter<CommunityViewHolder
 
 class CommunityViewHolder extends RecyclerView.ViewHolder
 {
-    public RoundImageView ivUser;
+    public SimpleDraweeView sdvUser;
     public TextView tvUser;
     public TextView tvContent;
     public ImageView ivImage;
@@ -68,7 +69,7 @@ class CommunityViewHolder extends RecyclerView.ViewHolder
     {
         super(itemView);
 
-        ivUser = (RoundImageView) itemView.findViewById(R.id.ivUser);
+        sdvUser = (SimpleDraweeView) itemView.findViewById(R.id.ivUser);
         tvUser = (TextView) itemView.findViewById(R.id.tvUser);
         tvContent = (TextView) itemView.findViewById(R.id.tvContent);
         ivImage = (ImageView) itemView.findViewById(R.id.ivImage);

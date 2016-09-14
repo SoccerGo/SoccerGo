@@ -1,75 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:paddingTop="20dp"
-    android:paddingLeft="10dp"
-    android:paddingBottom="20dp">
-    <heracles.soccergo.Tools.RoundImageView
+                xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="20dp">
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/ivUser"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:src="@drawable/more_img"
-        android:id="@+id/ivUser" />
+        fresco:placeholderImage="@drawable/more_img"
+        fresco:roundAsCircle="true"
+        />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/ivUser"
         android:layout_toEndOf="@+id/ivUser"
+        android:orientation="vertical"
         android:paddingLeft="10dp"
         android:paddingRight="30dp">
 
         <TextView
+            android:id="@+id/tvUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="帅气的小亮亮"
             android:textColor="#36a1c5"
-            android:textSize="18dp"
-            android:id="@+id/tvUser" />
+            android:textSize="18dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2小时前"
             android:id="@+id/tvTime"
-            android:paddingTop="4dp"
-            android:textSize="12dp" />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="看他小小的范儿，想不想小小内马尔\n23333"
+            android:paddingTop="4dp"
+            android:text="2小时前"
+            android:textSize="12dp"/>
+
+        <TextView
             android:id="@+id/tvContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:paddingTop="10dp"
-            android:textColor="#2f2f2f" />
+            android:text="看他小小的范儿，想不想小小内马尔\n23333"
+            android:textColor="#2f2f2f"/>
 
         <ImageView
+            android:id="@+id/ivImage"
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:id="@+id/ivImage"
-            android:background="#a3a3a3"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="4dp"
+            android:background="#a3a3a3"/>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:paddingTop="4dp">
 
             <TextView
+                android:id="@+id/textView51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="来自："
-                android:id="@+id/textView51"
-                android:textSize="12dp" />
+                android:textSize="12dp"/>
 
             <TextView
+                android:id="@+id/tvFrom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="足球小将俱乐部"
-                android:id="@+id/tvFrom"
-                android:textSize="12dp" />
+                android:textSize="12dp"/>
         </LinearLayout>
 
         <RelativeLayout
@@ -78,61 +83,61 @@
             android:layout_marginTop="15dp">
 
             <RelativeLayout
+                android:id="@+id/layoutLike"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/layoutLike"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true">
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true">
 
                 <ImageView
+                    android:id="@+id/ivAdd"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:id="@+id/ivAdd"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
                     android:src="@drawable/like"/>
 
                 <TextView
+                    android:id="@+id/textView48"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="点赞"
-                    android:id="@+id/textView48"
                     android:layout_alignBottom="@+id/ivAdd"
                     android:layout_toEndOf="@+id/ivAdd"
-                    android:paddingLeft="5dp" />
+                    android:paddingLeft="5dp"
+                    android:text="点赞"/>
 
                 <TextView
+                    android:id="@+id/tvLikeCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="（48）"
-                    android:id="@+id/tvLikeCount"
                     android:layout_alignTop="@+id/textView48"
-                    android:layout_toEndOf="@+id/textView48" />
+                    android:layout_toEndOf="@+id/textView48"
+                    android:text="（48）"/>
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/layoutComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/layoutComment"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true">
 
                 <ImageView
+                    android:id="@+id/imageView21"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:id="@+id/imageView21"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentStart="true"
-                    android:src="@drawable/comment" />
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/comment"/>
 
                 <TextView
+                    android:id="@+id/textView50"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="评论"
-                    android:id="@+id/textView50"
                     android:layout_alignBottom="@+id/imageView21"
                     android:layout_toEndOf="@+id/imageView21"
-                    android:paddingLeft="5dp" />
+                    android:paddingLeft="5dp"
+                    android:text="评论"/>
             </RelativeLayout>
 
         </RelativeLayout>

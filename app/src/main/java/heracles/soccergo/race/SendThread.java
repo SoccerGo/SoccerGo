@@ -1,6 +1,7 @@
 package heracles.soccergo.race;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
@@ -84,7 +85,16 @@ public class SendThread extends Thread
             switch (ret)
             {
                 case CONSTANT.SUCCESS:
+                    mHandler.post(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            Intent intent = new Intent(mContext,JoinRaceActivity.class);
+                            mContext.startActivity(intent);
 
+                        }
+                    });
                     break;
                 case CONSTANT.ERROR:
                     mHandler.post(new Runnable()
