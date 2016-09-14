@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,10 +14,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 import heracles.soccergo.R;
+import heracles.soccergo.Tools.CONSTANT;
 import heracles.soccergo.Tools.Test;
 import heracles.soccergo.Tools.User;
 
@@ -35,8 +38,27 @@ public class HoldRaceActivity extends AppCompatActivity
     private String mAddress;
 
     public static final int GETADDRESS = 100;
+    public static final int FINISH = 100000;
 
-    private Handler handler = new Handler();
+    private Handler handler = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg)
+        {
+            switch (msg.what)
+            {
+                case CONSTANT.SUCCESS:
+                    Intent intent = new Intent(HoldRaceActivity.this,JoinRaceActivity.class);
+                    startActivity(intent);
+                    finish();
+                    break;
+                case CONSTANT.ERROR:
+                    Toast.makeText(HoldRaceActivity.this,String.valueOf(msg.obj),Toast.LENGTH_SHORT).show();
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -145,7 +167,7 @@ public class HoldRaceActivity extends AppCompatActivity
                     etPrice.setError("请输入报名费用");
                 else
                 {
-                    new SendThread(HoldRaceActivity.this,handler,User.mUserInfo.getUser_id(),name,size,date+" "+time,mAddress,price).start();
+                    new SendThread(HoldRaceActivity.this, handler, User.mUserInfo.getUser_id(), name, size, date + " " + time, mAddress, price).start();
                 }
             }
         });
@@ -173,9 +195,9 @@ public class HoldRaceActivity extends AppCompatActivity
             String address = data.getStringExtra("address");
             if (address != null)
             {
-                mAddress = data.getStringExtra("province")+ data.getStringExtra("city") +address;
+                mAddress = data.getStringExtra("province") + data.getStringExtra("city") + address;
             }
-                etAddress.setText(address);
+            etAddress.setText(address);
             if (Test.flag)
             {
                 Log.d("city", data.getStringExtra("city"));
