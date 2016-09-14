@@ -2,20 +2,19 @@ package heracles.soccergo.community;
 
 
 import android.app.Dialog;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -33,9 +32,10 @@ import heracles.soccergo.Tools.User;
  */
 public class CommunityFragment extends Fragment
 {
-    ImageView ivAdd;
-    ListView lvCommunity;
-    List<Map<String, Object>> list;
+    private ImageView ivAdd;
+    private RecyclerView rvCommunity;
+    private RVCommunityAdapter rvCommunityAdapter;
+    private List<Map<String, Object>> list;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -72,7 +72,11 @@ public class CommunityFragment extends Fragment
                 dialog.show();
             }
         });
-        lvCommunity.setAdapter(new CommunityAdapter(getContext()));
+        //初始化适配器以及添加监听
+        rvCommunityAdapter = new RVCommunityAdapter(getContext(), initList());
+        rvCommunity.setAdapter(rvCommunityAdapter);
+        rvCommunity.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvCommunity.setItemAnimator(new DefaultItemAnimator());
     }
 
     private List<Map<String, Object>> initList()
@@ -96,58 +100,8 @@ public class CommunityFragment extends Fragment
     private void getWeight()
     {
         ivAdd = (ImageView) getActivity().findViewById(R.id.ivAdd);
-        lvCommunity = (ListView) getActivity().findViewById(R.id.lvCommunity);
+        rvCommunity = (RecyclerView) getActivity().findViewById(R.id.rvCommunity);
     }
-
-    private class CommunityAdapter extends BaseAdapter
-    {
-        Context context;
-
-        public CommunityAdapter(Context context)
-        {
-            this.context = context;
-            initList();
-        }
-
-        @Override
-        public int getCount()
-        {
-            return list.size();
-        }
-
-        @Override
-        public Object getItem(int position)
-        {
-            return list.get(position);
-        }
-
-        @Override
-        public long getItemId(int position)
-        {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent)
-        {
-            if (convertView == null)
-            {
-                LayoutInflater inflater = LayoutInflater.from(context);
-                convertView = inflater.inflate(R.layout.item_community, null);
-            }
-            TextView tvUser = (TextView) convertView.findViewById(R.id.tvUser);
-            TextView tvTime = (TextView) convertView.findViewById(R.id.tvTime);
-            TextView tvContent = (TextView) convertView.findViewById(R.id.tvContent);
-            TextView tvFrom = (TextView) convertView.findViewById(R.id.tvFrom);
-
-            tvUser.setText(list.get(position).get("tvUser").toString());
-            tvTime.setText(list.get(position).get("tvTime").toString());
-            tvContent.setText(list.get(position).get("tvContent").toString());
-            tvFrom.setText(list.get(position).get("tvFrom").toString());
-            return convertView;
-        }
-    }
-
 
     // 异步获取
     class GetRaceInfo extends AsyncTask<Void, Integer, Void>

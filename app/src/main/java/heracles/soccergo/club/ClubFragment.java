@@ -186,8 +186,9 @@ public class ClubFragment extends Fragment
     }
 
     @Override
-    public void onDestroyView()
+    public void onDestroy()
     {
+        super.onDestroy();
         locationManager.removeUpdates(locationListener);
         locationManager = null;
         locationRequest = null;
