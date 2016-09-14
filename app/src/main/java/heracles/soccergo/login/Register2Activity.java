@@ -115,7 +115,7 @@ public class Register2Activity extends AppCompatActivity
         {
             try
             {
-                URL httpUrl = new URL(CONSTANT.HOST + "Heracles/app/user/register");
+                URL httpUrl = new URL(CONSTANT.HOST + "app/user/register");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) httpUrl.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setConnectTimeout(5000);

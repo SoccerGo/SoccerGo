@@ -32,6 +32,12 @@ android {
     }
 }
 
+repositories{
+    flatDir{
+        dirs 'libs' //就是你放aar的目录地址
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
@@ -44,4 +50,8 @@ dependencies {
     compile files('libs/fastjson-1.1.2.jar')
     compile files('libs/json-lib-2.4-jdk15.jar')
     compile 'com.facebook.fresco:fresco:0.12.0'
+    compile files('libs/MobTools-2016.0714.1402.jar')
+    compile files('libs/MobCommons-2016.0714.1402.jar')
+    compile name:'SMSSDK-2.1.1',ext:'aar'
+    compile name:'SMSSDKGUI-2.1.1',ext:'aar'
 }
