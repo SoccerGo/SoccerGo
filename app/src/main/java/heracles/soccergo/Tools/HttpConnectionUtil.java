@@ -1,9 +1,15 @@
 package heracles.soccergo.Tools;
 
+import android.util.Log;
+
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
@@ -36,27 +42,28 @@ public class HttpConnectionUtil
         conn.setRequestProperty("Connection", "Keep-Alive");
         conn.setRequestProperty("Content-Type", MULTIPART_FROM_DATA + ";boundary=" + BOUNDARY);
 
-
         DataOutputStream os = new DataOutputStream(conn.getOutputStream());
-
-        StringBuilder sb = new StringBuilder(); //用StringBuilder拼接报文，用于上传图片数据
-        sb.append(PREFIX);
-        sb.append(BOUNDARY);
-        sb.append(LINEND);
-        sb.append("Content-Disposition: form-data; name=\"picture\"; filename=\"" + pictureFile.getName() + "\"" + LINEND);
-        sb.append("Content-Type: image/jpg; charset=" + CHARSET + LINEND);
-        sb.append(LINEND);
-        os.write(sb.toString().getBytes());
-        InputStream is = new FileInputStream(pictureFile);
-
-        byte[] buffer = new byte[1024];
-        int len = 0;
-        while ((len = is.read(buffer)) != -1)
+        if(pictureFile!=null)
         {
-            os.write(buffer, 0, len); //写入图片数据
+            StringBuilder sb = new StringBuilder(); //用StringBuilder拼接报文，用于上传图片数据
+            sb.append(PREFIX);
+            sb.append(BOUNDARY);
+            sb.append(LINEND);
+            sb.append("Content-Disposition: form-data; name=\"picture\"; filename=\"" + pictureFile.getName() + "\"" + LINEND);
+            sb.append("Content-Type: image/jpg; charset=" + CHARSET + LINEND);
+            sb.append(LINEND);
+            os.write(sb.toString().getBytes());
+            InputStream is = new FileInputStream(pictureFile);
+
+            byte[] buffer = new byte[1024];
+            int len = 0;
+            while ((len = is.read(buffer)) != -1)
+            {
+                os.write(buffer, 0, len); //写入图片数据
+            }
+            is.close();
+            os.write(LINEND.getBytes());
         }
-        is.close();
-        os.write(LINEND.getBytes());
 
         StringBuilder text = new StringBuilder();
         for (Map.Entry<String, Object> entry : paramMap.entrySet())
@@ -81,6 +88,33 @@ public class HttpConnectionUtil
         System.out.println("asdf code " + res);
         System.out.println("asdf " + conn.getResponseMessage());
         conn.disconnect();
+
+        if(res == 200)
+        {
+            //读取服务器返回结果
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuffer result = new StringBuffer();
+            String str;
+            while ((str = reader.readLine()) != null)
+            {
+                result.append(str);
+            }
+            if (Test.flag)
+                Log.d("result", result.toString());
+            //解析返回值，判断是否登入成功
+            final JSONObject jsonObject = new JSONObject(result.toString());
+            int ret = jsonObject.getInt("success");
+
+            switch (ret)
+            {
+                case CONSTANT.SUCCESS:
+                    Log.d("success","ok");
+                    break;
+                case CONSTANT.ERROR:
+                    Log.d("error",jsonObject.getString("error"));
+                    break;
+            }
+        }
     }
 
 }

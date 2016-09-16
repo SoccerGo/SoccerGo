@@ -20,7 +20,8 @@ import heracles.soccergo.R;
 /**
  * Created by Kinst on 2016/9/13.
  */
-public class GetLocalImage extends AppCompatActivity{
+public class GetLocalImage extends AppCompatActivity
+{
     /* 头像文件 */
     private static final String IMAGE_FILE_NAME = "soc_img.jpg";
 
@@ -35,21 +36,26 @@ public class GetLocalImage extends AppCompatActivity{
     private ImageView headImage = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_local_image);
 
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
 
-        if(type.equals("byCamara")){
-            choseHeadImageFromCameraCapture();}
-        else if(type.equals("fromGallery")){
-            choseHeadImageFromGallery();}
+        if (type.equals("byCamara"))
+        {
+            choseHeadImageFromCameraCapture();
+        } else if (type.equals("fromGallery"))
+        {
+            choseHeadImageFromGallery();
+        }
     }
 
     // 从本地相册选取图片作为头像
-    public void choseHeadImageFromGallery() {
+    public void choseHeadImageFromGallery()
+    {
         Intent intentFromGallery = new Intent();
         // 设置文件类型
         intentFromGallery.setType("image/*");//选择图片
@@ -60,10 +66,12 @@ public class GetLocalImage extends AppCompatActivity{
     }
 
     // 启动手机相机拍摄照片作为头像
-    public void choseHeadImageFromCameraCapture() {
+    public void choseHeadImageFromCameraCapture()
+    {
         Intent intentFromCapture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // 判断存储卡是否可用，存储照片文件
-        if (hasSdcard()) {
+        if (hasSdcard())
+        {
             intentFromCapture.putExtra(MediaStore.EXTRA_OUTPUT, Uri
                     .fromFile(new File(Environment
                             .getExternalStorageDirectory(), IMAGE_FILE_NAME)));
@@ -73,32 +81,38 @@ public class GetLocalImage extends AppCompatActivity{
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent intent) {
+                                    Intent intent)
+    {
         // 用户没有进行有效的设置操作，返回
-        if (resultCode == RESULT_CANCELED) {//取消
+        if (resultCode == RESULT_CANCELED)
+        {//取消
             Toast.makeText(getApplication(), "取消", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
 
-        switch (requestCode) {
+        switch (requestCode)
+        {
             case CODE_GALLERY_REQUEST://如果是来自本地的Q
                 cropRawPhoto(intent.getData());//直接裁剪图片
                 break;
 
             case CODE_CAMERA_REQUEST:
-                if (hasSdcard()) {
+                if (hasSdcard())
+                {
                     File tempFile = new File(
                             Environment.getExternalStorageDirectory(),
                             IMAGE_FILE_NAME);
                     cropRawPhoto(Uri.fromFile(tempFile));
-                } else {
+                } else
+                {
                     Toast.makeText(getApplication(), "没有SDCard!", Toast.LENGTH_LONG).show();
                 }
                 break;
 
             case CODE_RESULT_REQUEST:
-                if (intent != null) {
+                if (intent != null)
+                {
                     setImageToHeadView(intent);//设置图片框
                     finish();
                 }
@@ -110,7 +124,8 @@ public class GetLocalImage extends AppCompatActivity{
     /**
      * 裁剪原始的图片
      */
-    public void cropRawPhoto(Uri uri) {
+    public void cropRawPhoto(Uri uri)
+    {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
 
@@ -133,10 +148,12 @@ public class GetLocalImage extends AppCompatActivity{
     /**
      * 提取保存裁剪之后的图片数据，并设置头像部分的View
      */
-    private void setImageToHeadView(Intent intent) {
+    private void setImageToHeadView(Intent intent)
+    {
         Bundle extras = intent.getExtras();
 
-        if (extras != null) {
+        if (extras != null)
+        {
             Bitmap photo = extras.getParcelable("data");
 
             //新建文件夹 先选好路径 再调用mkdir函数 现在是根目录下面的Ask文件夹
@@ -147,29 +164,37 @@ public class GetLocalImage extends AppCompatActivity{
             File f = new File(Environment.getExternalStorageDirectory() + "/SoccerGoIcon", "soc_croped_img.jpg");
             FileOutputStream out = null;
 
-            try {//打开输出流 将图片数据填入文件中
+            try
+            {//打开输出流 将图片数据填入文件中
                 out = new FileOutputStream(f);
                 photo.compress(Bitmap.CompressFormat.PNG, 90, out);
-                try {
+                try
+                {
                     out.flush();
                     out.close();
-                } catch (IOException e) {
+                } catch (IOException e)
+                {
                     e.printStackTrace();
                 }
-            } catch (FileNotFoundException e) {
+            } catch (FileNotFoundException e)
+            {
                 e.printStackTrace();
             }
         }
     }
+
     /**
      * 检查设备是否存在SDCard的工具方法
      */
-    public static boolean hasSdcard() {
+    public static boolean hasSdcard()
+    {
         String state = Environment.getExternalStorageState();
-        if (state.equals(Environment.MEDIA_MOUNTED)) {
+        if (state.equals(Environment.MEDIA_MOUNTED))
+        {
             // 有存储的SDCard
             return true;
-        } else {
+        } else
+        {
             return false;
         }
     }
