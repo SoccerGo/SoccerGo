@@ -25,7 +25,7 @@ public class HttpConnectionUtil
     static String MULTIPART_FROM_DATA = "multipart/form-data";
     static String CHARSET = "UTF-8";
 
-    public static void doPostPicture(String urlStr, Map<String, Object> paramMap, File pictureFile)
+    public static boolean doPostPicture(String urlStr, Map<String, Object> paramMap, File pictureFile)
             throws Exception
     {
 
@@ -109,12 +109,14 @@ public class HttpConnectionUtil
             {
                 case CONSTANT.SUCCESS:
                     Log.d("success","ok");
-                    break;
+                    return true;
                 case CONSTANT.ERROR:
                     Log.d("error",jsonObject.getString("error"));
-                    break;
+                    return false;
             }
         }
+
+        return false;
     }
 
 }

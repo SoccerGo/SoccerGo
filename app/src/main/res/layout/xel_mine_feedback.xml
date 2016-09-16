@@ -59,16 +59,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="显示自己的俱乐部"
-                android:id="@+id/checkBox3"
+                android:id="@+id/cbShowClub"
                 android:checked="false"
-                android:layout_below="@+id/editText9"
+                android:layout_below="@+id/etContent"
                 android:layout_alignParentStart="true"
                 android:textColor="#494949" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText6"
+                android:id="@+id/etTitle"
                 android:layout_below="@+id/textView67"
                 android:layout_alignParentStart="true"
                 android:hint="标题"
@@ -77,9 +77,10 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText9"
+                android:id="@+id/etContent"
                 android:layout_below="@+id/recyclerView"
                 android:layout_alignParentStart="true"
+
                 android:textColor="#494949" />
 
             <TextView
@@ -105,7 +106,7 @@
                 android:listSelector="@android:color/transparent"
                 android:scrollbarStyle="outsideOverlay"
                 android:layout_marginLeft="15dp"
-                android:layout_below="@+id/editText6"
+                android:layout_below="@+id/etTitle"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="35dp" />
         </RelativeLayout>
@@ -147,7 +148,7 @@
             android:text="发  表"
             android:textColor="#ffffff"
             android:textSize="18dp"
-            android:id="@+id/button10"
+            android:id="@+id/btnSend"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/relativeLayout31" />
     </RelativeLayout>
