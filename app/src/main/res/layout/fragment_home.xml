@@ -8,13 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="25dp"
-        android:background="@drawable/shape_myself_green_to_deepgreen">
+        android:background="@drawable/shape_myself_green_to_deepgreen"
+        android:paddingLeft="25dp"
+        android:paddingTop="25dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="15dp">
 
         <heracles.soccergo.Tools.RoundImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_gravity="center"
             android:src="@drawable/more_img"
             android:id="@+id/rivIcon"/>
 
@@ -51,6 +53,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="飞哥俱乐部 9号/后卫"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layoutUserEdit">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/imageView36"
+                    android:src="@drawable/edit_icon"
+                    android:layout_marginTop="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="编辑"
+                    android:id="@+id/textView44"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginLeft="8dp" />
+            </LinearLayout>
         </LinearLayout>
 
         <ImageView

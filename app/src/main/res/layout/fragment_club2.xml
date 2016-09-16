@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#33a333"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的俱乐部"
+            android:id="@+id/textView35"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:textSize="18dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/club_bg">
+
+        <heracles.soccergo.Tools.RoundImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageView23"
+            android:src="@drawable/club_feige"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="14dp" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="菲戈俱乐部"
+        android:id="@+id/textView37"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:background="#dbe6e7"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/relativeLayout15">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="俱乐部等级："
+                android:id="@+id/textView46"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LV2"
+                android:id="@+id/textView58"
+                android:layout_alignBottom="@+id/textView46"
+                android:layout_toEndOf="@+id/textView46"
+                android:textColor="@color/deepRed"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="人"
+                android:id="@+id/textView59"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="36"
+                android:id="@+id/textView60"
+                android:layout_alignBottom="@+id/textView59"
+                android:layout_toStartOf="@+id/textView59"
+                android:textSize="16dp"
+                android:textColor="@color/deepRed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="俱乐部人数："
+                android:id="@+id/textView61"
+                android:layout_alignBottom="@+id/textView60"
+                android:layout_toStartOf="@+id/textView60" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayout15"
+            android:layout_alignStart="@+id/relativeLayout15"
+            android:id="@+id/relativeLayout16">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="俱乐部创始人："
+                android:id="@+id/textView38"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+
+            <heracles.soccergo.Tools.RoundImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/imageView25"
+                android:src="@drawable/user_icon_trainee"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/textView38"
+                android:layout_margin="6dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayout16"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/relativeLayout17">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="俱乐部教练："
+                android:id="@+id/textView41"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+
+            <heracles.soccergo.Tools.RoundImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/imageView26"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/textView41"
+                android:src="@drawable/user_icon_coach"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="6dp" />
+
+            <heracles.soccergo.Tools.RoundImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/imageView35"
+                android:src="@drawable/user_icon_coach1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="6dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/imageView26" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayout17"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="俱乐部成员："
+                android:id="@+id/textView43"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/textView43"
+                android:layout_alignParentTop="true">
+
+                <heracles.soccergo.Tools.RoundImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imageView27"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:src="@drawable/more_img"
+                    android:layout_margin="5dp" />
+
+                <heracles.soccergo.Tools.RoundImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imageView28"
+                    android:src="@drawable/more_img"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignBottom="@+id/imageView27"
+                    android:layout_toEndOf="@+id/imageView27" />
+
+                <heracles.soccergo.Tools.RoundImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imageView29"
+                    android:src="@drawable/more_img"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignBottom="@+id/imageView28"
+                    android:layout_toEndOf="@+id/imageView28" />
+
+                <heracles.soccergo.Tools.RoundImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imageView30"
+                    android:src="@drawable/more_img"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignBottom="@+id/imageView29"
+                    android:layout_toEndOf="@+id/imageView29" />
+
+                <heracles.soccergo.Tools.RoundImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imageView31"
+                    android:src="@drawable/more_img"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_below="@+id/imageView27"
+                    android:layout_alignParentStart="true" />
+
+                <heracles.soccergo.Tools.RoundImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imageView32"
+                    android:src="@drawable/more_img"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignTop="@+id/imageView31"
+                    android:layout_toEndOf="@+id/imageView31" />
+
+                <heracles.soccergo.Tools.RoundImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imageView33"
+                    android:src="@drawable/more_img"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_below="@+id/imageView27"
+                    android:layout_toEndOf="@+id/imageView32" />
+
+                <heracles.soccergo.Tools.RoundImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imageView34"
+                    android:src="@drawable/more_img"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignTop="@+id/imageView33"
+                    android:layout_toEndOf="@+id/imageView33" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
