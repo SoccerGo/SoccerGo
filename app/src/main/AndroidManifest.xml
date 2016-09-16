@@ -48,7 +48,8 @@
         <activity android:name=".more.PrivateCoachActivity"/>
         <activity android:name=".more.DailyTaskActivity"/>
         <activity android:name=".more.FootballMallActivity"/>
-        <activity android:name=".race.FootballMapActivity"></activity>
+        <activity android:name=".race.FootballMapActivity"/>
+        <activity android:name=".Tools.GetLocalImage"/>
 
         <meta-data
             android:name="TencentMapSDK"

@@ -77,6 +77,7 @@ public class GetLocalImage extends AppCompatActivity{
         // 用户没有进行有效的设置操作，返回
         if (resultCode == RESULT_CANCELED) {//取消
             Toast.makeText(getApplication(), "取消", Toast.LENGTH_LONG).show();
+            finish();
             return;
         }
 

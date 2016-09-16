@@ -1,7 +1,9 @@
 package heracles.soccergo.login;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -27,6 +30,7 @@ public class LoginActivity extends AppCompatActivity
     private Button btnRegister;
     private EditText etUser;
     private EditText etPassword;
+    private CheckBox cbAutoLogin;
 
     private Handler handler = new Handler();
 
@@ -41,6 +45,12 @@ public class LoginActivity extends AppCompatActivity
         setContentView(R.layout.activity_login);
 
         initWidget();
+        SharedPreferences pref = getSharedPreferences("user",0);
+        if(pref.getString("autoflag","").equals("1")){
+            etUser.setText(pref.getString("username",""));
+            etPassword.setText(pref.getString("password",""));
+            btnLogin.performClick();
+        }
     }
 
     private void initWidget()
@@ -69,6 +79,17 @@ public class LoginActivity extends AppCompatActivity
                     etPassword.setError("需要密码长度大于6");
                 } else
                 {
+                    SharedPreferences pref = getSharedPreferences("user", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    if(cbAutoLogin.isChecked()){
+                        editor.putString("username", etUser.getText().toString());
+                        editor.putString("password", etPassword.getText().toString());
+                        editor.putString("autoflag","1");
+                        editor.commit();
+                    }
+                    else {
+                       editor.putString("autoflag","0");
+                    }
                     new LoginThread(LoginActivity.this, user, password, handler).start();
                 }
             }
@@ -158,6 +179,8 @@ public class LoginActivity extends AppCompatActivity
         btnRegister = (Button) findViewById(R.id.btnRegister);
         etUser = (EditText) findViewById(R.id.etUser);
         etPassword = (EditText) findViewById(R.id.etPassword);
+        cbAutoLogin = (CheckBox) findViewById(R.id.cbAutoLogin);
+
     }
 
 }

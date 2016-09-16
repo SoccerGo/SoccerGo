@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.GetLocalImage;
+import heracles.soccergo.Tools.GetLocalImageDialog;
 import heracles.soccergo.Tools.ProgressDialog;
 import heracles.soccergo.Tools.RadarView;
 import heracles.soccergo.Tools.Test;
@@ -49,6 +50,7 @@ public class HomeFragment extends Fragment
     private TextView tvLocation;
     private TextView tvAbilityValue;
     private ImageView rivIcon;
+    private GetLocalImageDialog getLocalImageDialog;
 
     @Nullable
     @Override
@@ -100,29 +102,7 @@ public class HomeFragment extends Fragment
         rivIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Dialog dialog = new Dialog(getContext(),R.style.Dialog_Notitle);
-                dialog.setContentView(R.layout.dialog_get_local_image);
-                TextView getImageByCamara = (TextView) dialog.findViewById(R.id.tvGetImageByCamara);
-                TextView getImageFromGallery = (TextView) dialog.findViewById(R.id.tvGetImageFromGallery);
-                getImageByCamara.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(),GetLocalImage.class);
-                        intent.putExtra("type","byCamara");
-                        startActivity(intent);
-                        dialog.dismiss();
-                    }
-                });
-                getImageFromGallery.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(),GetLocalImage.class);
-                        intent.putExtra("type","fromGallery");
-                        startActivity(intent);
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
+                 getLocalImageDialog = new GetLocalImageDialog(getActivity());
             }
         });
     }
