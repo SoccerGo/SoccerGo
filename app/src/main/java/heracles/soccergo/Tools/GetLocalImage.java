@@ -31,8 +31,8 @@ public class GetLocalImage extends AppCompatActivity
     private static final int CODE_RESULT_REQUEST = 0xa2;//最终裁剪后的结果
 
     // 裁剪后图片的宽(X)和高(Y),480 X 480的正方形。
-    private static int output_X = 300;
-    private static int output_Y = 300;
+    private static int output_X = 32;
+    private static int output_Y = 32;
     private ImageView headImage = null;
 
     @Override
@@ -161,7 +161,9 @@ public class GetLocalImage extends AppCompatActivity
             nf.mkdir();
 
             //在根目录下面的ASk文件夹下 创建okkk.jpg文件
-            File f = new File(Environment.getExternalStorageDirectory() + "/SoccerGoIcon", "soc_croped_img.jpg");
+            String fileUrl = Environment.getExternalStorageDirectory() + "/SoccerGoIcon";
+            String fileName = "soc_croped_img.png";
+            File f = new File(fileUrl, fileName);
             FileOutputStream out = null;
 
             try
@@ -172,6 +174,9 @@ public class GetLocalImage extends AppCompatActivity
                 {
                     out.flush();
                     out.close();
+                    Intent intent1 = new Intent();
+                    intent1.putExtra("file",fileUrl+fileName);
+                    setResult(CONSTANT.RETIMG,intent1);
                 } catch (IOException e)
                 {
                     e.printStackTrace();

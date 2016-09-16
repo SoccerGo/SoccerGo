@@ -50,6 +50,9 @@
         <activity android:name=".race.FootballMapActivity" />
         <activity android:name=".Tools.GetLocalImage" />
         <activity android:name=".community.PublishActivity"/>
+        <activity
+            android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
+            android:theme="@style/ImagePickerThemeFullScreen" />
 
         <meta-data
             android:name="TencentMapSDK"

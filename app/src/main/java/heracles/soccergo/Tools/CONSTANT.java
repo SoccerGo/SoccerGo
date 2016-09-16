@@ -5,7 +5,9 @@ package heracles.soccergo.Tools;
  */
 public interface CONSTANT
 {
-    String HOST = "http://123.206.33.34/Heracles/";
+    String HOST = "http://172.19.181.33:8080/Heracles/";
     int SUCCESS = 200;
     int ERROR = 100;
+    int GETIMG = 300;
+    int RETIMG = 400;
 }

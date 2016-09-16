@@ -1,8 +1,5 @@
 package heracles.soccergo.home;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,7 +18,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import heracles.soccergo.R;
-import heracles.soccergo.Tools.GetLocalImage;
 import heracles.soccergo.Tools.GetLocalImageDialog;
 import heracles.soccergo.Tools.ProgressDialog;
 import heracles.soccergo.Tools.RadarView;

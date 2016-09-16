@@ -127,7 +127,7 @@ public class JoinRaceActivity extends AppCompatActivity
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setConnectTimeout(5000);
                 OutputStream out = httpURLConnection.getOutputStream();
-                final String content = "city=" + city;
+                final String content = "city=" + city+"&p_user_id=" + User.mUserInfo.getUser_id();
                 out.write(content.getBytes());
 
                 //读取服务器返回结果

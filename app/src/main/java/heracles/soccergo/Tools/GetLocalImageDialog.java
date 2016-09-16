@@ -1,16 +1,12 @@
 package heracles.soccergo.Tools;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import heracles.soccergo.MainActivity;
 import heracles.soccergo.R;
-import heracles.soccergo.home.HomeFragment;
 
 /**
  * Created by Kinst on 2016/9/15.
