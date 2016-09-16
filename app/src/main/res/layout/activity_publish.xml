@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="heracles.soccergo.community.PublishActivity"
+    android:background="#c5e8ef">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#33a333"
+        android:id="@+id/relativeLayout13"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="3dp"
+            android:src="@drawable/back_icon_left"
+            android:id="@+id/imageView19"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发表动态"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="16dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout13"
+        android:layout_alignStart="@+id/relativeLayout13"
+        android:layout_alignParentBottom="false"
+        android:padding="16dp"
+        android:background="#ffffff"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/relativeLayout14">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="晒晒今天的宝贝和足球..."
+            android:id="@+id/textView33"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:paddingLeft="15dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etTitle"
+            android:layout_below="@+id/textView33"
+            android:layout_alignParentStart="true"
+            android:hint="标题"
+            android:textColor="#494949" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="显示自己的俱乐部"
+            android:id="@+id/cbShowClub"
+            android:checked="false"
+            android:layout_below="@+id/etContent"
+            android:layout_alignParentStart="true"
+            android:textColor="#494949" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etContent"
+            android:layout_below="@+id/ivAddImage"
+            android:layout_alignParentStart="true"
+            android:textColor="#494949" />
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:id="@+id/ivAddImage"
+            android:src="@drawable/add_image"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@+id/etTitle"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="35dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout14"
+        android:layout_alignStart="@+id/relativeLayout14"
+        android:background="#ffffff"
+        android:paddingLeft="25dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/layoutVisable">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="谁能看见"
+            android:id="@+id/textView34"
+            android:textColor="#494949"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/imageView24"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/back_icon_right_grey" />
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#33a333"
+        android:text="发  表"
+        android:textColor="#ffffff"
+        android:textSize="18dp"
+        android:id="@+id/btnPublish"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/layoutVisable" />
+
+</RelativeLayout>

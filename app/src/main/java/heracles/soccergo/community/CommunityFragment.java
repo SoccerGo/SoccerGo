@@ -2,6 +2,7 @@ package heracles.soccergo.community;
 
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +16,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ import heracles.soccergo.R;
 import heracles.soccergo.Tools.CONSTANT;
 import heracles.soccergo.Tools.HttpConnectionUtil;
 import heracles.soccergo.Tools.User;
+import heracles.soccergo.race.HoldRaceActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,16 +51,16 @@ public class CommunityFragment extends Fragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-        initWeight();
+        initWidget();
     }
 
-    private void initWeight()
+    private void initWidget()
     {
-        getWeight();
-        setWeight();
+        getWidget();
+        setWidget();
     }
 
-    private void setWeight()
+    private void setWidget()
     {
         ivAdd.setOnClickListener(new View.OnClickListener()
         {
@@ -65,6 +69,22 @@ public class CommunityFragment extends Fragment
             {
                 Dialog dialog = new Dialog(getContext(), R.style.Dialog_Alpha_Notitle);
                 dialog.setContentView(R.layout.dialog_ivadd);
+                LinearLayout layoutPublish = (LinearLayout) dialog.findViewById(R.id.layoutPublish);
+                LinearLayout layoutHoldRace = (LinearLayout) dialog.findViewById(R.id.layoutHoldRace);
+                layoutPublish.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(),PublishActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                layoutHoldRace.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(), HoldRaceActivity.class);
+                        startActivity(intent);
+                    }
+                });
                 Window dialogWindow = dialog.getWindow();
                 WindowManager.LayoutParams lp = dialogWindow.getAttributes();
                 lp.y = -300;
@@ -97,7 +117,7 @@ public class CommunityFragment extends Fragment
         return list;
     }
 
-    private void getWeight()
+    private void getWidget()
     {
         ivAdd = (ImageView) getActivity().findViewById(R.id.ivAdd);
         rvCommunity = (RecyclerView) getActivity().findViewById(R.id.rvCommunity);

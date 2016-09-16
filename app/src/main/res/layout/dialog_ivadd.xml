@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout5">
+        android:id="@+id/layoutPublish">
 
         <ImageView
             android:layout_width="50dp"
@@ -32,8 +32,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/linearLayout5"
-        android:layout_marginStart="30dp">
+        android:layout_toEndOf="@+id/layoutPublish"
+        android:layout_marginStart="30dp"
+        android:id="@+id/layoutHoldRace">
 
         <ImageView
             android:layout_width="50dp"
