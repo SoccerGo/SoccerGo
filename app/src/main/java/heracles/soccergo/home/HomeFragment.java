@@ -25,6 +25,10 @@ import com.alibaba.fastjson.JSON;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.GetLocalImageDialog;
 import heracles.soccergo.Tools.ProgressDialog;
@@ -34,6 +38,7 @@ import heracles.soccergo.Tools.User;
 import heracles.soccergo.Tools.User_abilities_club_club;
 import heracles.soccergo.Tools.Utils;
 import heracles.soccergo.login.LoginActivity;
+import heracles.soccergo.race.Game;
 import heracles.soccergo.service.RaceInfo;
 import heracles.soccergo.service.RaceService;
 
@@ -79,8 +84,8 @@ public class HomeFragment extends Fragment
 
         initWidget();
         String userInfo = getActivity().getIntent().getStringExtra("userInfo");
-        if(Test.flag)
-            Log.d("userInfo",userInfo);
+        if (Test.flag)
+            Log.d("userInfo", userInfo);
         new UpdateUI(userInfo).execute();
     }
 
@@ -112,10 +117,12 @@ public class HomeFragment extends Fragment
 
     private void setWidget()
     {
-        rivIcon.setOnClickListener(new View.OnClickListener() {
+        rivIcon.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                 getLocalImageDialog = new GetLocalImageDialog(getActivity());
+            public void onClick(View v)
+            {
+                getLocalImageDialog = new GetLocalImageDialog(getActivity());
             }
         });
 
@@ -124,7 +131,7 @@ public class HomeFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(getContext(),UserEditActivity.class);
+                Intent intent = new Intent(getContext(), UserEditActivity.class);
                 startActivity(intent);
             }
         });
@@ -135,19 +142,21 @@ public class HomeFragment extends Fragment
     {
         private String json;
         private ProgressDialog progressDialog;
+
         public UpdateUI(String json)
         {
             this.json = json;
             progressDialog = new ProgressDialog(getContext());
             progressDialog.show();
         }
+
         @Override
         protected Void doInBackground(Void... params)
         {
             try
             {
                 JSONObject jsonObject = new JSONObject(json);
-                user = JSON.parseObject(jsonObject.getString("data"),User_abilities_club_club.class);
+                user = JSON.parseObject(jsonObject.getString("data"), User_abilities_club_club.class);
                 User.setUser(user);
                 startRaceService();
             } catch (JSONException e)
@@ -163,22 +172,22 @@ public class HomeFragment extends Fragment
             tvName.setText(Utils.strOrNull(user.getChinese_name()));
             tvEnglishName.setText(Utils.strOrNull(user.getEnglish_name()));
             tvAge.setText(Utils.strOrNull(String.valueOf(user.getAge())));
-            tvClubInfo.setText(Utils.strOrNull(user.getClub_club_name())+" "
-                    +Utils.strOrNull(String.valueOf(user.getShirt_num()))+"号"
-                    +Utils.strOrNull(user.getLocation()));
-            tvName2.setText("中文名："+Utils.strOrNull(user.getChinese_name()));
-            tvEnglishName2.setText("英文名："+Utils.strOrNull(user.getEnglish_name()));
-            tvAge2.setText("年龄："+Utils.strOrNull(String.valueOf(user.getAge())));
-            tvBirthday.setText(Utils.strOrNull("生日："+Utils.strOrNull(user.getBirthday())));
-            tvClub.setText("俱乐部："+Utils.strOrNull(user.getClub_club_name()));
-            tvShirtNum.setText("球衣号："+Utils.strOrNull(String.valueOf(user.getShirt_num())));
-            tvLocation.setText("常用位置："+Utils.strOrNull(user.getLocation()));
+            tvClubInfo.setText(Utils.strOrNull(user.getClub_club_name()) + " "
+                    + Utils.strOrNull(String.valueOf(user.getShirt_num())) + "号"
+                    + Utils.strOrNull(user.getLocation()));
+            tvName2.setText("中文名：" + Utils.strOrNull(user.getChinese_name()));
+            tvEnglishName2.setText("英文名：" + Utils.strOrNull(user.getEnglish_name()));
+            tvAge2.setText("年龄：" + Utils.strOrNull(String.valueOf(user.getAge())));
+            tvBirthday.setText(Utils.strOrNull("生日：" + Utils.strOrNull(user.getBirthday())));
+            tvClub.setText("俱乐部：" + Utils.strOrNull(user.getClub_club_name()));
+            tvShirtNum.setText("球衣号：" + Utils.strOrNull(String.valueOf(user.getShirt_num())));
+            tvLocation.setText("常用位置：" + Utils.strOrNull(user.getLocation()));
 
             radarView.setData(new double[]{user.getPandai(), user.getChuanqiu(),
                     user.getShoot_grade(), user.getScore(), user.getFangshou(), user.getLiliang()});
 
-            tvAbilityValue.setText(String.valueOf ((int) ((user.getPandai()+user.getChuanqiu()+user.getShoot_grade()+user.getScore()+
-                                user.getFangshou()+user.getLiliang())*100.0/600)));
+            tvAbilityValue.setText(String.valueOf((int) ((user.getPandai() + user.getChuanqiu() + user.getShoot_grade() + user.getScore() +
+                    user.getFangshou() + user.getLiliang()) * 100.0 / 600)));
             progressDialog.close();
         }
     }
@@ -186,30 +195,36 @@ public class HomeFragment extends Fragment
     private void startRaceService()
     {
         notificationManager = (NotificationManager) getContext().getSystemService(getContext().NOTIFICATION_SERVICE);
-        NotificationCompat.Builder notification = new NotificationCompat.Builder(getContext());
-        notification.setSmallIcon(R.drawable.footbal);
-        notification.setContentTitle("标题");
-        notification.setContentText("内容");
-        notification.setAutoCancel(true);	    //点击自动消息
-        Intent intent = new Intent(getContext(), LoginActivity.class);    //点击通知进入的界面
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-        notification.setContentIntent(contentIntent);
-        notificationManager.notify(0, notification.build());
-
         Intent raceService = new Intent(getContext(), RaceService.class);
         raceCon = new RaceServiceConnection();
         getContext().startService(raceService);
         getContext().bindService(raceService, raceCon, getContext().BIND_AUTO_CREATE);
-//        Timer timer = new Timer();
-//        timer.schedule(new TimerTask()
-//        {
-//            @Override
-//            public void run()
-//            {
-//                Log.d("MainRaceInfo:", raceInfo.getRaceInfo().toString());
-//            }
-//        }, 5 * 1000,5000 * 10);
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask()
+        {
+            @Override
+            public void run()
+            {
+                List<Game> games = raceInfo.getRaceInfo();
+                if (games != null)
+                {
+                    for(Game game:games)
+                    {
+                        NotificationCompat.Builder notification = new NotificationCompat.Builder(getContext());
+                        notification.setSmallIcon(R.drawable.footbal);
+                        notification.setContentTitle(game.getGame_name());
+                        notification.setContentText("足球人数已经凑齐，赶快看看吧");
+                        notification.setAutoCancel(true);        //点击自动消息
+                        Intent intent = new Intent(getContext(), LoginActivity.class);    //点击通知进入的界面
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                        notification.setContentIntent(contentIntent);
+                        notificationManager.notify(0, notification.build());
+                    }
+                }
+                Log.d("MainRaceInfo:", raceInfo.getRaceInfo().toString());
+            }
+        }, 5 * 1000, 5000 * 10);
     }
 
     private class RaceServiceConnection implements ServiceConnection

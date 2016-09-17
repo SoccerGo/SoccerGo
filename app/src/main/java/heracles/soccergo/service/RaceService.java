@@ -65,7 +65,10 @@ public class RaceService extends Service
             {
                 if(Test.flag)
                     Log.d("InService","ok");
+                games = new ArrayList<>();
                 getInfo(findUserAddGameUrl);
+                for(Game game:games)
+                    Log.d("ServiceGame",game.toString());
             }
         }, 0, 1000 * 10);
         return super.onStartCommand(intent, flags, startId);
@@ -79,7 +82,6 @@ public class RaceService extends Service
 
     public void getInfo(String url)
     {
-        games = new ArrayList<Game>();
         try
         {
             // 连接web,提交帐号密码
@@ -108,7 +110,14 @@ public class RaceService extends Service
             switch (ret)
             {
                 case CONSTANT.SUCCESS:
-                    games.addAll(JSON.parseArray(jsonObject.getString("data"), Game.class));
+                    List<Game> gamesList = JSON.parseArray(jsonObject.getString("data"), Game.class);
+                    for(Game game:gamesList)
+                    {
+                        if(game.getGame_standard()*2 != game.getJoin_num())
+                        {
+                            games.add(game);
+                        }
+                    }
                     break;
                 case CONSTANT.ERROR:
                     break;
