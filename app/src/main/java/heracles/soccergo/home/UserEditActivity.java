@@ -179,7 +179,8 @@ public class UserEditActivity extends AppCompatActivity
 
             //在根目录下面的ASk文件夹下 创建okkk.jpg文件
             String fileUrl = Environment.getExternalStorageDirectory() + "/SoccerGoIcon";
-            String fileName = "soc_croped_img.png";
+
+            String fileName = String.valueOf(System.currentTimeMillis())+".jpg";
             File f = new File(fileUrl, fileName);
             FileOutputStream out = null;
 

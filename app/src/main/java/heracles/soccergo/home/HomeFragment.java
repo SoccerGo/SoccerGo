@@ -70,6 +70,8 @@ public class HomeFragment extends Fragment
 
     private NotificationManager notificationManager;
 
+    private static boolean serviceSwitch = true;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -158,7 +160,12 @@ public class HomeFragment extends Fragment
                 JSONObject jsonObject = new JSONObject(json);
                 user = JSON.parseObject(jsonObject.getString("data"), User_abilities_club_club.class);
                 User.setUser(user);
-                startRaceService();
+                if(serviceSwitch)
+                {
+                    startRaceService();
+                    serviceSwitch = false;
+                }
+
             } catch (JSONException e)
             {
                 e.printStackTrace();
@@ -206,7 +213,7 @@ public class HomeFragment extends Fragment
             public void run()
             {
                 List<Game> games = raceInfo.getRaceInfo();
-                if (games != null)
+                if (games.size() != 0)
                 {
                     Log.d("MainRaceInfo:", games.toString());
                     for(Game game:games)
@@ -223,6 +230,8 @@ public class HomeFragment extends Fragment
                         notificationManager.notify(0, notification.build());
                     }
                 }
+                else
+                    Log.d("MainRaceInfo:", "没数据");
             }
         }, 5 * 1000, 10 * 1000);
     }

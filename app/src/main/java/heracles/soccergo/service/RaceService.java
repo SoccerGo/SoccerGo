@@ -44,16 +44,31 @@ public class RaceService extends Service
 
     private List<Game> getGames()
     {
-        List<Game> result = new ArrayList<>();
-        for(Game game:games)
+        if(games!=null)
         {
-            for(Game oldGame:oldGames)
+            List<Game> result = new ArrayList<>();
+            for(Game game:games)
             {
-                if(oldGame.getGame_id() != game.getGame_id())
+                boolean flag = true;
+                for(Game oldGame:oldGames)
+                {
+                    if(oldGame.getGame_id().equals(game.getGame_id()))
+                    {
+                        flag =false;
+                        break;
+                    }
+                }
+                if(flag)
+                {
+                    oldGames.add(game);
                     result.add(game);
+                }
+
             }
+            return result;
         }
-        return result;
+        else
+            return null;
     }
 
     @Override
@@ -124,20 +139,10 @@ public class RaceService extends Service
                     List<Game> gamesList = JSON.parseArray(jsonObject.getString("data"), Game.class);
                     for(Game game:gamesList)
                     {
-                        if(game.getGame_standard()*2 != game.getJoin_num())
+                        if(game.getGame_standard()*2 == game.getJoin_num())
                         {
                             games.add(game);
                         }
-                    }
-                    for(Game game:games)
-                    {
-                        for(Game oldGame:oldGames)
-                        {
-                            if(oldGame.getGame_id() != game.getGame_id())
-                                oldGames.add(game);
-                        }
-                        if(oldGames.size() == 0)
-                            oldGames.addAll(games);
                     }
                     break;
                 case CONSTANT.ERROR:
