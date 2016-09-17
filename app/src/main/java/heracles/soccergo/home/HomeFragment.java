@@ -219,7 +219,7 @@ public class HomeFragment extends Fragment
                     for(Game game:games)
                     {
                         NotificationCompat.Builder notification = new NotificationCompat.Builder(getContext());
-                        notification.setSmallIcon(R.drawable.footbal);
+                        notification.setSmallIcon(R.drawable.logo);
                         notification.setContentTitle(game.getGame_name());
                         notification.setContentText("足球人数已经凑齐，赶快看看吧");
                         notification.setAutoCancel(true);        //点击自动消息

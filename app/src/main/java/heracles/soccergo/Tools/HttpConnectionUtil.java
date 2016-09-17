@@ -90,7 +90,6 @@ public class HttpConnectionUtil
         int res = conn.getResponseCode();
         System.out.println("asdf code " + res);
         System.out.println("asdf " + conn.getResponseMessage());
-        conn.disconnect();
 
         if(res == 200)
         {
@@ -121,6 +120,7 @@ public class HttpConnectionUtil
                     break;
             }
         }
+        conn.disconnect();
         return mResult;
     }
 
