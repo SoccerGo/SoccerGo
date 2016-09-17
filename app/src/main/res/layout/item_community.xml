@@ -9,7 +9,7 @@
 
 
     <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/ivUser"
+        android:id="@+id/sdvUser"
         android:layout_width="60dp"
         android:layout_height="60dp"
         fresco:placeholderImage="@drawable/more_img"
@@ -19,8 +19,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ivUser"
-        android:layout_toEndOf="@+id/ivUser"
+        android:layout_alignTop="@+id/sdvUser"
+        android:layout_toEndOf="@+id/sdvUser"
         android:orientation="vertical"
         android:paddingLeft="10dp"
         android:paddingRight="30dp">
@@ -49,12 +49,13 @@
             android:text="看他小小的范儿，想不想小小内马尔\n23333"
             android:textColor="#2f2f2f"/>
 
-        <ImageView
-            android:id="@+id/ivImage"
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdvContentImg"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_marginTop="4dp"
-            android:background="#a3a3a3"/>
+            fresco:placeholderImage="@drawable/more_img"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"

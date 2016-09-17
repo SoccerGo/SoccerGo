@@ -69,14 +69,14 @@
             android:text="显示自己的俱乐部"
             android:id="@+id/cbShowClub"
             android:checked="false"
-            android:layout_below="@+id/etContent"
+            android:layout_below="@+id/cbShowClub"
             android:layout_alignParentStart="true"
             android:textColor="#494949" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etContent"
+            android:id="@+id/cbShowClub"
             android:layout_below="@+id/ivAddImage"
             android:layout_alignParentStart="true"
             android:textColor="#494949" />

@@ -20,18 +20,23 @@ import com.lzy.imagepicker.ui.ImagePreviewDelActivity;
 import com.lzy.imagepicker.view.CropImageView;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import heracles.soccergo.ImagePickerView.GlideImageLoader;
 import heracles.soccergo.ImagePickerView.ImagePickerAdapter;
 import heracles.soccergo.R;
+import heracles.soccergo.Tools.CONSTANT;
 import heracles.soccergo.Tools.GetLocalImageDialog;
 import heracles.soccergo.Tools.HttpConnectionUtil;
+import heracles.soccergo.Tools.User;
 
 public class PublishActivity extends AppCompatActivity implements ImagePickerAdapter.OnRecyclerViewItemClickListener
 {
-    private EditText etTitle, etContent;
+    private EditText etContent;
     private CheckBox cbShowClub;
     private Button btnPublish;
     private GetLocalImageDialog getLocalImageDialog;
@@ -46,7 +51,6 @@ public class PublishActivity extends AppCompatActivity implements ImagePickerAda
     private ImagePickerAdapter adapter;
     private ArrayList<ImageItem> selImageList; //当前选择的所有图片
     private int maxImgCount = 1;               //允许选择图片最大数
-    private String filePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -70,18 +74,41 @@ public class PublishActivity extends AppCompatActivity implements ImagePickerAda
             @Override
             public void onClick(View v)
             {
-                String title = etTitle.getText().toString();
                 String content = etContent.getText().toString();
-                if (title.isEmpty())
-                    etTitle.setError("请输入标题");
-                else if (content.isEmpty())
+                if (content.isEmpty())
                     etContent.setError("请输入内容");
                 else
                 {
-                    if (selImageList.get(0) == null)
+                    if (selImageList.size() == 0)
                     {
-//                        filePath = selImageList.get(0).path;
                         Log.d("send", "没有图片");
+                        Map<String,Object> map = new HashMap<>();
+                        map.put("content",content);
+                        map.put("address","大连");
+                        map.put("user_id", User.mUserInfo.getUser_id());
+                        long time=System.currentTimeMillis();//long now = android.os.SystemClock.uptimeMillis();
+                        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        Date d1=new Date(time);
+                        String t1=format.format(d1);
+                        map.put("f_time", t1);
+                        new SendMsg(CONSTANT.HOST+"Social/sendSocial",map,null).execute();
+                    }
+                    else {
+                        Log.d("send", "有图片");
+                        Map<String,Object> map = new HashMap<>();
+                        map.put("content",content);
+                        map.put("address","大连");
+                        map.put("user_id", User.mUserInfo.getUser_id());
+                        long time=System.currentTimeMillis();//long now = android.os.SystemClock.uptimeMillis();
+                        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        Date d1=new Date(time);
+                        String t1=format.format(d1);
+                        Log.d("时间",t1);
+                        map.put("f_time", t1);
+                        String filePath = selImageList.get(0).path;
+                        Log.d("图片",filePath);
+                        File file = new File(filePath);
+                        new SendMsg(CONSTANT.HOST+"Social/sendSocial",map,file).execute();
                     }
                 }
             }
@@ -98,7 +125,6 @@ public class PublishActivity extends AppCompatActivity implements ImagePickerAda
 
     private void getWidget()
     {
-        etTitle = (EditText) findViewById(R.id.etTitle);
         etContent = (EditText) findViewById(R.id.etContent);
         cbShowClub = (CheckBox) findViewById(R.id.cbShowClub);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -120,10 +146,6 @@ public class PublishActivity extends AppCompatActivity implements ImagePickerAda
         imagePicker.setOutPutY(1000);                         //保存文件的高度。单位像素
     }
 
-    private void upload()
-    {
-        filePath = selImageList.get(0).path;
-    }
 
     @Override
     public void onItemClick(View view, int position)
@@ -202,7 +224,7 @@ public class PublishActivity extends AppCompatActivity implements ImagePickerAda
         {
             try
             {
-                state = HttpConnectionUtil.doPostPicture(urlStr,paramMap,pictureFile);
+                state = (boolean) HttpConnectionUtil.doPostPicture(urlStr,paramMap,pictureFile).get("ret");
             } catch (Exception e)
             {
                 e.printStackTrace();
@@ -214,7 +236,10 @@ public class PublishActivity extends AppCompatActivity implements ImagePickerAda
         protected void onPostExecute(Void aVoid)
         {
             if(state)
+            {
                 Toast.makeText(PublishActivity.this,"发布成功",Toast.LENGTH_LONG).show();
+                finish();
+            }
             else
                 Toast.makeText(PublishActivity.this,"发布失败",Toast.LENGTH_LONG).show();
         }

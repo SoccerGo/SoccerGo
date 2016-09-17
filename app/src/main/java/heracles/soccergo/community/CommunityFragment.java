@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,18 +18,27 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
-import java.io.File;
+import com.alibaba.fastjson.JSON;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.CONSTANT;
-import heracles.soccergo.Tools.HttpConnectionUtil;
-import heracles.soccergo.Tools.User;
+import heracles.soccergo.Tools.Friends_User;
+import heracles.soccergo.Tools.ProgressDialog;
+import heracles.soccergo.Tools.Test;
 import heracles.soccergo.race.HoldRaceActivity;
 
 /**
@@ -39,7 +49,11 @@ public class CommunityFragment extends Fragment
     private ImageView ivAdd;
     private RecyclerView rvCommunity;
     private RVCommunityAdapter rvCommunityAdapter;
-    private List<Map<String, Object>> list;
+    private List<Friends_User> datas;
+
+
+    private ProgressDialog progressDialog;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -52,6 +66,7 @@ public class CommunityFragment extends Fragment
     {
         super.onActivityCreated(savedInstanceState);
         initWidget();
+        progressDialog = new ProgressDialog(getContext());
     }
 
     private void initWidget()
@@ -71,16 +86,20 @@ public class CommunityFragment extends Fragment
                 dialog.setContentView(R.layout.dialog_ivadd);
                 LinearLayout layoutPublish = (LinearLayout) dialog.findViewById(R.id.layoutPublish);
                 LinearLayout layoutHoldRace = (LinearLayout) dialog.findViewById(R.id.layoutHoldRace);
-                layoutPublish.setOnClickListener(new View.OnClickListener() {
+                layoutPublish.setOnClickListener(new View.OnClickListener()
+                {
                     @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(),PublishActivity.class);
+                    public void onClick(View v)
+                    {
+                        Intent intent = new Intent(getActivity(), PublishActivity.class);
                         startActivity(intent);
                     }
                 });
-                layoutHoldRace.setOnClickListener(new View.OnClickListener() {
+                layoutHoldRace.setOnClickListener(new View.OnClickListener()
+                {
                     @Override
-                    public void onClick(View v) {
+                    public void onClick(View v)
+                    {
                         Intent intent = new Intent(getActivity(), HoldRaceActivity.class);
                         startActivity(intent);
                     }
@@ -92,29 +111,13 @@ public class CommunityFragment extends Fragment
                 dialog.show();
             }
         });
+
         //初始化适配器以及添加监听
-        rvCommunityAdapter = new RVCommunityAdapter(getContext(), initList());
+        datas = new ArrayList<>();
+        rvCommunityAdapter = new RVCommunityAdapter(getContext(), datas);
         rvCommunity.setAdapter(rvCommunityAdapter);
         rvCommunity.setLayoutManager(new LinearLayoutManager(getContext()));
         rvCommunity.setItemAnimator(new DefaultItemAnimator());
-    }
-
-    private List<Map<String, Object>> initList()
-    {
-        list = new ArrayList<>();
-        Map<String, Object> map = new HashMap<>();
-        map.put("tvUser", "灰常得流弊");
-        map.put("tvTime", "4天前");
-        map.put("tvContent", "今天一起来踢足球吧！");
-        map.put("tvFrom", "东软足球俱乐部");
-        list.add(map);
-        map = new HashMap<>();
-        map.put("tvUser", "灰常得流弊");
-        map.put("tvTime", "4天前");
-        map.put("tvContent", "今天一起来踢足球吧！");
-        map.put("tvFrom", "东软足球俱乐部");
-        list.add(map);
-        return list;
     }
 
     private void getWidget()
@@ -123,31 +126,80 @@ public class CommunityFragment extends Fragment
         rvCommunity = (RecyclerView) getActivity().findViewById(R.id.rvCommunity);
     }
 
-    // 异步获取
-    class GetRaceInfo extends AsyncTask<Void, Integer, Void>
+    @Override
+    public void onResume()
     {
-        private String url = CONSTANT.HOST + "Game/sendSocial";
+        super.onResume();
+        progressDialog.show();
+        new GetFriendsInfo().execute();
+    }
+
+    // 异步获取
+    class GetFriendsInfo extends AsyncTask<Void, Integer, Void>
+    {
+        private String url = CONSTANT.HOST + "Social/selectSocial";
         private String city = "大连";
 
         @Override
         protected Void doInBackground(Void... params)
         {
-            final Map<String,Object> paramMap = new HashMap<String, Object>(); //文本数据全部添加到Map里
-            paramMap.put("address","大连");
-            paramMap.put("content", "傻逼你好，傻逼你好。傻逼你好，傻逼你好。傻逼你好，傻逼你好。傻逼你好，傻逼你好。");
-            paramMap.put("user_id", User.mUserInfo.getUser_id());
-
-            String path = "********"; //此处写上要上传的文件在系统中的路径
-            final File pictureFile = new File(path); //通过路径获取文件
-
             try
             {
-                HttpConnectionUtil.doPostPicture(url, paramMap, pictureFile);
-            } catch (Exception e)
+                // 连接web,提交帐号密码
+                URL httpUrl = new URL(url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) httpUrl.openConnection();
+                httpURLConnection.setRequestMethod("GET");
+                httpURLConnection.setConnectTimeout(5000);
+
+                //读取服务器返回结果
+                BufferedReader reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                StringBuffer result = new StringBuffer();
+                String str;
+                while ((str = reader.readLine()) != null)
+                {
+                    result.append(str);
+                }
+                if (Test.flag)
+                    Log.d("friends", result.toString());
+
+                //解析返回值
+                final JSONObject jsonObject = new JSONObject(result.toString());
+                int ret = jsonObject.getInt("success");
+                switch (ret)
+                {
+                    case CONSTANT.SUCCESS:
+                        datas = JSON.parseArray(jsonObject.getString("data"),  Friends_User.class);
+                        break;
+                    case CONSTANT.ERROR:
+
+                        break;
+                }
+            } catch (MalformedURLException e)
+            {
+                e.printStackTrace();
+            } catch (ProtocolException e)
+            {
+                e.printStackTrace();
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            } catch (JSONException e)
             {
                 e.printStackTrace();
             }
+
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid)
+        {
+            if(datas.size() != 0)
+            {
+                Log.d("datas",datas.toString());
+            }
+            rvCommunityAdapter.changeData(datas);
+            progressDialog.close();
         }
     }
 }

@@ -1,15 +1,23 @@
 package heracles.soccergo.home;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -25,6 +33,9 @@ import heracles.soccergo.Tools.Test;
 import heracles.soccergo.Tools.User;
 import heracles.soccergo.Tools.User_abilities_club_club;
 import heracles.soccergo.Tools.Utils;
+import heracles.soccergo.login.LoginActivity;
+import heracles.soccergo.service.RaceInfo;
+import heracles.soccergo.service.RaceService;
 
 /**
  * Created by 10539 on 2016/9/5.
@@ -47,6 +58,12 @@ public class HomeFragment extends Fragment
     private TextView tvAbilityValue;
     private ImageView rivIcon;
     private GetLocalImageDialog getLocalImageDialog;
+    private LinearLayout layoutUserEdit;
+
+    private RaceInfo raceInfo;
+    private RaceServiceConnection raceCon;
+
+    private NotificationManager notificationManager;
 
     @Nullable
     @Override
@@ -90,15 +107,25 @@ public class HomeFragment extends Fragment
         tvShirtNum = (TextView) activity.findViewById(R.id.tvShirtNum);
         tvLocation = (TextView) activity.findViewById(R.id.tvLocation);
         tvAbilityValue = (TextView) activity.findViewById(R.id.tvAbilityValue);
+        layoutUserEdit = (LinearLayout) activity.findViewById(R.id.layoutUserEdit);
     }
 
     private void setWidget()
     {
-        radarView.setData(new double[]{50, 50, 60, 80, 100, 40});
         rivIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                  getLocalImageDialog = new GetLocalImageDialog(getActivity());
+            }
+        });
+
+        layoutUserEdit.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getContext(),UserEditActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -122,6 +149,7 @@ public class HomeFragment extends Fragment
                 JSONObject jsonObject = new JSONObject(json);
                 user = JSON.parseObject(jsonObject.getString("data"),User_abilities_club_club.class);
                 User.setUser(user);
+                startRaceService();
             } catch (JSONException e)
             {
                 e.printStackTrace();
@@ -153,5 +181,57 @@ public class HomeFragment extends Fragment
                                 user.getFangshou()+user.getLiliang())*100.0/600)));
             progressDialog.close();
         }
+    }
+
+    private void startRaceService()
+    {
+        notificationManager = (NotificationManager) getContext().getSystemService(getContext().NOTIFICATION_SERVICE);
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(getContext());
+        notification.setSmallIcon(R.drawable.footbal);
+        notification.setContentTitle("标题");
+        notification.setContentText("内容");
+        notification.setAutoCancel(true);	    //点击自动消息
+        Intent intent = new Intent(getContext(), LoginActivity.class);    //点击通知进入的界面
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        notification.setContentIntent(contentIntent);
+        notificationManager.notify(0, notification.build());
+
+        Intent raceService = new Intent(getContext(), RaceService.class);
+        raceCon = new RaceServiceConnection();
+        getContext().startService(raceService);
+        getContext().bindService(raceService, raceCon, getContext().BIND_AUTO_CREATE);
+//        Timer timer = new Timer();
+//        timer.schedule(new TimerTask()
+//        {
+//            @Override
+//            public void run()
+//            {
+//                Log.d("MainRaceInfo:", raceInfo.getRaceInfo().toString());
+//            }
+//        }, 5 * 1000,5000 * 10);
+    }
+
+    private class RaceServiceConnection implements ServiceConnection
+    {
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service)
+        {
+            raceInfo = (RaceInfo) service;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name)
+        {
+
+        }
+    }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        getContext().unbindService(raceCon);
     }
 }

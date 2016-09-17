@@ -10,5 +10,4 @@ import heracles.soccergo.race.Game;
 public interface RaceInfo
 {
     List<Game> getRaceInfo();
-    int getId();
 }

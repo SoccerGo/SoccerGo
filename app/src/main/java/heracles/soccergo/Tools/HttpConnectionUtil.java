@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -25,9 +26,10 @@ public class HttpConnectionUtil
     static String MULTIPART_FROM_DATA = "multipart/form-data";
     static String CHARSET = "UTF-8";
 
-    public static boolean doPostPicture(String urlStr, Map<String, Object> paramMap, File pictureFile)
+    public static Map<String,Object> doPostPicture(String urlStr, Map<String, Object> paramMap, File pictureFile)
             throws Exception
     {
+        Map<String,Object> mResult = new HashMap<>();
 
         URL url = new URL(urlStr);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -49,7 +51,8 @@ public class HttpConnectionUtil
             sb.append(PREFIX);
             sb.append(BOUNDARY);
             sb.append(LINEND);
-            sb.append("Content-Disposition: form-data; name=\"picture\"; filename=\"" + pictureFile.getName() + "\"" + LINEND);
+//            sb.append("Content-Disposition: form-data; name=\"picture\"; filename=\"" + pictureFile.getName() + "\"" + LINEND);
+            sb.append("Content-Disposition: form-data; name=\"img\"; filename=\"" + pictureFile.getName() + "\"" + LINEND);
             sb.append("Content-Type: image/jpg; charset=" + CHARSET + LINEND);
             sb.append(LINEND);
             os.write(sb.toString().getBytes());
@@ -109,14 +112,16 @@ public class HttpConnectionUtil
             {
                 case CONSTANT.SUCCESS:
                     Log.d("success","ok");
-                    return true;
+                    mResult.put("ret",true);
+                    mResult.put("data",result);
+                    break;
                 case CONSTANT.ERROR:
                     Log.d("error",jsonObject.getString("error"));
-                    return false;
+                    mResult.put("ret",false);
+                    break;
             }
         }
-
-        return false;
+        return mResult;
     }
 
 }

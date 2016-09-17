@@ -1,34 +1,20 @@
 package heracles.soccergo;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import heracles.soccergo.club.ClubFragment;
 import heracles.soccergo.community.CommunityFragment;
 import heracles.soccergo.home.HomeFragment;
-import heracles.soccergo.login.LoginActivity;
 import heracles.soccergo.more.MoreFragment;
 import heracles.soccergo.race.RaceFragment;
-import heracles.soccergo.service.RaceInfo;
-import heracles.soccergo.service.RaceService;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
@@ -46,11 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Fragment communityFragment;
     private int currentFragmentID = -1;
 
-    private RaceInfo raceInfo;
-    private RaceServiceConnection raceCon;
-
-    private NotificationManager notificationManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -58,42 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         initWidget();
-        startRaceService();
-    }
-
-    private void startRaceService()
-    {
-        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
-//        mBuilder.setSmallIcon(R.drawable.footbal).setContentTitle("比赛信息")
-//                .setContentText("比赛人数已齐")
-//                .setWhen(System.currentTimeMillis());//通知产生的时间，会在通知信息里显示，一般是系统获取到的时间
-//        notificationManager.notify(1,mBuilder.build());
-
-        NotificationCompat.Builder notification = new NotificationCompat.Builder(this);
-        notification.setSmallIcon(R.drawable.footbal);
-        notification.setContentTitle("标题");
-        notification.setContentText("内容");
-        notification.setAutoCancel(true);	    //点击自动消息
-        Intent intent = new Intent(this, LoginActivity.class);    //点击通知进入的界面
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-        notification.setContentIntent(contentIntent);
-        notificationManager.notify(0, notification.build());
-
-        Intent raceService = new Intent(this, RaceService.class);
-        raceCon = new RaceServiceConnection();
-        startService(raceService);
-        bindService(raceService, raceCon, BIND_AUTO_CREATE);
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask()
-        {
-            @Override
-            public void run()
-            {
-                Log.d("serviceTest:id", String.valueOf(raceInfo.getId()));
-            }
-        }, 5 * 1000,5000);
     }
 
     private void initWidget()
@@ -210,28 +155,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ft.show(homeFragment).hide(clubFragment).hide(moreFragment).hide(raceFragment).hide(communityFragment).commit();
             currentFragmentID = R.id.ivHome;
         }
-    }
-
-    private class RaceServiceConnection implements ServiceConnection
-    {
-
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service)
-        {
-            raceInfo = (RaceInfo) service;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name)
-        {
-
-        }
-    }
-
-    @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
-        this.unbindService(raceCon);
     }
 }

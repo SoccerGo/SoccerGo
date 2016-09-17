@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="heracles.soccergo.home.UserEditActivity"
-    android:background="#c5e8ef">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                tools:context="heracles.soccergo.home.UserEditActivity"
+                android:background="#c5e8ef">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -46,13 +47,13 @@
         android:id="@+id/relativeLayout19"
         android:layout_marginBottom="20dp">
 
-        <heracles.soccergo.Tools.RoundImageView
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdvUser"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageView38"
-            android:src="@drawable/more_img"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+            fresco:placeholderImage="@drawable/more_img"
+            fresco:roundAsCircle="true"
+            />
 
         <TextView
             android:layout_width="wrap_content"
