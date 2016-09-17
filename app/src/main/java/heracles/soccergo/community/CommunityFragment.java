@@ -18,6 +18,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 
@@ -32,11 +33,14 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.CONSTANT;
 import heracles.soccergo.Tools.Friends_User;
+import heracles.soccergo.Tools.HttpConnectionUtil;
 import heracles.soccergo.Tools.ProgressDialog;
 import heracles.soccergo.Tools.Test;
 import heracles.soccergo.race.HoldRaceActivity;
@@ -115,6 +119,21 @@ public class CommunityFragment extends Fragment
         //初始化适配器以及添加监听
         datas = new ArrayList<>();
         rvCommunityAdapter = new RVCommunityAdapter(getContext(), datas);
+        rvCommunityAdapter.setOnItemClickListener(new RVCommunityAdapter.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(View view, int position)
+            {
+
+            }
+
+            @Override
+            public void onLikeClick(View view, int position)
+            {
+                Log.d("点赞", "OK");
+                new DianZan(view,position).execute();
+            }
+        });
         rvCommunity.setAdapter(rvCommunityAdapter);
         rvCommunity.setLayoutManager(new LinearLayoutManager(getContext()));
         rvCommunity.setItemAnimator(new DefaultItemAnimator());
@@ -168,7 +187,7 @@ public class CommunityFragment extends Fragment
                 switch (ret)
                 {
                     case CONSTANT.SUCCESS:
-                        datas = JSON.parseArray(jsonObject.getString("data"),  Friends_User.class);
+                        datas = JSON.parseArray(jsonObject.getString("data"), Friends_User.class);
                         break;
                     case CONSTANT.ERROR:
 
@@ -194,12 +213,54 @@ public class CommunityFragment extends Fragment
         @Override
         protected void onPostExecute(Void aVoid)
         {
-            if(datas.size() != 0)
+            if (datas.size() != 0)
             {
-                Log.d("datas",datas.toString());
+                Log.d("datas", datas.toString());
             }
             rvCommunityAdapter.changeData(datas);
             progressDialog.close();
+        }
+    }
+
+    // 异步获取
+    class DianZan extends AsyncTask<Void, Integer, Void>
+    {
+        private ImageView imageView;
+        private int position;
+        private boolean ret;
+
+        public DianZan(View view, int position)
+        {
+            imageView = (ImageView) view.findViewById(R.id.ivAdd);
+            this.position = position;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params)
+        {
+            Map<String, Object> map = new HashMap<>();
+            map.put("friends_id", datas.get(position).getFriends_id());
+            try
+            {
+                ret = (boolean) HttpConnectionUtil.doPostPicture(CONSTANT.HOST + "Social/addNum", map, null).get("ret");
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid)
+        {
+            if (ret)
+            {
+                progressDialog.show();
+                new GetFriendsInfo().execute();
+            } else
+            {
+                Toast.makeText(getContext(),"点赞失败",Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

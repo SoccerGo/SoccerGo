@@ -30,7 +30,6 @@ import heracles.soccergo.ImagePickerView.GlideImageLoader;
 import heracles.soccergo.ImagePickerView.ImagePickerAdapter;
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.CONSTANT;
-import heracles.soccergo.Tools.GetLocalImageDialog;
 import heracles.soccergo.Tools.HttpConnectionUtil;
 import heracles.soccergo.Tools.User;
 
@@ -38,8 +37,6 @@ public class PublishActivity extends AppCompatActivity implements ImagePickerAda
 {
     private EditText etContent;
     private CheckBox cbShowClub;
-    private Button btnPublish;
-    private GetLocalImageDialog getLocalImageDialog;
     private RecyclerView recyclerView;
     private Button btnSend;
 
