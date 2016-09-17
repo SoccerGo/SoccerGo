@@ -89,12 +89,15 @@
 
         </LinearLayout>
 
-        <ListView
-            android:layout_width="wrap_content"
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/lvComment"
-            android:layout_below="@+id/linearLayout8"
-            android:layout_centerHorizontal="true" />
+            android:id="@+id/rvPingLun"
+            android:layout_below="@+id/linearLayout8">
+
+        </android.support.v7.widget.RecyclerView>
+
     </RelativeLayout>
 
     <LinearLayout
@@ -127,7 +130,7 @@
             android:layout_width="60dp"
             android:layout_height="30dp"
             android:text="发送"
-            android:id="@+id/btnSubmitComment"
+            android:id="@+id/btnSend"
             android:layout_gravity="center_vertical"
             android:background="#6dacd4"
             android:textColor="#ffffff"

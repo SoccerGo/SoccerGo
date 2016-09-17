@@ -11,11 +11,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import java.io.Serializable;
-
 import heracles.soccergo.R;
 
-public class JoinRaceActivity extends AppCompatActivity implements View.OnClickListener {
+public class JoinRaceActivity extends AppCompatActivity implements View.OnClickListener
+{
     private Button btnUnjoined;
     private Button btnJoined;
     private LinearLayout layoutJoin;
@@ -36,28 +35,43 @@ public class JoinRaceActivity extends AppCompatActivity implements View.OnClickL
         initWidget();
     }
 
-    private void initWidget() {
+    private void initWidget()
+    {
         getWidget();
         setWidget();
-        new GetFragment().execute();
+//        new GetFragment().execute();
+        unJoinedFragment = new UnjoinedFragment();
+        joinedFragment = new JoinedFragment();
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        ft.add(R.id.layoutJoin, unJoinedFragment, "unJoinedFragment").add(R.id.layoutJoin, joinedFragment, "joinedFragment");
+        ft.show(unJoinedFragment).hide(joinedFragment).commit();
+        ft.show(joinedFragment);
+        currentFragmentID = R.id.btnUnjoined;
     }
 
-    private void setWidget() {
+    private void setWidget()
+    {
         btnUnjoined.setOnClickListener(this);
         btnJoined.setOnClickListener(this);
     }
 
-    private void getWidget() {
+    private void getWidget()
+    {
         btnUnjoined = (Button) findViewById(R.id.btnUnjoined);
         btnJoined = (Button) findViewById(R.id.btnJoined);
         layoutJoin = (LinearLayout) findViewById(R.id.layoutJoin);
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
-        switch (currentFragmentID){
+        switch (currentFragmentID)
+        {
             case R.id.btnUnjoined:
                 ft.hide(unJoinedFragment);
                 btnUnjoined.setBackgroundResource(R.color.AlphaWhite);
@@ -67,7 +81,8 @@ public class JoinRaceActivity extends AppCompatActivity implements View.OnClickL
                 btnJoined.setBackgroundResource(R.color.AlphaWhite);
                 break;
         }
-        switch (v.getId()){
+        switch (v.getId())
+        {
             case R.id.btnUnjoined:
                 ft.show(unJoinedFragment);
                 currentFragmentID = R.id.btnUnjoined;
@@ -82,25 +97,19 @@ public class JoinRaceActivity extends AppCompatActivity implements View.OnClickL
         ft.commit();
     }
 
-    class GetFragment extends AsyncTask<Void, Integer,Void>{
+    class GetFragment extends AsyncTask<Void, Integer, Void>
+    {
 
         @Override
-        protected Void doInBackground(Void... params) {
+        protected Void doInBackground(Void... params)
+        {
             return null;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            unJoinedFragment = new UnjoinedFragment();
-            joinedFragment = new JoinedFragment();
+        protected void onPostExecute(Void aVoid)
+        {
 
-            FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-
-            ft.add(R.id.layoutJoin,unJoinedFragment,"unJoinedFragment")
-                    .add(R.id.layoutJoin,joinedFragment,"joinedFragment");
-            ft.show(unJoinedFragment).hide(joinedFragment).commit();
-            currentFragmentID = R.id.btnUnjoined;
         }
     }
 }

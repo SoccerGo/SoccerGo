@@ -112,7 +112,7 @@ public class HttpConnectionUtil
                 case CONSTANT.SUCCESS:
                     Log.d("success","ok");
                     mResult.put("ret",true);
-                    mResult.put("data",result);
+                    mResult.put("data",jsonObject.getString("data"));
                     break;
                 case CONSTANT.ERROR:
                     Log.d("error",jsonObject.getString("error"));

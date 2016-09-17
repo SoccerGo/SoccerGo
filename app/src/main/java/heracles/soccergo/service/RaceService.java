@@ -95,7 +95,7 @@ public class RaceService extends Service
                 for(Game game:games)
                     Log.d("ServiceGame",game.toString());
             }
-        }, 0, 1000 * 10);
+        }, 0, 1000 * 60);
         return super.onStartCommand(intent, flags, startId);
     }
 

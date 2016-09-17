@@ -256,6 +256,13 @@ public class HomeFragment extends Fragment
     public void onDestroy()
     {
         super.onDestroy();
+
+    }
+
+    @Override
+    public void onDestroyView()
+    {
+        super.onDestroyView();
         getContext().unbindService(raceCon);
     }
 }

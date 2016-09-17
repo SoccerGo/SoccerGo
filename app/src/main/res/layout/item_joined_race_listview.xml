@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:background="@color/LightGreen">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="把你家孩子带出来"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:id="@+id/tvItemTitle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="五人制"
+        android:id="@+id/tvItemSize"
+        android:textSize="13dp"
+        android:textColor="#ffffff"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="170dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="报名费："
+        android:id="@+id/textView13"
+        android:layout_below="@+id/tvItemSize"
+        android:layout_alignStart="@+id/tvItemSize"
+        android:layout_marginTop="3dp"
+        android:textSize="13dp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10元/人"
+        android:id="@+id/tvItemCost"
+        android:layout_alignTop="@+id/textView13"
+        android:layout_toEndOf="@+id/textView13"
+        android:textSize="13dp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="时间："
+        android:id="@+id/textView15"
+        android:layout_below="@+id/textView13"
+        android:layout_alignStart="@+id/textView13"
+        android:textSize="13dp"
+        android:layout_marginTop="3dp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7月18日09:00"
+        android:id="@+id/tvItemTime"
+        android:textSize="13dp"
+        android:layout_alignTop="@+id/textView15"
+        android:layout_toEndOf="@+id/textView15"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="地点："
+        android:id="@+id/textView17"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_alignParentStart="true"
+        android:textSize="13dp"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="东软学院三期球场"
+        android:id="@+id/tvItemLocale"
+        android:layout_alignBottom="@+id/textView17"
+        android:layout_toEndOf="@+id/textView17"
+        android:textSize="13dp"
+        android:textColor="#ffffff" />
+
+
+</RelativeLayout>

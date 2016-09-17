@@ -32,6 +32,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,6 +55,7 @@ public class CommunityFragment extends Fragment
     private RecyclerView rvCommunity;
     private RVCommunityAdapter rvCommunityAdapter;
     private List<Friends_User> datas;
+    private SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     private ProgressDialog progressDialog;
 
@@ -123,7 +125,28 @@ public class CommunityFragment extends Fragment
             @Override
             public void onItemClick(View view, int position)
             {
-
+                if(Test.flag)
+                    Log.d("评论","ok");
+                Friends_User friends_user = datas.get(position);
+                Intent intent = new Intent(getContext(),CommentActivity.class);
+                intent.putExtra("name",friends_user.getUser_name());
+                intent.putExtra("time",format.format(friends_user.getF_time()));
+                intent.putExtra("content",friends_user.getContent());
+                intent.putExtra("from",friends_user.getAddress());
+                intent.putExtra("friendId",friends_user.getFriends_id());
+                if(friends_user.getHead_link()!=null)
+                    intent.putExtra("head_link",CONSTANT.HOST+"resources/upload/image/social/"+friends_user.getHead_link());
+                else
+                    intent.putExtra("head_link","");
+                if(friends_user.getPic()!=null)
+                {
+                    intent.putExtra("pic",CONSTANT.HOST+"resources/upload/image/social/"+friends_user.getPic());
+                }
+                else
+                {
+                    intent.putExtra("pic","");
+                }
+                startActivity(intent);
             }
 
             @Override

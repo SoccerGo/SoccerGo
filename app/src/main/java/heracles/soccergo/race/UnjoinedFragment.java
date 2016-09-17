@@ -45,7 +45,8 @@ import heracles.soccergo.Tools.User;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UnjoinedFragment extends Fragment {
+public class UnjoinedFragment extends Fragment
+{
     private Button btnHoldRace;
     private RecyclerView rvJoinRace;
     private RVJoinRaceAdapter joinRaceAdapter;
@@ -58,12 +59,14 @@ public class UnjoinedFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         return inflater.inflate(R.layout.fragment_unjoined, container, false);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState)
+    {
         super.onActivityCreated(savedInstanceState);
         initWidget();
     }
@@ -72,6 +75,8 @@ public class UnjoinedFragment extends Fragment {
     {
         getWidget();
         setWidget();
+        progressDialog.show();
+        new GetRaceInfo().execute();
     }
 
     private void getWidget()
@@ -111,13 +116,6 @@ public class UnjoinedFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-        progressDialog.show();
-        new GetRaceInfo().execute();
-    }
 
     // 异步获取
     class GetRaceInfo extends AsyncTask<Void, Integer, Void>
@@ -136,7 +134,7 @@ public class UnjoinedFragment extends Fragment {
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setConnectTimeout(5000);
                 OutputStream out = httpURLConnection.getOutputStream();
-                final String content = "city=" + city+"&p_user_id=" + User.mUserInfo.getUser_id();
+                final String content ="city="+city+ "&p_user_id=" + User.mUserInfo.getUser_id();
                 out.write(content.getBytes());
 
                 //读取服务器返回结果
@@ -148,7 +146,7 @@ public class UnjoinedFragment extends Fragment {
                     result.append(str);
                 }
                 if (Test.flag)
-                    Log.d("result", result.toString());
+                    Log.d("UnjoinedFragment", result.toString());
 
                 //解析返回值，判断是否登入成功
                 final JSONObject jsonObject = new JSONObject(result.toString());
@@ -199,4 +197,5 @@ public class UnjoinedFragment extends Fragment {
             progressDialog.close();
         }
     }
+
 }

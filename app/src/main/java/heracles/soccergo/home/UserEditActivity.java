@@ -13,48 +13,34 @@ import android.widget.Toast;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import heracles.soccergo.R;
-import heracles.soccergo.Tools.CONSTANT;
-import heracles.soccergo.Tools.User;
 
 public class UserEditActivity extends AppCompatActivity
 {
     /* 头像文件 */
-    private static final String IMAGE_FILE_NAME = "soc_img.jpg";
+    private static final String IMAGE_FILE_NAME = "temp_head_image.jpg";
 
     /* 请求识别码 */
-    private static final int CODE_GALLERY_REQUEST = 0xa0;//本地
-    private static final int CODE_CAMERA_REQUEST = 0xa1;//拍照
-    private static final int CODE_RESULT_REQUEST = 0xa2;//最终裁剪后的结果
+    private static final int CODE_GALLERY_REQUEST = 0xa0;
+    private static final int CODE_CAMERA_REQUEST = 0xa1;
+    private static final int CODE_RESULT_REQUEST = 0xa2;
 
     // 裁剪后图片的宽(X)和高(Y),480 X 480的正方形。
-    private static int output_X = 32;
-    private static int output_Y = 32;
+    private static int output_X = 480;
+    private static int output_Y = 480;
 
-    private SimpleDraweeView sdvUser;
+    private SimpleDraweeView sdvUser = null;
+
+    private File tempFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_edit);
-        initWidget();
-    }
 
-    private void initWidget()
-    {
-        getWidget();
-        setWidget();
-    }
-
-    private void setWidget()
-    {
-        if(User.mUserInfo.getHead_link()!=null)
-            sdvUser.setImageURI(CONSTANT.HOST+ User.mUserInfo.getHead_link());
+        sdvUser = (SimpleDraweeView) findViewById(R.id.sdvUser);
         sdvUser.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -65,27 +51,21 @@ public class UserEditActivity extends AppCompatActivity
         });
     }
 
-    private void getWidget()
-    {
-        sdvUser = (SimpleDraweeView) findViewById(R.id.sdvUser);
-    }
-
     // 从本地相册选取图片作为头像
-    public void choseHeadImageFromGallery()
+    private void choseHeadImageFromGallery()
     {
         Intent intentFromGallery = new Intent();
         // 设置文件类型
-        intentFromGallery.setType("image/*");//选择图片
+        intentFromGallery.setType("image/*");
         intentFromGallery.setAction(Intent.ACTION_GET_CONTENT);
-        //如果你想在Activity中得到新打开Activity关闭后返回的数据，
-        //你需要使用系统提供的startActivityForResult(Intent intent,int requestCode)方法打开新的Activity
         startActivityForResult(intentFromGallery, CODE_GALLERY_REQUEST);
     }
 
     // 启动手机相机拍摄照片作为头像
-    public void choseHeadImageFromCameraCapture()
+    private void choseHeadImageFromCameraCapture()
     {
         Intent intentFromCapture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
         // 判断存储卡是否可用，存储照片文件
         if (hasSdcard())
         {
@@ -93,6 +73,7 @@ public class UserEditActivity extends AppCompatActivity
                     .fromFile(new File(Environment
                             .getExternalStorageDirectory(), IMAGE_FILE_NAME)));
         }
+
         startActivityForResult(intentFromCapture, CODE_CAMERA_REQUEST);
     }
 
@@ -100,41 +81,44 @@ public class UserEditActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent intent)
     {
+
         // 用户没有进行有效的设置操作，返回
         if (resultCode == RESULT_CANCELED)
-        {//取消
+        {
             Toast.makeText(getApplication(), "取消", Toast.LENGTH_LONG).show();
-            finish();
             return;
         }
 
         switch (requestCode)
         {
-            case CODE_GALLERY_REQUEST://如果是来自本地的Q
-                cropRawPhoto(intent.getData());//直接裁剪图片
+            case CODE_GALLERY_REQUEST:
+                cropRawPhoto(intent.getData());
                 break;
 
             case CODE_CAMERA_REQUEST:
                 if (hasSdcard())
                 {
-                    File tempFile = new File(
+                    tempFile = new File(
                             Environment.getExternalStorageDirectory(),
                             IMAGE_FILE_NAME);
                     cropRawPhoto(Uri.fromFile(tempFile));
                 } else
                 {
-                    Toast.makeText(getApplication(), "没有SDCard!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplication(), "没有SDCard!", Toast.LENGTH_LONG)
+                            .show();
                 }
+
                 break;
 
             case CODE_RESULT_REQUEST:
                 if (intent != null)
                 {
-                    setImageToHeadView(intent);//设置图片框
-                    finish();
+                    setImageToHeadView(intent);
                 }
+
                 break;
         }
+
         super.onActivityResult(requestCode, resultCode, intent);
     }
 
@@ -143,10 +127,10 @@ public class UserEditActivity extends AppCompatActivity
      */
     public void cropRawPhoto(Uri uri)
     {
+
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
 
-        //把裁剪的数据填入里面
         // 设置裁剪
         intent.putExtra("crop", "true");
 
@@ -168,41 +152,10 @@ public class UserEditActivity extends AppCompatActivity
     private void setImageToHeadView(Intent intent)
     {
         Bundle extras = intent.getExtras();
-
         if (extras != null)
         {
             Bitmap photo = extras.getParcelable("data");
             sdvUser.setImageBitmap(photo);
-            //新建文件夹 先选好路径 再调用mkdir函数 现在是根目录下面的Ask文件夹
-            File nf = new File(Environment.getExternalStorageDirectory() + "/SoccerGoIcon");
-            nf.mkdir();
-
-            //在根目录下面的ASk文件夹下 创建okkk.jpg文件
-            String fileUrl = Environment.getExternalStorageDirectory() + "/SoccerGoIcon";
-
-            String fileName = String.valueOf(System.currentTimeMillis())+".jpg";
-            File f = new File(fileUrl, fileName);
-            FileOutputStream out = null;
-
-            try
-            {//打开输出流 将图片数据填入文件中
-                out = new FileOutputStream(f);
-                photo.compress(Bitmap.CompressFormat.PNG, 90, out);
-                try
-                {
-                    out.flush();
-                    out.close();
-                    Intent intent1 = new Intent();
-                    intent1.putExtra("file",fileUrl+fileName);
-                    setResult(CONSTANT.RETIMG,intent1);
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            } catch (FileNotFoundException e)
-            {
-                e.printStackTrace();
-            }
         }
     }
 
