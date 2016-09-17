@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="player_position">
+        <item>守门员</item>
+        <item>后卫</item>
+        <item>中场</item>
+        <item>前锋</item>
+    </string-array>
+</resources>

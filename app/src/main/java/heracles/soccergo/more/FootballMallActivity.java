@@ -23,6 +23,7 @@ public class FootballMallActivity extends AppCompatActivity
     ListView lvFootballMall;
     List<Map<String,Object>> list;
     Button btnFootball,btnClothe,btnShoes,btnTrainTools;
+    static int NUM_FOOTBALL = 1, NUM_CLOTHE = 2, NUM_SHOES = 3, NUM_TRAIN_TOOLS = 4;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -37,29 +38,29 @@ public class FootballMallActivity extends AppCompatActivity
     }
 
     private void setWidget() {
-        lvFootballMall.setAdapter(new FootballMallAdapter(FootballMallActivity.this));
+        lvFootballMall.setAdapter(new FootballMallAdapter(FootballMallActivity.this,NUM_FOOTBALL));
         btnFootball.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lvFootballMall.setAdapter(new FootballMallAdapter(FootballMallActivity.this));
+                lvFootballMall.setAdapter(new FootballMallAdapter(FootballMallActivity.this,NUM_FOOTBALL));
             }
         });
         btnClothe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lvFootballMall.setAdapter(new FootballMallAdapter(FootballMallActivity.this));
+                lvFootballMall.setAdapter(new FootballMallAdapter(FootballMallActivity.this,NUM_CLOTHE));
             }
         });
         btnShoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lvFootballMall.setAdapter(new FootballMallAdapter(FootballMallActivity.this));
+                lvFootballMall.setAdapter(new FootballMallAdapter(FootballMallActivity.this,NUM_SHOES));
             }
         });
         btnTrainTools.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lvFootballMall.setAdapter(new FootballMallAdapter(FootballMallActivity.this));
+                lvFootballMall.setAdapter(new FootballMallAdapter(FootballMallActivity.this,NUM_TRAIN_TOOLS));
             }
         });
     }
@@ -75,9 +76,9 @@ public class FootballMallActivity extends AppCompatActivity
     private class FootballMallAdapter extends BaseAdapter{
         Context context;
 
-        public FootballMallAdapter(Context context) {
+        public FootballMallAdapter(Context context,int mallNum) {
             this.context = context;
-            initList();
+            initList(mallNum);
         }
 
         @Override
@@ -111,25 +112,69 @@ public class FootballMallActivity extends AppCompatActivity
         }
     }
 
-    private void initList() {
+    private void initList(int mallNum) {
         list = new ArrayList<>();
-        Map<String,Object> map = new HashMap<>();
-        map.put("itemName","球衣1");
-        map.put("itemContent","本球衣非常的amazing，必买!!!");
-        map.put("price","3110");
-        list.add(map);
+        Map<String,Object> map;
+        switch (mallNum){
+            case 1:
+                map = new HashMap<>();
+                map.put("itemName","耐克足球5号NIKE英超足球");
+                map.put("itemContent","12块几何球皮设计，Aerowtrac凹槽，球面图案绚丽，助你一路驰骋绿茵");
+                map.put("price","2900");
+                map.put("img",R.drawable.soccer_1);
+                list.add(map);
 
-        map = new HashMap<>();
-        map.put("itemName","球衣1");
-        map.put("itemContent","本球衣非常的amazing，必买!!!");
-        map.put("price","3110");
-        list.add(map);
+                map = new HashMap<>();
+                map.put("itemName","火车头足球精品 4号足球");
+                map.put("itemContent","精品款系列，全面升级，进口材质，更耐磨、弹性更足");
+                map.put("price","1960");
+                map.put("img",R.drawable.soccer_2);
+                list.add(map);
 
-        map = new HashMap<>();
-        map.put("itemName","球衣1");
-        map.put("itemContent","本球衣非常的amazing，必买!!!");
-        map.put("price","3110");
-        list.add(map);
+                map = new HashMap<>();
+                map.put("itemName","战舰正品 训练比赛用球");
+                map.put("itemContent","标准5号球，超软不伤脚，酷炫；送气针网兜、气筒 ");
+                map.put("price","580");
+                map.put("img",R.drawable.soccer_3);
+                list.add(map);
+
+                map = new HashMap<>();
+                map.put("itemName","阿迪达斯 欧冠比赛足球");
+                map.put("itemContent","秉持追求完美理念，与世界各地著名运动员及科研机构紧密结合，改进足球运动装备" +
+                        "，提升运动表现，挑战运动极限");
+                map.put("price","5980");
+                map.put("img",R.drawable.soccer_4);
+                list.add(map);
+                break;
+
+            case 2:
+                map = new HashMap<>();
+                map.put("itemName","阿迪达斯儿童球衣（名字印刷）");
+                map.put("itemContent","可任意选球队，球衣号，印刷名字服务");
+                map.put("price","2899");
+                map.put("img",R.drawable.clothes_1);
+                list.add(map);
+
+                map = new HashMap<>();
+                map.put("itemName","麦凯乐耐克儿童球衣定制");
+                map.put("itemContent","100%绝对正品足球球衣，大连麦凯乐实体店直属店铺");
+                map.put("price","3500");
+                map.put("img",R.drawable.clothes_2);
+                list.add(map);
+
+                map = new HashMap<>();
+                map.put("itemName","正品李宁足球队球衣（儿童款）");
+                map.put("itemContent","李宁足球球衣，可选择自己喜爱的球队，尺码自选，定制专属球衣");
+                map.put("price","2650");
+                map.put("img",R.drawable.clothes_3);
+                list.add(map);
+                break;
+
+            case 3:
+                break;
+            case 4:
+                break;
+        }
     }
 
 }

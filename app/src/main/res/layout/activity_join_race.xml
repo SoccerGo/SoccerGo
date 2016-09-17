@@ -27,22 +27,42 @@
             android:textSize="16dp" />
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_above="@+id/btnHoldRace"
-        android:id="@+id/rvJoinRace">
-
-    </android.support.v7.widget.RecyclerView>
-    <Button
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/relativeLayout"
         android:layout_alignParentStart="true"
-        android:background="#33a333"
-        android:text="没有中意的比赛？试试发起一场自己的比赛"
-        android:textColor="#ffffff"
-        android:textSize="14dp"
-        android:id="@+id/btnHoldRace" />
+        android:id="@+id/linearLayout5">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="未加入"
+            android:id="@+id/btnUnjoined"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@color/LightWhiteGreen" />
+        <LinearLayout
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/LightWhiteGreen"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="已加入"
+            android:id="@+id/btnJoined"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@color/material_grey_100" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linearLayout5"
+        android:layout_alignParentStart="true"
+        android:id="@+id/layoutJoin"></LinearLayout>
+
 </RelativeLayout>

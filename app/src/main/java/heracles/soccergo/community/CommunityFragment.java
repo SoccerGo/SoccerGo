@@ -55,7 +55,6 @@ public class CommunityFragment extends Fragment
     private RVCommunityAdapter rvCommunityAdapter;
     private List<Friends_User> datas;
 
-
     private ProgressDialog progressDialog;
 
 

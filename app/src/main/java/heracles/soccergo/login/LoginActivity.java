@@ -21,6 +21,7 @@ import java.util.HashMap;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import cn.smssdk.gui.RegisterPage;
+import heracles.soccergo.MainActivity;
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.Test;
 
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity
         setContentView(R.layout.activity_login);
 
         initWidget();
+
         SharedPreferences pref = getSharedPreferences("user",0);
         if(pref.getString("autoflag","").equals("1")){
             etUser.setText(pref.getString("username",""));

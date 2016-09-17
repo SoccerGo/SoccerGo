@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="heracles.soccergo.community.CommentActivity"
+        android:id="@+id/relativeLayout33"
+        android:layout_above="@+id/linearLayout7"
+        android:layout_alignParentTop="true">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdvUser"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            fresco:placeholderImage="@drawable/more_img"
+            fresco:roundAsCircle="true"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/sdvUser"
+            android:layout_toEndOf="@+id/sdvUser"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="30dp"
+            android:id="@+id/linearLayout8"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/tvUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="帅气的小亮亮"
+                android:textColor="#36a1c5"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:text="2小时前"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/tvContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:text="看他小小的范儿，想不想小小内马尔\n23333"
+                android:textColor="#2f2f2f"/>
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdvContentImg"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="4dp"
+                fresco:placeholderImage="@drawable/more_img"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="4dp">
+
+                <TextView
+                    android:id="@+id/textView51"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="来自："
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:id="@+id/tvFrom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="足球小将俱乐部"
+                    android:textSize="12dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lvComment"
+            android:layout_below="@+id/linearLayout8"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/LightWhiteGreen"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:id="@+id/linearLayout7">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/imageView17"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/comment"
+            android:layout_marginRight="10dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:id="@+id/etComment"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:layout_marginRight="10dp"/>
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:text="发送"
+            android:id="@+id/btnSubmitComment"
+            android:layout_gravity="center_vertical"
+            android:background="#6dacd4"
+            android:textColor="#ffffff"
+            android:textSize="16dp" />
+    </LinearLayout>
+</RelativeLayout>

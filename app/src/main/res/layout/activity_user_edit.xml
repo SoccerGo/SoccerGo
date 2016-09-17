@@ -218,7 +218,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="中文名"
+            android:text="球衣号"
             android:id="@+id/textView65"
             android:layout_centerVertical="true"
             android:layout_alignStart="@+id/relativeLayout25" />
@@ -253,17 +253,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="中文名"
+            android:text="常用位置"
             android:id="@+id/textView66"
             android:layout_centerVertical="true"
             android:layout_alignStart="@+id/relativeLayout27" />
 
-        <EditText
+        <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText5"
-            android:layout_marginLeft="20dp"
+            android:layout_height="50dp"
+            android:id="@+id/spinner"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/textView66" />
+            android:layout_toEndOf="@+id/textView66"
+            android:layout_marginLeft="20dp"
+            android:entries="@array/player_position"/>
+
     </RelativeLayout>
 </RelativeLayout>
