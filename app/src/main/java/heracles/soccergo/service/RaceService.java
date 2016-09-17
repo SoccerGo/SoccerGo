@@ -32,6 +32,7 @@ import heracles.soccergo.race.Game;
 public class RaceService extends Service
 {
     private List<Game> games;
+    private List<Game> oldGames;
     private String findUserAddGameUrl = CONSTANT.HOST+"Game/findUserAddGame";
 
     @Override
@@ -43,13 +44,23 @@ public class RaceService extends Service
 
     private List<Game> getGames()
     {
-        return games;
+        List<Game> result = new ArrayList<>();
+        for(Game game:games)
+        {
+            for(Game oldGame:oldGames)
+            {
+                if(oldGame.getGame_id() != game.getGame_id())
+                    result.add(game);
+            }
+        }
+        return result;
     }
 
     @Override
     public void onCreate()
     {
         super.onCreate();
+        oldGames = new ArrayList<>();
     }
 
     @Override
@@ -65,7 +76,6 @@ public class RaceService extends Service
             {
                 if(Test.flag)
                     Log.d("InService","ok");
-                games = new ArrayList<>();
                 getInfo(findUserAddGameUrl);
                 for(Game game:games)
                     Log.d("ServiceGame",game.toString());
@@ -82,6 +92,7 @@ public class RaceService extends Service
 
     public void getInfo(String url)
     {
+        games = new ArrayList<>();
         try
         {
             // 连接web,提交帐号密码
@@ -117,6 +128,16 @@ public class RaceService extends Service
                         {
                             games.add(game);
                         }
+                    }
+                    for(Game game:games)
+                    {
+                        for(Game oldGame:oldGames)
+                        {
+                            if(oldGame.getGame_id() != game.getGame_id())
+                                oldGames.add(game);
+                        }
+                        if(oldGames.size() == 0)
+                            oldGames.addAll(games);
                     }
                     break;
                 case CONSTANT.ERROR:

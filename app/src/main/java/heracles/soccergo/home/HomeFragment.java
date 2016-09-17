@@ -208,6 +208,7 @@ public class HomeFragment extends Fragment
                 List<Game> games = raceInfo.getRaceInfo();
                 if (games != null)
                 {
+                    Log.d("MainRaceInfo:", games.toString());
                     for(Game game:games)
                     {
                         NotificationCompat.Builder notification = new NotificationCompat.Builder(getContext());
@@ -222,9 +223,8 @@ public class HomeFragment extends Fragment
                         notificationManager.notify(0, notification.build());
                     }
                 }
-                Log.d("MainRaceInfo:", raceInfo.getRaceInfo().toString());
             }
-        }, 5 * 1000, 5000 * 10);
+        }, 5 * 1000, 10 * 1000);
     }
 
     private class RaceServiceConnection implements ServiceConnection
