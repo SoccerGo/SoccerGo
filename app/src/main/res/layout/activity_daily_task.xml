@@ -127,7 +127,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:paddingBottom="20dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_toStartOf="@+id/button2" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -137,7 +138,9 @@
             android:layout_below="@+id/textView26"
             android:layout_alignParentStart="true"
             android:paddingBottom="20dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:ellipsize="end"
+            android:layout_toStartOf="@+id/btnHold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -147,7 +150,9 @@
             android:layout_below="@+id/textView27"
             android:layout_alignParentStart="true"
             android:paddingBottom="20dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:ellipsize="end"
+            android:layout_toStartOf="@+id/btnJoin" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -157,7 +162,8 @@
             android:layout_below="@+id/textView28"
             android:layout_alignParentStart="true"
             android:paddingBottom="10dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:layout_toStartOf="@+id/btnPublish" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -176,7 +182,9 @@
             android:layout_alignParentStart="true"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:ellipsize="end"
+            android:layout_toStartOf="@+id/btnComment" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -195,7 +203,9 @@
             android:layout_alignStart="@+id/textView30"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:ellipsize="end"
+            android:layout_toStartOf="@+id/btnMall" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -211,7 +221,9 @@
             android:layout_below="@+id/textView31"
             android:layout_alignParentStart="true"
             android:paddingTop="10dp"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:ellipsize="end"
+            android:layout_toStartOf="@+id/btnClub" />
 
         <Button
             android:layout_width="70dp"
@@ -226,7 +238,7 @@
             android:layout_width="70dp"
             android:layout_height="16dp"
             android:text="现在就去"
-            android:id="@+id/button3"
+            android:id="@+id/btnHold"
             android:background="@drawable/gradient_white_to_grey"
             android:layout_alignTop="@+id/textView27"
             android:layout_alignParentRight="true"/>
@@ -235,16 +247,16 @@
             android:layout_width="70dp"
             android:layout_height="16dp"
             android:text="现在就去"
-            android:id="@+id/button4"
+            android:id="@+id/btnJoin"
             android:background="@drawable/gradient_white_to_grey"
             android:layout_alignTop="@+id/textView28"
-            android:layout_alignStart="@+id/button3" />
+            android:layout_alignStart="@+id/btnHold" />
 
         <Button
             android:layout_width="70dp"
             android:layout_height="16dp"
             android:text="现在就去"
-            android:id="@+id/button5"
+            android:id="@+id/btnPublish"
             android:background="@drawable/gradient_white_to_grey"
             android:layout_alignTop="@+id/textView29"
             android:layout_alignParentEnd="true" />
@@ -261,7 +273,7 @@
             android:layout_width="70dp"
             android:layout_height="16dp"
             android:text="现在就去"
-            android:id="@+id/button7"
+            android:id="@+id/btnComment"
             android:background="@drawable/gradient_white_to_grey"
             android:layout_alignTop="@+id/textView30"
             android:layout_alignParentEnd="true"
@@ -271,7 +283,7 @@
             android:layout_width="70dp"
             android:layout_height="16dp"
             android:text="现在就去"
-            android:id="@+id/button8"
+            android:id="@+id/btnMall"
             android:background="@drawable/gradient_white_to_grey"
             android:layout_alignTop="@+id/textView31"
             android:layout_alignParentEnd="true"
@@ -281,7 +293,7 @@
             android:layout_width="70dp"
             android:layout_height="16dp"
             android:text="现在就去"
-            android:id="@+id/button9"
+            android:id="@+id/btnClub"
             android:background="@drawable/gradient_white_to_grey"
             android:layout_alignTop="@+id/textView32"
             android:layout_alignParentEnd="true"

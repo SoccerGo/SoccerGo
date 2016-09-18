@@ -6,15 +6,14 @@
               android:background="#99d5d5d5"
               android:layout_height="match_parent"
               android:layout_width="match_parent"
-              android:orientation="vertical"
-    >
+              android:orientation="vertical">
 
     <RelativeLayout tools:context="heracles.soccergo.community.PublishActivity"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#c5e8ef" >
+        android:background="#eeeeee" >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -29,7 +28,7 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="3dp"
                 android:src="@drawable/back_icon_left"
-                android:id="@+id/imageView40"
+                android:id="@+id/ivBack"
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true" />
 
@@ -50,10 +49,13 @@
             android:layout_below="@+id/relativeLayout29"
             android:layout_alignStart="@+id/relativeLayout29"
             android:layout_alignParentBottom="false"
-            android:padding="16dp"
             android:background="#ffffff"
-            android:layout_marginBottom="20dp"
-            android:id="@+id/relativeLayout30" >
+            android:layout_marginBottom="15dp"
+            android:id="@+id/relativeLayout30"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="6dp">
 
             <CheckBox
                 android:layout_width="wrap_content"
@@ -61,28 +63,30 @@
                 android:text="显示自己的俱乐部"
                 android:id="@+id/cbShowClub"
                 android:checked="false"
-                android:layout_below="@+id/etContent"
+                android:layout_below="@+id/layoutLine"
                 android:layout_alignParentStart="true"
                 android:textColor="#494949"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:id="@+id/layoutLine"
+                android:layout_below="@+id/rvAlterIcon"
+                android:layout_alignParentStart="true"
+                android:background="#cfd8dc"
+                android:layout_marginTop="20dp"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="晒晒今天的宝贝和足球..."
                 android:id="@+id/etContent"
-                android:layout_below="@+id/rvAlterIcon"
-                android:layout_alignParentStart="true"
-
-                android:textColor="#494949" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="晒晒今天的宝贝和足球..."
-                android:id="@+id/textView67"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
-                android:paddingLeft="15dp" />
+                android:layout_marginLeft="5dp"/>
 
             <android.support.v7.widget.RecyclerView
                 tools:listitem="@layout/list_image_item"
@@ -98,7 +102,7 @@
                 android:listSelector="@android:color/transparent"
                 android:scrollbarStyle="outsideOverlay"
                 android:layout_marginLeft="15dp"
-                android:layout_below="@+id/etTitle"
+                android:layout_below="@id/etContent"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="35dp" />
         </RelativeLayout>
@@ -122,7 +126,8 @@
                 android:id="@+id/textView68"
                 android:textColor="#494949"
                 android:layout_centerVertical="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:textSize="14dp" />
 
             <ImageView
                 android:layout_width="30dp"
@@ -131,6 +136,15 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/back_icon_right_grey" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="所有人可见"
+                android:id="@+id/textView67"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/imageView42"
+                android:textSize="12dp" />
         </RelativeLayout>
 
         <Button

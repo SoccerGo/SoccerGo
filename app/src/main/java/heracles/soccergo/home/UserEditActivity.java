@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class UserEditActivity extends AppCompatActivity
     private EditText etChineseName,etEnglishName,etBirthdate,etAge,etNumber;
     private Spinner spiGender,spiPosition;
     private Button btnSumbit;
+    private ImageView ivBack;
 
     private File tempFile;
 
@@ -185,6 +187,12 @@ public class UserEditActivity extends AppCompatActivity
             }
         });
 
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getWidget()
@@ -198,6 +206,7 @@ public class UserEditActivity extends AppCompatActivity
         etNumber = (EditText) findViewById(R.id.etNumber);
         spiGender = (Spinner) findViewById(R.id.spiGender);
         spiPosition = (Spinner) findViewById(R.id.spiPosition);
+        ivBack = (ImageView) findViewById(R.id.ivBack);
 
         progressDialog = new ProgressDialog(this);
     }

@@ -178,4 +178,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(Test.flag)
           Log.d("Main","销毁窗口");
     }
+
+    public void performClick(String s){
+        switch (s) {
+            case "ivRace":
+                ivRace.performClick();
+                break;
+            case "ivClub":
+                ivClub.performClick();
+                break;
+            case "ivHome":
+                ivHome.performClick();
+                break;
+            case "ivCommunity":
+                ivCommunity.performClick();
+                break;
+            case "ivMore":
+                ivMore.performClick();
+                break;
+        }
+    }
 }

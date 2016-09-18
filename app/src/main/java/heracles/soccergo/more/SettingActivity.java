@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import heracles.soccergo.MainActivity;
@@ -14,6 +15,7 @@ import heracles.soccergo.login.LoginActivity;
 
 public class SettingActivity extends AppCompatActivity {
     private TextView tvExitLogin;
+    private ImageView ivBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +44,17 @@ public class SettingActivity extends AppCompatActivity {
                 finish();
             }
         });
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getWidget() {
         tvExitLogin = (TextView) findViewById(R.id.tvExitLogin);
+        ivBack = (ImageView) findViewById(R.id.ivBack);
     }
 
 }

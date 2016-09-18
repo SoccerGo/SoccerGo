@@ -22,10 +22,11 @@ import heracles.soccergo.R;
 
 public class FootballMallActivity extends AppCompatActivity
 {
-    ListView lvFootballMall;
-    List<Map<String,Object>> list;
-    Button btnFootball,btnClothe,btnShoes,btnTrainTools;
-    static int NUM_FOOTBALL = 1, NUM_CLOTHE = 2, NUM_SHOES = 3, NUM_TRAIN_TOOLS = 4;
+    private ListView lvFootballMall;
+    private List<Map<String,Object>> list;
+    private Button btnFootball,btnClothe,btnShoes,btnTrainTools;
+    private static int NUM_FOOTBALL = 1, NUM_CLOTHE = 2, NUM_SHOES = 3, NUM_TRAIN_TOOLS = 4;
+    private ImageView ivBack;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -65,6 +66,12 @@ public class FootballMallActivity extends AppCompatActivity
                 lvFootballMall.setAdapter(new FootballMallAdapter(FootballMallActivity.this,NUM_TRAIN_TOOLS));
             }
         });
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getWidget() {
@@ -73,6 +80,7 @@ public class FootballMallActivity extends AppCompatActivity
         btnClothe = (Button) findViewById(R.id.btnClothe);
         btnTrainTools = (Button) findViewById(R.id.btnTrainTools);
         btnShoes = (Button) findViewById(R.id.btnShoes);
+        ivBack = (ImageView) findViewById(R.id.ivBack);
     }
 
     private class FootballMallAdapter extends BaseAdapter{

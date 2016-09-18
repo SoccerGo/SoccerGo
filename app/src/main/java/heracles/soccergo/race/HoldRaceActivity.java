@@ -35,6 +35,7 @@ public class HoldRaceActivity extends AppCompatActivity
     private TextView tvTime;
     private EditText etPrice;
     private Button btnSend;
+    private ImageView ivBack;
 
     private String mAddress;
 
@@ -172,6 +173,13 @@ public class HoldRaceActivity extends AppCompatActivity
                 }
             }
         });
+
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getWidget()
@@ -185,6 +193,7 @@ public class HoldRaceActivity extends AppCompatActivity
         tvTime = (TextView) findViewById(R.id.tvTime);
         etPrice = (EditText) findViewById(R.id.etPrice);
         btnSend = (Button) findViewById(R.id.btnSend);
+        ivBack = (ImageView) findViewById(R.id.ivBack);
     }
 
     @Override

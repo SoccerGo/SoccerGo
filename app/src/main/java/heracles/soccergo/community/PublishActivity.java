@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.lzy.imagepicker.ImagePicker;
@@ -39,7 +40,7 @@ public class PublishActivity extends AppCompatActivity implements ImagePickerAda
     private CheckBox cbShowClub;
     private RecyclerView recyclerView;
     private Button btnSend;
-
+    private ImageView ivBack;
 
     public static final int IMAGE_ITEM_ADD = -1;
     public static final int REQUEST_CODE_SELECT = 100;
@@ -118,6 +119,13 @@ public class PublishActivity extends AppCompatActivity implements ImagePickerAda
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getWidget()
@@ -126,6 +134,7 @@ public class PublishActivity extends AppCompatActivity implements ImagePickerAda
         cbShowClub = (CheckBox) findViewById(R.id.cbShowClub);
         recyclerView = (RecyclerView) findViewById(R.id.rvAlterIcon);
         btnSend = (Button) findViewById(R.id.btnSend);
+        ivBack = (ImageView) findViewById(R.id.ivBack);
     }
 
     private void initImagePicker()

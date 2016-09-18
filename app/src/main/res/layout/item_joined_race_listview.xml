@@ -87,15 +87,4 @@
         android:textColor="#ffffff"
         android:layout_toEndOf="@+id/textView17" />
 
-    <Button
-        android:layout_width="55dp"
-        android:layout_height="35dp"
-        android:text="报名"
-        android:id="@+id/btnItemJoin"
-        android:background="@drawable/gradient_white_to_grey"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp" />
-
 </RelativeLayout>

@@ -3,7 +3,8 @@
               xmlns:fresco="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+    android:background="#ffffff">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -104,14 +105,14 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#fff"
+            android:background="#eeeeee"
             android:text="最新动态"/>
 
         <Button
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#fff"
+            android:background="#eeeeee"
             android:text="比赛数据"/>
     </LinearLayout>
 
@@ -185,7 +186,8 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#ffffff">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -278,7 +280,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="#bcbaba">
+        android:background="#eeeeee">
 
         <TextView
             android:layout_width="match_parent"

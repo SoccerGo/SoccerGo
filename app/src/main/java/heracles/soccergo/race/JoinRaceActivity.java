@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import heracles.soccergo.R;
@@ -17,6 +18,7 @@ public class JoinRaceActivity extends AppCompatActivity implements View.OnClickL
     private Button btnUnjoined;
     private Button btnJoined;
     private LinearLayout layoutJoin;
+    private ImageView ivJoinRaceBack;
 
     private Fragment unJoinedFragment;
     private Fragment joinedFragment;
@@ -56,6 +58,12 @@ public class JoinRaceActivity extends AppCompatActivity implements View.OnClickL
     {
         btnUnjoined.setOnClickListener(this);
         btnJoined.setOnClickListener(this);
+        ivJoinRaceBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getWidget()
@@ -63,6 +71,7 @@ public class JoinRaceActivity extends AppCompatActivity implements View.OnClickL
         btnUnjoined = (Button) findViewById(R.id.btnUnjoined);
         btnJoined = (Button) findViewById(R.id.btnJoined);
         layoutJoin = (LinearLayout) findViewById(R.id.layoutJoin);
+        ivJoinRaceBack = (ImageView) findViewById(R.id.ivJoinRaceBack);
     }
 
     @Override

@@ -87,7 +87,7 @@ public class CommunityFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-                Dialog dialog = new Dialog(getContext(), R.style.Dialog_Alpha_Notitle);
+                final Dialog dialog = new Dialog(getContext(), R.style.Dialog_Alpha_Notitle);
                 dialog.setContentView(R.layout.dialog_ivadd);
                 LinearLayout layoutPublish = (LinearLayout) dialog.findViewById(R.id.layoutPublish);
                 LinearLayout layoutHoldRace = (LinearLayout) dialog.findViewById(R.id.layoutHoldRace);
@@ -98,6 +98,7 @@ public class CommunityFragment extends Fragment
                     {
                         Intent intent = new Intent(getActivity(), PublishActivity.class);
                         startActivity(intent);
+                        dialog.dismiss();
                     }
                 });
                 layoutHoldRace.setOnClickListener(new View.OnClickListener()
@@ -107,6 +108,7 @@ public class CommunityFragment extends Fragment
                     {
                         Intent intent = new Intent(getActivity(), HoldRaceActivity.class);
                         startActivity(intent);
+                        dialog.dismiss();
                     }
                 });
                 Window dialogWindow = dialog.getWindow();

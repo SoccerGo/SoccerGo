@@ -21,9 +21,10 @@ import java.util.Map;
 import heracles.soccergo.R;
 
 public class PrivateCoachActivity extends AppCompatActivity {
-    ListView lvPrivateCoach;
-    List<Map<String,Object>> list;
-    Button btnPro,btnParttime;
+    private ListView lvPrivateCoach;
+    private List<Map<String,Object>> list;
+    private Button btnPro,btnParttime;
+    private ImageView ivBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +52,19 @@ public class PrivateCoachActivity extends AppCompatActivity {
                 lvPrivateCoach.setAdapter(new PrivateCoachAdapter(PrivateCoachActivity.this,2));
             }
         });
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getWidget() {
         lvPrivateCoach = (ListView) findViewById(R.id.lvPrivateCoach);
         btnPro = (Button) findViewById(R.id.btnPro);
         btnParttime = (Button) findViewById(R.id.btnParttime);
+        ivBack = (ImageView) findViewById(R.id.ivBack);
     }
 
     private class PrivateCoachAdapter extends BaseAdapter{

@@ -115,6 +115,7 @@ public class UnjoinedFragment extends Fragment
             {
                 Intent intent = new Intent(getActivity(), HoldRaceActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 
