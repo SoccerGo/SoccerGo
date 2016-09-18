@@ -1,5 +1,6 @@
 package heracles.soccergo.home;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -17,12 +19,14 @@ import android.widget.Toast;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.CONSTANT;
 import heracles.soccergo.Tools.HttpConnectionUtil;
+import heracles.soccergo.Tools.ProgressDialog;
 import heracles.soccergo.Tools.User;
 
 public class UserEditActivity extends AppCompatActivity
@@ -46,6 +50,8 @@ public class UserEditActivity extends AppCompatActivity
 
     private File tempFile;
 
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -63,6 +69,35 @@ public class UserEditActivity extends AppCompatActivity
 
     private void setWidget()
     {
+        Intent intent = getIntent();
+        if(User.mUserInfo.getHead_link()!=null)
+            sdvUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/"+User.mUserInfo.getHead_link()));
+        etChineseName.setText(intent.getStringExtra("chineseName"));
+        etEnglishName.setText(intent.getStringExtra("englishName"));
+        String age = intent.getStringExtra("age");
+        if(age!=null)
+            etAge.setText(age.split("岁")[0]);
+        String num = intent.getStringExtra("num");
+        if(!num.isEmpty())
+            etNumber.setText(num.split("：")[1]);
+        String birthdaty = intent.getStringExtra("birthdaty");
+        if(!birthdaty.isEmpty())
+            etBirthdate.setText(birthdaty.split("：")[1]);
+        String sex = intent.getStringExtra("sex");
+        if(sex.equals("男"))
+            spiGender.setSelection(0);
+        else if(sex.equals("女"))
+            spiGender.setSelection(1);
+        String position = intent.getStringExtra("position");
+        if(position.equals("守门员"))
+            spiPosition.setSelection(0);
+        else if(position.equals("后卫"))
+            spiPosition.setSelection(1);
+        else if(position.equals("中场"))
+            spiPosition.setSelection(2);
+        else if(position.equals("前锋"))
+            spiPosition.setSelection(3);
+
         sdvUser.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -71,16 +106,82 @@ public class UserEditActivity extends AppCompatActivity
                 choseHeadImageFromGallery();
             }
         });
+
+        etBirthdate.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Calendar c = Calendar.getInstance();
+                new DatePickerDialog(UserEditActivity.this, new DatePickerDialog.OnDateSetListener()
+                {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth)
+                    {
+                        // TODO Auto-generated method stub
+                        Calendar c2 = Calendar.getInstance();
+                        c2.set(year, monthOfYear, dayOfMonth);
+
+                        etBirthdate.setText(year + "-" + (monthOfYear + 1)
+                                + "-" + dayOfMonth);
+                    }
+                }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
         btnSumbit.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                if(Integer.parseInt(etAge.getText().toString())>100&&Integer.parseInt(etAge.getText().toString())<1)
-                    etAge.setError("请输入1-100之间的整数");
-                if(Integer.parseInt(etNumber.getText().toString())>100&&Integer.parseInt(etNumber.getText().toString())<1)
-                    etNumber.setError("请输入1-100之间的整数");
-                new Submit().execute();
+                String sAge = etAge.getText().toString();
+                String sNum = etNumber.getText().toString();
+                String chineseName = etChineseName.getText().toString();
+                String englishName = etEnglishName.getText().toString();
+                String birthdate = etBirthdate.getText().toString();
+                String sex = spiGender.getSelectedItem().toString();
+                String position = spiPosition.getSelectedItem().toString();
+                if(sAge.isEmpty())
+                    etAge.setError("请输入年龄");
+                else if(sNum.isEmpty())
+                    etNumber.setError("请输入球衣号");
+                else if(chineseName.isEmpty())
+                    etChineseName.setError("请输入中文名");
+                else if(englishName.isEmpty())
+                    etEnglishName.setError("请输入英文名");
+                else if(birthdate.isEmpty())
+                    etBirthdate.setError("请选择出生年月日");
+                else if(sex.isEmpty())
+                    Toast.makeText(UserEditActivity.this,"请选择性别",Toast.LENGTH_LONG).show();
+                else if(position.isEmpty())
+                    Toast.makeText(UserEditActivity.this,"请选择常用位置",Toast.LENGTH_LONG).show();
+                else
+                {
+                    int age = Integer.parseInt(sAge);
+                    int num = Integer.parseInt(sNum);
+                    if(age>100||age<0)
+                        etAge.setError("请输入1-100之间的整数");
+                    else if(num>100||num<0)
+                        etNumber.setError("请输入1-100之间的整数");
+                    else
+                    {
+                        progressDialog.show();
+
+                        Map<String,Object> map = new HashMap<>();
+                        map.put("chinese_name",chineseName);
+                        map.put("english_name",englishName);
+                        map.put("sex",sex);
+                        map.put("age",sAge);
+                        map.put("birthday",birthdate);
+                        map.put("shirt_num",sNum);
+                        map.put("location",position);
+                        map.put("user_id", User.mUserInfo.getUser_id());
+
+                        new Submit(map).execute();
+                    }
+                }
             }
         });
 
@@ -95,6 +196,10 @@ public class UserEditActivity extends AppCompatActivity
         etBirthdate = (EditText) findViewById(R.id.etBirthdate);
         etAge = (EditText) findViewById(R.id.etAge);
         etNumber = (EditText) findViewById(R.id.etNumber);
+        spiGender = (Spinner) findViewById(R.id.spiGender);
+        spiPosition = (Spinner) findViewById(R.id.spiPosition);
+
+        progressDialog = new ProgressDialog(this);
     }
 
     // 从本地相册选取图片作为头像
@@ -237,26 +342,31 @@ public class UserEditActivity extends AppCompatActivity
     class Submit extends AsyncTask<Void, Integer, Void>
     {
         Map<String,Object> result;
+        Map<String,Object> datas;
+
+        public Submit(Map<String,Object> datas)
+        {
+            this.datas = datas;
+        }
+
         @Override
         protected Void doInBackground(Void... params)
         {
-            Map<String,Object> map = new HashMap<>();
-            map.put("chinese_name","啦啦啦");
-            map.put("english_name","dexingshiSB");
-            map.put("sex","男");
-            map.put("age","15");
-            map.put("birthday","1995-10-2");
-            map.put("shirt_num","9");
-            map.put("location","前锋");
-            map.put("user_id", User.mUserInfo.getUser_id());
             try
             {
-                result = HttpConnectionUtil.doPostPicture(CONSTANT.HOST+"app/user/perfectUser",map,tempFile);
+                result = HttpConnectionUtil.doPostPicture(CONSTANT.HOST+"app/user/perfectUser",datas,tempFile);
             } catch (Exception e)
             {
                 e.printStackTrace();
             }
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid)
+        {
+            progressDialog.close();
+            finish();
         }
     }
 }

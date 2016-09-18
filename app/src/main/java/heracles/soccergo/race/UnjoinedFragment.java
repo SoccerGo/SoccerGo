@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -54,7 +55,25 @@ public class UnjoinedFragment extends Fragment
 
     private List<Game> games;
     private ProgressDialog progressDialog;
-    private Handler handler = new Handler();
+    private Handler handler = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg)
+        {
+            switch (msg.what)
+            {
+                case CONSTANT.SUCCESS:
+                    Toast.makeText(getContext(), "加入成功", Toast.LENGTH_LONG).show();
+                    new GetRaceInfo().execute();
+                    break;
+                case CONSTANT.ERROR:
+                    Toast.makeText(getContext(),(String)msg.obj,Toast.LENGTH_LONG).show();
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+
 
 
     @Override
@@ -79,6 +98,7 @@ public class UnjoinedFragment extends Fragment
         new GetRaceInfo().execute();
     }
 
+
     private void getWidget()
     {
         btnHoldRace = (Button) getActivity().findViewById(R.id.btnHoldRace);
@@ -95,6 +115,21 @@ public class UnjoinedFragment extends Fragment
             {
                 Intent intent = new Intent(getActivity(), HoldRaceActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        //初始化适配器以及添加监听
+        joinRaceAdapter = new RVJoinRaceAdapter(getActivity(), list);
+        rvJoinRace.setAdapter(joinRaceAdapter);
+        rvJoinRace.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvJoinRace.setItemAnimator(new DefaultItemAnimator());
+        joinRaceAdapter.setOnItemBtnClickListener(new RVJoinRaceAdapter.OnItemBtnClickListener()
+        {
+            @Override
+            public void onItemBtnClick(View view, int position)
+            {
+                Toast.makeText(getActivity(), (String) list.get(position).get("title"), Toast.LENGTH_SHORT).show();
+                new JoinRaceThread(getActivity(), handler, User.mUserInfo.getUser_id(), String.valueOf(list.get(position).get("id"))).start();
             }
         });
     }
@@ -179,20 +214,7 @@ public class UnjoinedFragment extends Fragment
         @Override
         protected void onPostExecute(Void aVoid)
         {
-            //初始化适配器以及添加监听
-            joinRaceAdapter = new RVJoinRaceAdapter(getActivity(), list);
-            rvJoinRace.setAdapter(joinRaceAdapter);
-            rvJoinRace.setLayoutManager(new LinearLayoutManager(getActivity()));
-            rvJoinRace.setItemAnimator(new DefaultItemAnimator());
-            joinRaceAdapter.setOnItemBtnClickListener(new RVJoinRaceAdapter.OnItemBtnClickListener()
-            {
-                @Override
-                public void onItemBtnClick(View view, int position)
-                {
-                    Toast.makeText(getActivity(), (String) list.get(position).get("title"), Toast.LENGTH_SHORT).show();
-                    new JoinRaceThread(getActivity(), handler, User.mUserInfo.getUser_id(), String.valueOf(list.get(position).get("id"))).start();
-                }
-            });
+            joinRaceAdapter.dataChange(list);
             progressDialog.close();
         }
     }

@@ -163,6 +163,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    protected void onResume()
+    {
+        super.onResume();
+        Log.d("MAIN","OK");
+        if(homeFragment!=null)
+            ((HomeFragment)homeFragment).update();
+    }
+
+    @Override
     protected void onDestroy()
     {
         super.onDestroy();

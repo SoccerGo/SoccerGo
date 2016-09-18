@@ -2,8 +2,8 @@ package heracles.soccergo.race;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,37 +72,18 @@ public class JoinRaceThread extends Thread
             //解析返回值，判断是否登入成功
             final JSONObject jsonObject = new JSONObject(result.toString());
             int ret = jsonObject.getInt("success");
+            Message msg = new Message();
             switch (ret)
             {
                 case CONSTANT.SUCCESS:
-                    mHandler.post(new Runnable()
-                    {
-                        @Override
-                        public void run()
-                        {
-                            Toast.makeText(mContext, "加入成功", Toast.LENGTH_LONG).show();
-                        }
-                    });
-
+                    msg.what = CONSTANT.SUCCESS;
                     break;
                 case CONSTANT.ERROR:
-                    mHandler.post(new Runnable()
-                    {
-                        @Override
-                        public void run()
-                        {
-                            try
-                            {
-                                Toast.makeText(mContext, jsonObject.getString("error"), Toast.LENGTH_LONG).show();
-                            } catch (JSONException e)
-                            {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-
+                    msg.what = CONSTANT.ERROR;
+                    msg.obj = jsonObject.getString("error");
                     break;
             }
+            mHandler.sendMessage(msg);
         } catch (MalformedURLException e)
         {
             e.printStackTrace();

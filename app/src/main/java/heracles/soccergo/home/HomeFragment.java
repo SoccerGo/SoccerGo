@@ -26,13 +26,15 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.CONSTANT;
-import heracles.soccergo.Tools.GetLocalImageDialog;
+import heracles.soccergo.Tools.HttpConnectionUtil;
 import heracles.soccergo.Tools.ProgressDialog;
 import heracles.soccergo.Tools.RadarView;
 import heracles.soccergo.Tools.Test;
@@ -63,7 +65,6 @@ public class HomeFragment extends Fragment
     private TextView tvShirtNum;
     private TextView tvLocation;
     private TextView tvAbilityValue;
-    private GetLocalImageDialog getLocalImageDialog;
     private LinearLayout layoutUserEdit;
     private SimpleDraweeView sdvUser;
 
@@ -90,7 +91,7 @@ public class HomeFragment extends Fragment
         String userInfo = getActivity().getIntent().getStringExtra("userInfo");
         if (Test.flag)
             Log.d("userInfo", userInfo);
-        new UpdateUI(userInfo).execute();
+        new GetUserInfo(userInfo).execute();
     }
 
     private void initWidget()
@@ -127,18 +128,30 @@ public class HomeFragment extends Fragment
             public void onClick(View v)
             {
                 Intent intent = new Intent(getContext(), UserEditActivity.class);
+                intent.putExtra("age",tvAge.getText().toString());
+                intent.putExtra("num",tvShirtNum.getText().toString());
+                intent.putExtra("chineseName",tvName.getText().toString());
+                intent.putExtra("englishName",tvEnglishName.getText().toString());
+                intent.putExtra("birthdaty",tvBirthday.getText().toString());
+                intent.putExtra("sex",Utils.strOrNull(User.mUserInfo.getSex()));
+                intent.putExtra("position",Utils.strOrNull(User.mUserInfo.getLocation()));
                 startActivity(intent);
             }
         });
     }
 
+    public void update()
+    {
+        new UpDateUI().execute();
+    }
+
     // 异步获取
-    class UpdateUI extends AsyncTask<Void, Integer, Void>
+    class GetUserInfo extends AsyncTask<Void, Integer, Void>
     {
         private String json;
         private ProgressDialog progressDialog;
 
-        public UpdateUI(String json)
+        public GetUserInfo(String json)
         {
             this.json = json;
             progressDialog = new ProgressDialog(getContext());
@@ -172,9 +185,9 @@ public class HomeFragment extends Fragment
             sdvUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/"+user.getHead_link()));
             tvName.setText(Utils.strOrNull(user.getChinese_name()));
             tvEnglishName.setText(Utils.strOrNull(user.getEnglish_name()));
-            tvAge.setText(Utils.strOrNull(String.valueOf(user.getAge())));
+            tvAge.setText(Utils.strOrNull(String.valueOf(user.getAge()))+"岁");
             tvClubInfo.setText(Utils.strOrNull(user.getClub_club_name()) + " "
-                    + Utils.strOrNull(String.valueOf(user.getShirt_num())) + "号"
+                    + Utils.strOrNull(String.valueOf(user.getShirt_num())) + "号" + " "
                     + Utils.strOrNull(user.getLocation()));
             tvName2.setText("中文名：" + Utils.strOrNull(user.getChinese_name()));
             tvEnglishName2.setText("英文名：" + Utils.strOrNull(user.getEnglish_name()));
@@ -201,6 +214,74 @@ public class HomeFragment extends Fragment
             progressDialog.close();
         }
     }
+
+    class UpDateUI extends AsyncTask<Void, Integer, Map<String,Object>>
+    {
+        @Override
+        protected Map<String, Object> doInBackground(Void... params)
+        {
+            Map<String,Object> map = new HashMap<>();
+            map.put("user_id",User.mUserInfo.getUser_id());
+            Map<String, Object> result = null;
+            try
+            {
+                result = HttpConnectionUtil.doPostPicture(CONSTANT.HOST+"app/user/findUserMessage",map,null);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(Map<String, Object> datas)
+        {
+            if(datas != null)
+            {
+                boolean ret = (boolean) datas.get("ret");
+                if(ret)
+                {
+                    Log.d("Home  user",(String) datas.get("data"));
+                    user = JSON.parseObject((String) datas.get("data"), User_abilities_club_club.class);
+                    User.setUser(user);
+
+                    sdvUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/"+user.getHead_link()));
+                    tvName.setText(Utils.strOrNull(user.getChinese_name()));
+                    tvEnglishName.setText(Utils.strOrNull(user.getEnglish_name()));
+                    tvAge.setText(Utils.strOrNull(String.valueOf(user.getAge()))+"岁");
+                    tvClubInfo.setText(Utils.strOrNull(user.getClub_club_name()) + " "
+                            + Utils.strOrNull(String.valueOf(user.getShirt_num())) + "号" + " "
+                            + Utils.strOrNull(user.getLocation()));
+                    tvName2.setText("中文名：" + Utils.strOrNull(user.getChinese_name()));
+                    tvEnglishName2.setText("英文名：" + Utils.strOrNull(user.getEnglish_name()));
+                    tvAge2.setText("年龄：" + Utils.strOrNull(String.valueOf(user.getAge())));
+                    String birthday = user.getBirthday();
+                    if(birthday!=null)
+                    {
+                        birthday = birthday.split(" ")[0];
+                        tvBirthday.setText("生日：" + birthday);
+                    }
+                    else {
+                        tvBirthday.setText("生日：" );
+                    }
+
+                    tvClub.setText("俱乐部：" + Utils.strOrNull(user.getClub_club_name()));
+                    tvShirtNum.setText("球衣号：" + Utils.strOrNull(String.valueOf(user.getShirt_num())));
+                    tvLocation.setText("常用位置：" + Utils.strOrNull(user.getLocation()));
+
+                    radarView.setData(new double[]{user.getPandai(), user.getChuanqiu(),
+                            user.getShoot_grade(), user.getScore(), user.getFangshou(), user.getLiliang()});
+
+                    tvAbilityValue.setText(String.valueOf((int) ((user.getPandai() + user.getChuanqiu() + user.getShoot_grade() + user.getScore() +
+                            user.getFangshou() + user.getLiliang()) * 100.0 / 600)));
+
+                    Log.d("常用位置",user.getLocation());
+                    Log.d("home","ok");
+                }
+            }
+        }
+    }
+
 
     private void startRaceService()
     {

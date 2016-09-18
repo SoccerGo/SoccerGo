@@ -80,6 +80,12 @@ public class RVJoinRaceAdapter extends RecyclerView.Adapter<JoinRaceViewHolder>
         }
     }
 
+    public void dataChange(List<Map<String, Object>> datas)
+    {
+        this.mDatas = datas;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount()
     {

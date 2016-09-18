@@ -84,6 +84,11 @@ public class JoinedFragment extends Fragment
 
     }
 
+    public void update()
+    {
+        new GetRaceInfo().execute();
+    }
+
     private void initList()
     {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");

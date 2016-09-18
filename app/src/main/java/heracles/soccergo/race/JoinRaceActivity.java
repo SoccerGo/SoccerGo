@@ -1,6 +1,5 @@
 package heracles.soccergo.race;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -26,6 +25,7 @@ public class JoinRaceActivity extends AppCompatActivity implements View.OnClickL
     private Handler handler = new Handler();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -39,7 +39,7 @@ public class JoinRaceActivity extends AppCompatActivity implements View.OnClickL
     {
         getWidget();
         setWidget();
-//        new GetFragment().execute();
+
         unJoinedFragment = new UnjoinedFragment();
         joinedFragment = new JoinedFragment();
 
@@ -90,26 +90,11 @@ public class JoinRaceActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.btnJoined:
                 ft.show(joinedFragment);
+                ((JoinedFragment)joinedFragment).update();
                 currentFragmentID = R.id.btnJoined;
                 btnJoined.setBackgroundResource(R.color.LightWhiteGreen);
                 break;
         }
         ft.commit();
-    }
-
-    class GetFragment extends AsyncTask<Void, Integer, Void>
-    {
-
-        @Override
-        protected Void doInBackground(Void... params)
-        {
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid)
-        {
-
-        }
     }
 }
