@@ -1,5 +1,6 @@
 package heracles.soccergo.club;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,7 @@ public class ClubFragment extends Fragment
     private RecyclerView rvClub;
     private List<Map<String,Object>> clubDatas;
     private RVClubAdapter clubAdapter;
+    private Button btnBrowseMoreClub;
 
     private TencentLocationManager locationManager;
     private TencentLocationRequest locationRequest;
@@ -111,6 +114,13 @@ public class ClubFragment extends Fragment
 
             }
         });
+        btnBrowseMoreClub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),ClubMoreActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initClubDatas()
@@ -166,6 +176,7 @@ public class ClubFragment extends Fragment
     {
         tvCityLocate = (TextView) getActivity().findViewById(R.id.tvCityLocate);
         rvClub = (RecyclerView) getActivity().findViewById(R.id.rvClub);
+        btnBrowseMoreClub = (Button) getActivity().findViewById(R.id.btnBrowseMoreClub);
     }
 
     private class MyLocation implements TencentLocationListener

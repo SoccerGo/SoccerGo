@@ -197,7 +197,8 @@
                 android:layout_height="70dp"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
-                android:src="@drawable/setting"/>
+                android:src="@drawable/setting"
+                android:id="@+id/ivSetting" />
 
         </LinearLayout>
 

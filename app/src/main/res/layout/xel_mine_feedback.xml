@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/etContent"
-                android:layout_below="@+id/recyclerView"
+                android:layout_below="@+id/rvAlterIcon"
                 android:layout_alignParentStart="true"
 
                 android:textColor="#494949" />
@@ -88,7 +88,7 @@
                 tools:listitem="@layout/list_image_item"
                 app:layoutManager="android.support.v7.widget.GridLayoutManager"
                 app:spanCount="3"
-                android:id="@+id/recyclerView"
+                android:id="@+id/rvAlterIcon"
                 android:layout_width="245dp"
                 android:layout_height="100dp"
                 android:choiceMode="singleChoice"

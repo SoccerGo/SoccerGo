@@ -115,16 +115,26 @@ public class PrivateCoachActivity extends AppCompatActivity {
         switch (coachType) {
             case 1:
                 map = new HashMap<>();
-                map.put("name", "高洪波");
-                map.put("age", "50");
-                map.put("job", "中国国家男子足球队主教练");
-                map.put("content", "1985年荣获亚足联青年锦标赛最佳射手，2000年，高洪波成为中国国少队主教练" +
-                        "2009年高洪波成为中国国家男子足球队教练，2011年率领中国队进入2014年巴西世界杯预选赛" +
-                        "亚洲区二十强......");
-                map.put("price", "2000");
-                map.put("rate", "4.97");
+                map.put("name", "高波");
+                map.put("age", "31");
+                map.put("job", "大连恒隆俱乐部认证教练");
+                map.put("content", "曾在大连恒隆俱乐部担任前锋，屡获佳绩，战功显赫，退役后成为大连恒隆俱乐部认证教练");
+                map.put("price", "890");
+                map.put("rate", "4.93");
                 map.put("tel", "18600340517");
-                map.put("img",R.drawable.coach_gaohongbo);
+                map.put("img",R.drawable.coach_gaobo);
+                list.add(map);
+
+                map = new HashMap<>();
+                map.put("name", "张联国");
+                map.put("age", "36");
+                map.put("job", "大连阿尔滨俱乐部认证教练");
+                map.put("content", "曾荣获大连市青年足球赛最佳射手，退役后加入大连阿尔滨俱乐部，现任阿尔滨俱乐部认证教练，" +
+                        "具有4年足球学院教学经验");
+                map.put("price", "1013");
+                map.put("rate", "4.96");
+                map.put("tel", "18600340517");
+                map.put("img",R.drawable.coach_zhanglianguo);
                 list.add(map);
                 break;
 

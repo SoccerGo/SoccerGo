@@ -124,7 +124,7 @@ public class PublishActivity extends AppCompatActivity implements ImagePickerAda
     {
         etContent = (EditText) findViewById(R.id.etContent);
         cbShowClub = (CheckBox) findViewById(R.id.cbShowClub);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.rvAlterIcon);
         btnSend = (Button) findViewById(R.id.btnSend);
     }
 

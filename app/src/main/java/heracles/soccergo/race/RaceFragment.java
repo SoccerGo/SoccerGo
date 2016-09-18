@@ -42,8 +42,8 @@ public class RaceFragment extends Fragment
 
     private void setWidget()
     {
-        tbTitleBar.setNavigationIcon(R.drawable.left_arrow);
         tbTitleBar.setTitle("约赛");
+        tbTitleBar.setTitleTextColor(0xFFFFFFFF);
         btnHoldRace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

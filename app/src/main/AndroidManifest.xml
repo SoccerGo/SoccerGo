@@ -69,9 +69,11 @@
         <service
             android:name=".service.RaceService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
-        <activity android:name=".community.CommentActivity"></activity>
+        <activity android:name=".community.CommentActivity" />
+        <activity android:name=".club.ClubMoreActivity" />
+        <activity android:name=".more.SettingActivity"></activity>
     </application>
 
 </manifest>

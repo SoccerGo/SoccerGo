@@ -1,6 +1,7 @@
 package heracles.soccergo.more;
 
 import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -68,7 +70,7 @@ public class FootballMallActivity extends AppCompatActivity
     private void getWidget() {
         lvFootballMall = (ListView) findViewById(R.id.lvFootballMall);
         btnFootball = (Button) findViewById(R.id.btnFootball);
-        btnClothe = (Button) findViewById(R.id.btnShoes);
+        btnClothe = (Button) findViewById(R.id.btnClothe);
         btnTrainTools = (Button) findViewById(R.id.btnTrainTools);
         btnShoes = (Button) findViewById(R.id.btnShoes);
     }
@@ -104,10 +106,12 @@ public class FootballMallActivity extends AppCompatActivity
             TextView tvItemName = (TextView) convertView.findViewById(R.id.tvItemName);
             TextView tvItemContent = (TextView) convertView.findViewById(R.id.tvItemContent);
             TextView tvPrice = (TextView) convertView.findViewById(R.id.tvPrice);
+            ImageView ivImage = (ImageView) convertView.findViewById(R.id.ivImage);
 
             tvItemName.setText(list.get(position).get("itemName").toString());
             tvItemContent.setText(list.get(position).get("itemContent").toString());
             tvPrice.setText(list.get(position).get("price").toString());
+            ivImage.setImageDrawable(getDrawable((Integer) list.get(position).get("img")));
             return convertView;
         }
     }
@@ -171,8 +175,44 @@ public class FootballMallActivity extends AppCompatActivity
                 break;
 
             case 3:
+                map = new HashMap<>();
+                map.put("itemName","MERCURIAL 男子人造草地足球鞋");
+                map.put("itemContent","采用简洁的纹理鞋面，结合富有创意的鞋钉排布，在人造场地为你打造" +
+                        "非凡触球感与抓地力");
+                map.put("price","11900");
+                map.put("img",R.drawable.shoes_1);
+                list.add(map);
+
+                map = new HashMap<>();
+                map.put("itemName","阿迪达斯 TF碎钉足球鞋");
+                map.put("itemContent","经典配色，防滑耐磨，基础训练，天然橡胶碎钉外底");
+                map.put("price","4780");
+                map.put("img",R.drawable.shoes_2);
+                list.add(map);
+
+                map = new HashMap<>();
+                map.put("itemName","361度足球鞋 2016夏季碎钉鞋");
+                map.put("itemContent","鞋身大面积舒适透气，层次感车线设计，IP中底轻质缓震，为激烈的足球" +
+                        "运动增添保护");
+                map.put("price","2890");
+                map.put("img",R.drawable.shoes_3);
+                list.add(map);
                 break;
+
             case 4:
+                map = new HashMap<>();
+                map.put("itemName","LIVEUP 标志碟障碍锥");
+                map.put("itemContent","材质柔软，防踩踏，减少因踩踏异物造成的脚部损伤");
+                map.put("price","1580");
+                map.put("img",R.drawable.train_item_1);
+                list.add(map);
+
+                map = new HashMap<>();
+                map.put("itemName","踢球训练运动用品颠球袋");
+                map.put("itemContent","材料厚实，捡球省时省力");
+                map.put("price","2899");
+                map.put("img",R.drawable.train_item_2);
+                list.add(map);
                 break;
         }
     }

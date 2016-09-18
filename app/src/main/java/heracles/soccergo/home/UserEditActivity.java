@@ -34,8 +34,8 @@ public class UserEditActivity extends AppCompatActivity
     private static final int CODE_RESULT_REQUEST = 0xa2;
 
     // 裁剪后图片的宽(X)和高(Y),480 X 480的正方形。
-    private static int output_X = 480;
-    private static int output_Y = 480;
+    private static int output_X = 200;
+    private static int output_Y = 200;
 
     private SimpleDraweeView sdvUser = null;
     private Button btnSumbit;

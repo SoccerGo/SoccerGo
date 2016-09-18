@@ -16,7 +16,7 @@ import heracles.soccergo.R;
  */
 public class MoreFragment extends Fragment
 {
-    ImageView ivPurse,ivDailyTask,ivPrivateCoach,ivFootballMall;
+    ImageView ivPurse,ivDailyTask,ivPrivateCoach,ivFootballMall,ivSetting;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -65,6 +65,13 @@ public class MoreFragment extends Fragment
                 startActivity(intent);
             }
         });
+        ivSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),SettingActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getWeight() {
@@ -72,5 +79,6 @@ public class MoreFragment extends Fragment
         ivDailyTask = (ImageView) getActivity().findViewById(R.id.ivDailyTask);
         ivPrivateCoach = (ImageView) getActivity().findViewById(R.id.ivPrivateCoach);
         ivFootballMall = (ImageView) getActivity().findViewById(R.id.ivFootballMall);
+        ivSetting = (ImageView) getActivity().findViewById(R.id.ivSetting);
     }
 }
