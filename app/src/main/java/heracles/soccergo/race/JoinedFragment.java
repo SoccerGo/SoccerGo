@@ -92,9 +92,9 @@ public class JoinedFragment extends Fragment
         {
             Map<String, Object> map = new HashMap<>();
             map.put("title", game.getGame_name());
-            map.put("local", game.getGame_address());
-            map.put("size", game.getGame_standard()+"人制");
-            map.put("cost", game.getCost()+"元/人");
+            map.put("local", game.getGame_address().split("市")[1]);
+            map.put("size", game.getGame_standard() + "人制");
+            map.put("cost", game.getCost() + "元/人");
             map.put("time", format.format(game.getGame_date()));
             map.put("id", game.getGame_id());
             list.add(map);
@@ -105,7 +105,6 @@ public class JoinedFragment extends Fragment
     class GetRaceInfo extends AsyncTask<Void, Integer, Void>
     {
         private String url = CONSTANT.HOST + "Game/findUserAddGame";
-        private String city = "大连";
 
         @Override
         protected Void doInBackground(Void... params)
@@ -142,7 +141,20 @@ public class JoinedFragment extends Fragment
                         initList();
                         break;
                     case CONSTANT.ERROR:
-                        Toast.makeText(getActivity(), jsonObject.getString("error"), Toast.LENGTH_LONG).show();
+                        handler.post(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                try
+                                {
+                                    Toast.makeText(getActivity(), jsonObject.getString("error"), Toast.LENGTH_LONG).show();
+                                } catch (JSONException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                         break;
                 }
             } catch (MalformedURLException e)
@@ -164,11 +176,13 @@ public class JoinedFragment extends Fragment
         @Override
         protected void onPostExecute(Void aVoid)
         {
-
-            SimpleAdapter simpleAdapter = new SimpleAdapter(getContext(),list,R.layout.item_joined_race_listview,
-                    new String[]{"title","local","size","cost","time"},
-                    new int[]{R.id.tvItemTitle,R.id.tvItemLocale,R.id.tvItemSize,R.id.tvItemCost,R.id.tvItemTime});
-            lvJoined.setAdapter(simpleAdapter);
+            if(list != null)
+            {
+                SimpleAdapter simpleAdapter = new SimpleAdapter(getContext(), list, R.layout.item_joined_race_listview,
+                        new String[]{"title", "local", "size", "cost", "time"},
+                        new int[]{R.id.tvItemTitle, R.id.tvItemLocale, R.id.tvItemSize, R.id.tvItemCost, R.id.tvItemTime});
+                lvJoined.setAdapter(simpleAdapter);
+            }
             progressDialog.close();
         }
     }

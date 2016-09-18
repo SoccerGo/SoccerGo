@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -16,11 +17,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +31,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import heracles.soccergo.R;
+import heracles.soccergo.Tools.CONSTANT;
 import heracles.soccergo.Tools.GetLocalImageDialog;
 import heracles.soccergo.Tools.ProgressDialog;
 import heracles.soccergo.Tools.RadarView;
@@ -61,9 +63,9 @@ public class HomeFragment extends Fragment
     private TextView tvShirtNum;
     private TextView tvLocation;
     private TextView tvAbilityValue;
-    private ImageView rivIcon;
     private GetLocalImageDialog getLocalImageDialog;
     private LinearLayout layoutUserEdit;
+    private SimpleDraweeView sdvUser;
 
     private RaceInfo raceInfo;
     private RaceServiceConnection raceCon;
@@ -101,7 +103,6 @@ public class HomeFragment extends Fragment
     {
         FragmentActivity activity = getActivity();
         radarView = (RadarView) activity.findViewById(R.id.radarView);
-        rivIcon = (ImageView) getActivity().findViewById(R.id.rivIcon);
         tvName = (TextView) activity.findViewById(R.id.tvName);
         tvEnglishName = (TextView) activity.findViewById(R.id.tvEnglishName);
         tvAge = (TextView) activity.findViewById(R.id.tvAge);
@@ -115,19 +116,11 @@ public class HomeFragment extends Fragment
         tvLocation = (TextView) activity.findViewById(R.id.tvLocation);
         tvAbilityValue = (TextView) activity.findViewById(R.id.tvAbilityValue);
         layoutUserEdit = (LinearLayout) activity.findViewById(R.id.layoutUserEdit);
+        sdvUser = (SimpleDraweeView) activity.findViewById(R.id.sdvUser);
     }
 
     private void setWidget()
     {
-        rivIcon.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                getLocalImageDialog = new GetLocalImageDialog(getActivity());
-            }
-        });
-
         layoutUserEdit.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -176,6 +169,7 @@ public class HomeFragment extends Fragment
         @Override
         protected void onPostExecute(Void aVoid)
         {
+            sdvUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/"+user.getHead_link()));
             tvName.setText(Utils.strOrNull(user.getChinese_name()));
             tvEnglishName.setText(Utils.strOrNull(user.getEnglish_name()));
             tvAge.setText(Utils.strOrNull(String.valueOf(user.getAge())));
@@ -185,7 +179,16 @@ public class HomeFragment extends Fragment
             tvName2.setText("中文名：" + Utils.strOrNull(user.getChinese_name()));
             tvEnglishName2.setText("英文名：" + Utils.strOrNull(user.getEnglish_name()));
             tvAge2.setText("年龄：" + Utils.strOrNull(String.valueOf(user.getAge())));
-            tvBirthday.setText(Utils.strOrNull("生日：" + Utils.strOrNull(user.getBirthday())));
+            String birthday = user.getBirthday();
+            if(birthday!=null)
+            {
+                birthday = birthday.split(" ")[0];
+                tvBirthday.setText("生日：" + birthday);
+            }
+            else {
+                tvBirthday.setText("生日：" );
+            }
+
             tvClub.setText("俱乐部：" + Utils.strOrNull(user.getClub_club_name()));
             tvShirtNum.setText("球衣号：" + Utils.strOrNull(String.valueOf(user.getShirt_num())));
             tvLocation.setText("常用位置：" + Utils.strOrNull(user.getLocation()));

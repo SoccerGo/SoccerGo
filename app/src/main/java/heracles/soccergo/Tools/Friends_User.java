@@ -36,6 +36,7 @@ public class Friends_User {
 	private String 		goods_address;		//收货地址
 	private int 		user_leve;			//用户等级
 	private String 		club_club_id;		//俱乐部id
+
 	public String getFriends_id() {
 		return friends_id;
 	}
@@ -184,9 +185,4 @@ public class Friends_User {
 				+ role + ", helab=" + helab + ", goods_address=" + goods_address + ", user_leve=" + user_leve
 				+ ", club_club_id=" + club_club_id + "]";
 	}
-	
-	
-	
-	
-	
 }

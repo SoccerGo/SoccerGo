@@ -3,18 +3,25 @@ package heracles.soccergo.home;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import heracles.soccergo.R;
+import heracles.soccergo.Tools.CONSTANT;
+import heracles.soccergo.Tools.HttpConnectionUtil;
+import heracles.soccergo.Tools.User;
 
 public class UserEditActivity extends AppCompatActivity
 {
@@ -31,6 +38,7 @@ public class UserEditActivity extends AppCompatActivity
     private static int output_Y = 480;
 
     private SimpleDraweeView sdvUser = null;
+    private Button btnSumbit;
 
     private File tempFile;
 
@@ -40,7 +48,17 @@ public class UserEditActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_edit);
 
-        sdvUser = (SimpleDraweeView) findViewById(R.id.sdvUser);
+        initWidget();
+    }
+
+    private void initWidget()
+    {
+        getWidget();
+        setWidget();
+    }
+
+    private void setWidget()
+    {
         sdvUser.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -49,6 +67,21 @@ public class UserEditActivity extends AppCompatActivity
                 choseHeadImageFromGallery();
             }
         });
+
+        btnSumbit.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                new Submit().execute();
+            }
+        });
+    }
+
+    private void getWidget()
+    {
+        sdvUser = (SimpleDraweeView) findViewById(R.id.sdvUser);
+        btnSumbit = (Button) findViewById(R.id.btnSumbit);
     }
 
     // 从本地相册选取图片作为头像
@@ -143,6 +176,18 @@ public class UserEditActivity extends AppCompatActivity
         intent.putExtra("outputY", output_Y);
         intent.putExtra("return-data", true);
 
+        if (hasSdcard())
+        {
+            tempFile = new File(
+                    Environment.getExternalStorageDirectory(),
+                    IMAGE_FILE_NAME);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(tempFile));
+        } else
+        {
+            Toast.makeText(getApplication(), "没有SDCard!", Toast.LENGTH_LONG)
+                    .show();
+        }
+
         startActivityForResult(intent, CODE_RESULT_REQUEST);
     }
 
@@ -172,6 +217,33 @@ public class UserEditActivity extends AppCompatActivity
         } else
         {
             return false;
+        }
+    }
+
+    // 异步获取
+    class Submit extends AsyncTask<Void, Integer, Void>
+    {
+        Map<String,Object> result;
+        @Override
+        protected Void doInBackground(Void... params)
+        {
+            Map<String,Object> map = new HashMap<>();
+            map.put("chinese_name","啦啦啦");
+            map.put("english_name","dexingshiSB");
+            map.put("sex","男");
+            map.put("age","15");
+            map.put("birthday","1995-10-2");
+            map.put("shirt_num","9");
+            map.put("location","前锋");
+            map.put("user_id", User.mUserInfo.getUser_id());
+            try
+            {
+                result = HttpConnectionUtil.doPostPicture(CONSTANT.HOST+"app/user/perfectUser",map,tempFile);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return null;
         }
     }
 }

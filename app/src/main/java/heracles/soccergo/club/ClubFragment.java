@@ -25,6 +25,7 @@ import java.util.Map;
 
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.Test;
+import heracles.soccergo.Tools.User;
 
 /**
  * Created by 10539 on 2016/9/5.
@@ -176,6 +177,8 @@ public class ClubFragment extends Fragment
             if(Test.flag)
                 Log.d("city",tencentLocation.getCity());
             tvCityLocate.setText(tencentLocation.getCity());
+            User.setCity(tencentLocation.getCity());
+            User.setmProvince(tencentLocation.getProvince());
         }
 
         @Override

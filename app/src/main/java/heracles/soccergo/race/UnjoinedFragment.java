@@ -121,7 +121,6 @@ public class UnjoinedFragment extends Fragment
     class GetRaceInfo extends AsyncTask<Void, Integer, Void>
     {
         private String url = CONSTANT.HOST + "Game/findGame";
-        private String city = "大连";
 
         @Override
         protected Void doInBackground(Void... params)
@@ -134,7 +133,7 @@ public class UnjoinedFragment extends Fragment
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setConnectTimeout(5000);
                 OutputStream out = httpURLConnection.getOutputStream();
-                final String content ="city="+city+ "&p_user_id=" + User.mUserInfo.getUser_id();
+                final String content ="city="+User.mCity+ "&p_user_id=" + User.mUserInfo.getUser_id();
                 out.write(content.getBytes());
 
                 //读取服务器返回结果

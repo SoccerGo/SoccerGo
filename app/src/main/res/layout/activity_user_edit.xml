@@ -119,7 +119,7 @@
         android:background="#33a333"
         android:text="确  定"
         android:textColor="#ffffff"
-        android:id="@+id/button"
+        android:id="@+id/btnSumbit"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:textSize="18dp" />

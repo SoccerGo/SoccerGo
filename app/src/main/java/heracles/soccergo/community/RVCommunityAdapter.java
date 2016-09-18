@@ -58,14 +58,19 @@ public class RVCommunityAdapter extends RecyclerView.Adapter<CommunityViewHolder
     public void onBindViewHolder(final CommunityViewHolder holder, int position)
     {
         Friends_User friends_user = datas.get(position);
-        holder.tvUser.setText(friends_user.getUser_name());
+        holder.tvUser.setText(friends_user.getChinese_name());
         holder.tvTime.setText(format.format(friends_user.getF_time()));
         holder.tvContent.setText(friends_user.getContent());
         holder.tvFrom.setText(friends_user.getAddress());
         if(friends_user.getHead_link()!=null)
-            holder.sdvUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/social/"+friends_user.getHead_link()));
+            holder.sdvUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/"+friends_user.getHead_link()));
+        else
+        {
+            holder.sdvUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/more_img.jpg"));
+        }
         if(friends_user.getPic()!=null)
         {
+            holder.sdvContentImg.setVisibility(View.VISIBLE);
             holder.sdvContentImg.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/social/"+friends_user.getPic()));
         }
         else
@@ -92,7 +97,6 @@ public class RVCommunityAdapter extends RecyclerView.Adapter<CommunityViewHolder
                     mOnItemClickListener.onLikeClick(holder.layoutLike,holder.getLayoutPosition());
                 }
             });
-
         }
     }
 

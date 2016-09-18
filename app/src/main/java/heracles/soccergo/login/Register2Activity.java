@@ -2,6 +2,7 @@ package heracles.soccergo.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,7 @@ import java.net.URL;
 
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.CONSTANT;
+import heracles.soccergo.Tools.ProgressDialog;
 import heracles.soccergo.Tools.Test;
 
 public class Register2Activity extends AppCompatActivity
@@ -30,6 +32,9 @@ public class Register2Activity extends AppCompatActivity
     private EditText etPassword;
     private EditText etPassword2;
     private Button btnSuccess;
+    private ProgressDialog progressDialog;
+
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,6 +49,7 @@ public class Register2Activity extends AppCompatActivity
     {
         getWidget();
         setWidget();
+        progressDialog = new ProgressDialog(this);
     }
 
     private void setWidget()
@@ -84,6 +90,7 @@ public class Register2Activity extends AppCompatActivity
                         Toast.makeText(Register2Activity.this, "密码一致", Toast.LENGTH_SHORT).show();
                     //获得手机号
                     String tel = getIntent().getStringExtra("tel");
+                    progressDialog.show();
                     new HttpRegister(tel,psw).start();
 
                 }
@@ -133,7 +140,7 @@ public class Register2Activity extends AppCompatActivity
                     Log.d("result", result.toString());
 
                 //解析返回值，判断是否登入成功
-                JSONObject jsonObject = new JSONObject(result.toString());
+                final JSONObject jsonObject = new JSONObject(result.toString());
                 int ret = jsonObject.getInt("success");
                 switch (ret)
                 {
@@ -143,7 +150,20 @@ public class Register2Activity extends AppCompatActivity
                         startActivity(intent);
                         break;
                     case CONSTANT.ERROR:
-                        Toast.makeText(Register2Activity.this,jsonObject.getString("error"),Toast.LENGTH_LONG).show();
+                        handler.post(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                try
+                                {
+                                    Toast.makeText(Register2Activity.this,jsonObject.getString("error"),Toast.LENGTH_LONG).show();
+                                } catch (JSONException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                         break;
                 }
             } catch (MalformedURLException e)
@@ -159,6 +179,7 @@ public class Register2Activity extends AppCompatActivity
             {
                 e.printStackTrace();
             }
+            progressDialog.close();
         }
     }
 }

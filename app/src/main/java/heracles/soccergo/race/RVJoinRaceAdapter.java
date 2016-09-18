@@ -55,7 +55,7 @@ public class RVJoinRaceAdapter extends RecyclerView.Adapter<JoinRaceViewHolder>
     {
         holder.tvItemTitle.setText((String) mDatas.get(position).get("title"));
         holder.tvItemSize.setText(String.valueOf(mDatas.get(position).get("size")) + "人制");
-        holder.tvItemLocale.setText((String) mDatas.get(position).get("local"));
+        holder.tvItemLocale.setText(((String) mDatas.get(position).get("local")).split("市")[1]);
         holder.tvItemTime.setText((String) mDatas.get(position).get("time"));
         holder.tvItemCost.setText(String.valueOf(mDatas.get(position).get("cost"))+"元/人");
 

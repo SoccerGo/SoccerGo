@@ -179,7 +179,6 @@ public class CommunityFragment extends Fragment
     class GetFriendsInfo extends AsyncTask<Void, Integer, Void>
     {
         private String url = CONSTANT.HOST + "Social/selectSocial";
-        private String city = "大连";
 
         @Override
         protected Void doInBackground(Void... params)

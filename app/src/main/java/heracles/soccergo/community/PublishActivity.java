@@ -81,7 +81,7 @@ public class PublishActivity extends AppCompatActivity implements ImagePickerAda
                         Log.d("send", "没有图片");
                         Map<String,Object> map = new HashMap<>();
                         map.put("content",content);
-                        map.put("address","大连");
+                        map.put("address",User.mProvince+User.mCity);
                         map.put("user_id", User.mUserInfo.getUser_id());
                         long time=System.currentTimeMillis();//long now = android.os.SystemClock.uptimeMillis();
                         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -94,7 +94,7 @@ public class PublishActivity extends AppCompatActivity implements ImagePickerAda
                         Log.d("send", "有图片");
                         Map<String,Object> map = new HashMap<>();
                         map.put("content",content);
-                        map.put("address","大连");
+                        map.put("address",User.mProvince+User.mCity);
                         map.put("user_id", User.mUserInfo.getUser_id());
                         long time=System.currentTimeMillis();//long now = android.os.SystemClock.uptimeMillis();
                         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

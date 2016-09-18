@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:fresco="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -14,11 +15,14 @@
         android:paddingRight="25dp"
         android:paddingBottom="15dp">
 
-        <heracles.soccergo.Tools.RoundImageView
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sdvUser"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/more_img"
-            android:id="@+id/rivIcon"/>
+            fresco:placeholderImage="@drawable/more_img"
+            fresco:roundAsCircle="true"
+            />
+
 
         <LinearLayout
             android:layout_weight="1"
