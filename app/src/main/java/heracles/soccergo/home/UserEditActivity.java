@@ -77,13 +77,13 @@ public class UserEditActivity extends AppCompatActivity
         etChineseName.setText(intent.getStringExtra("chineseName"));
         etEnglishName.setText(intent.getStringExtra("englishName"));
         String age = intent.getStringExtra("age");
-        if(age!=null)
+        if(!age.equals("岁"))
             etAge.setText(age.split("岁")[0]);
         String num = intent.getStringExtra("num");
-        if(!num.isEmpty())
+        if(!num.equals("球衣号："))
             etNumber.setText(num.split("：")[1]);
         String birthdaty = intent.getStringExtra("birthdaty");
-        if(!birthdaty.isEmpty())
+        if(!birthdaty.equals("生日："))
             etBirthdate.setText(birthdaty.split("：")[1]);
         String sex = intent.getStringExtra("sex");
         if(sex.equals("男"))

@@ -13,6 +13,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.NotificationCompat;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +37,7 @@ import java.util.TimerTask;
 
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.CONSTANT;
+import heracles.soccergo.Tools.Honor;
 import heracles.soccergo.Tools.HttpConnectionUtil;
 import heracles.soccergo.Tools.ProgressDialog;
 import heracles.soccergo.Tools.RadarView;
@@ -67,6 +71,8 @@ public class HomeFragment extends Fragment
     private TextView tvAbilityValue;
     private LinearLayout layoutUserEdit;
     private SimpleDraweeView sdvUser;
+    private RecyclerView rvHonor;
+    private List<Honor> honors;
 
     private RaceInfo raceInfo;
     private RaceServiceConnection raceCon;
@@ -118,6 +124,7 @@ public class HomeFragment extends Fragment
         tvAbilityValue = (TextView) activity.findViewById(R.id.tvAbilityValue);
         layoutUserEdit = (LinearLayout) activity.findViewById(R.id.layoutUserEdit);
         sdvUser = (SimpleDraweeView) activity.findViewById(R.id.sdvUser);
+        rvHonor = (RecyclerView) activity.findViewById(R.id.rvHonor);
     }
 
     private void setWidget()
@@ -165,6 +172,7 @@ public class HomeFragment extends Fragment
             {
                 JSONObject jsonObject = new JSONObject(json);
                 user = JSON.parseObject(jsonObject.getString("data"), User_abilities_club_club.class);
+                honors = JSON.parseArray(jsonObject.getString("honor"),Honor.class);
                 User.setUser(user);
                 if(serviceSwitch)
                 {
@@ -211,6 +219,11 @@ public class HomeFragment extends Fragment
 
             tvAbilityValue.setText(String.valueOf((int) ((user.getPandai() + user.getChuanqiu() + user.getShoot_grade() + user.getScore() +
                     user.getFangshou() + user.getLiliang()) * 100.0 / 600)));
+
+            RVHonorAdapter rvHonorAdapter = new RVHonorAdapter(getContext(),honors);
+            rvHonor.setAdapter(rvHonorAdapter);
+            rvHonor.setLayoutManager(new LinearLayoutManager(getContext()));
+            rvHonor.setItemAnimator(new DefaultItemAnimator());
             progressDialog.close();
         }
     }
@@ -275,8 +288,6 @@ public class HomeFragment extends Fragment
                     tvAbilityValue.setText(String.valueOf((int) ((user.getPandai() + user.getChuanqiu() + user.getShoot_grade() + user.getScore() +
                             user.getFangshou() + user.getLiliang()) * 100.0 / 600)));
 
-                    Log.d("常用位置",user.getLocation());
-                    Log.d("home","ok");
                 }
             }
         }

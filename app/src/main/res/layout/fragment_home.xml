@@ -20,7 +20,7 @@
             android:id="@+id/sdvUser"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            fresco:placeholderImage="@drawable/more_img"
+            fresco:placeholderImage="@drawable/touxiang"
             fresco:roundAsCircle="true"
             />
 
@@ -288,5 +288,12 @@
             android:text="荣誉记录"/>
 
     </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/rvHonor">
+
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

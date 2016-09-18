@@ -66,7 +66,7 @@ public class RVCommunityAdapter extends RecyclerView.Adapter<CommunityViewHolder
             holder.sdvUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/"+friends_user.getHead_link()));
         else
         {
-            holder.sdvUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/more_img.jpg"));
+            holder.sdvUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/more_img.png"));
         }
         if(friends_user.getPic()!=null)
         {
