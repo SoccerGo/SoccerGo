@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="8dp"
             android:layout_marginLeft="3dp"
             android:src="@drawable/back_icon_left"
             android:id="@+id/imageView37" />
@@ -83,33 +83,42 @@
         android:paddingLeft="25dp"
         android:paddingRight="30dp"
         android:layout_marginBottom="15dp"
-        android:id="@+id/relativeLayout22">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/relativeLayout20"
-            android:layout_marginBottom="10dp">
-
-        </RelativeLayout>
+        android:id="@+id/relativeLayout22"
+        android:paddingBottom="10dp"
+        android:paddingTop="5dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="中文名"
             android:id="@+id/textView62"
-            android:layout_centerVertical="true"
-            android:layout_alignStart="@+id/relativeLayout20" />
+            android:layout_alignBaseline="@+id/etChineseName"
+            android:layout_alignBottom="@+id/etChineseName"
+            android:layout_alignParentStart="true" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText"
+            android:id="@+id/etChineseName"
             android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/textView62" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="英文名"
+            android:id="@+id/textView63"
+            android:layout_alignBaseline="@+id/etEnglishName"
+            android:layout_alignBottom="@+id/etEnglishName"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etEnglishName"
+            android:layout_marginLeft="20dp"
+            android:layout_toEndOf="@+id/textView63"
+            android:layout_below="@id/etChineseName"/>
 
     </RelativeLayout>
 
@@ -130,70 +139,66 @@
         android:background="#ffffff"
         android:paddingLeft="25dp"
         android:paddingRight="30dp"
-        android:layout_below="@+id/relativeLayout22"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="15dp"
-        android:id="@+id/relativeLayout24">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/relativeLayout21"
-            android:layout_marginBottom="10dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="英文名"
-            android:id="@+id/textView63"
-            android:layout_centerVertical="true"
-            android:layout_alignStart="@+id/relativeLayout21" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText2"
-            android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/textView63" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:paddingLeft="25dp"
-        android:paddingRight="30dp"
-        android:layout_below="@+id/relativeLayout24"
         android:layout_alignParentLeft="true"
         android:id="@+id/relativeLayout26"
-        android:layout_marginBottom="15dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/relativeLayout23"
-            android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"
+        android:layout_below="@+id/relativeLayout22">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="生日"
             android:id="@+id/textView64"
-            android:layout_centerVertical="true"
-            android:layout_alignStart="@+id/relativeLayout23" />
+            android:layout_alignBaseline="@+id/etBirthdate"
+            android:layout_alignBottom="@+id/etBirthdate"
+            android:layout_alignParentStart="true" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText3"
+            android:id="@+id/etBirthdate"
             android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_toEndOf="@+id/textView64" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="性别"
+            android:id="@+id/textView76"
+            android:layout_alignBottom="@+id/spiGender"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="10dp" />
+
+        <Spinner
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:id="@+id/spiGender"
+            android:layout_below="@+id/etBirthdate"
+            android:layout_toEndOf="@+id/textView76"
+            android:layout_alignStart="@+id/etBirthdate"
+            android:entries="@array/gender"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="年龄"
+            android:id="@+id/textView75"
+            android:layout_alignTop="@+id/textView76"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etAge"
+            android:layout_below="@+id/etBirthdate"
+            android:layout_alignEnd="@+id/etBirthdate"
+            android:layout_toEndOf="@+id/textView75"
+            android:layout_marginLeft="20dp"
+            android:digits="1234567890"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -226,7 +231,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText4"
+            android:id="@+id/etNumber"
             android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/textView65" />
@@ -261,7 +266,7 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/spinner"
+            android:id="@+id/spiPosition"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/textView66"
             android:layout_marginLeft="20dp"

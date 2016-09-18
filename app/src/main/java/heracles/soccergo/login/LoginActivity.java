@@ -90,7 +90,8 @@ public class LoginActivity extends AppCompatActivity
                         editor.commit();
                     }
                     else {
-                       editor.putString("autoflag","0");
+                        editor.putString("autoflag","0");
+                        editor.commit();
                     }
                     new LoginThread(LoginActivity.this, user, password, handler).start();
                 }

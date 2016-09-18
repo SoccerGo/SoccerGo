@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:text="自动登录"
                 android:id="@+id/cbAutoLogin"
-                android:checked="false"
+                android:checked="true"
                 android:textColor="#fff"
                 android:textSize="16dp"
                 android:layout_marginLeft="15dp"/>

@@ -10,6 +10,8 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -38,6 +40,8 @@ public class UserEditActivity extends AppCompatActivity
     private static int output_Y = 200;
 
     private SimpleDraweeView sdvUser = null;
+    private EditText etChineseName,etEnglishName,etBirthdate,etAge,etNumber;
+    private Spinner spiGender,spiPosition;
     private Button btnSumbit;
 
     private File tempFile;
@@ -67,21 +71,28 @@ public class UserEditActivity extends AppCompatActivity
                 choseHeadImageFromGallery();
             }
         });
-
         btnSumbit.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
+                if(Integer.parseInt(etAge.getText().toString())>100&&Integer.parseInt(etAge.getText().toString())<1)
+                    etAge.setError("请输入1-100之间的整数");
                 new Submit().execute();
             }
         });
+
     }
 
     private void getWidget()
     {
         sdvUser = (SimpleDraweeView) findViewById(R.id.sdvUser);
         btnSumbit = (Button) findViewById(R.id.btnSumbit);
+        etChineseName = (EditText) findViewById(R.id.etChineseName);
+        etEnglishName = (EditText) findViewById(R.id.etEnglishName);
+        etBirthdate = (EditText) findViewById(R.id.etBirthdate);
+        etAge = (EditText) findViewById(R.id.etAge);
+        etNumber = (EditText) findViewById(R.id.etNumber);
     }
 
     // 从本地相册选取图片作为头像

@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Fragment communityFragment;
     private int currentFragmentID = -1;
 
+    public static MainActivity instance = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         initWidget();
+        instance = this;
     }
 
     private void initWidget()

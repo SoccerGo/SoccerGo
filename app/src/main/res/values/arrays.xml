@@ -6,4 +6,9 @@
         <item>中场</item>
         <item>前锋</item>
     </string-array>
+
+    <string-array name="gender">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
 </resources>
