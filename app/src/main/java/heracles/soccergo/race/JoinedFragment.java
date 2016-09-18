@@ -178,7 +178,7 @@ public class JoinedFragment extends Fragment
         {
             if(list != null)
             {
-                SimpleAdapter simpleAdapter = new SimpleAdapter(getContext(), list, R.layout.item_joined_race_listview,
+                SimpleAdapter simpleAdapter = new SimpleAdapter(getContext(), list, R.layout.item_join_race_listview,
                         new String[]{"title", "local", "size", "cost", "time"},
                         new int[]{R.id.tvItemTitle, R.id.tvItemLocale, R.id.tvItemSize, R.id.tvItemCost, R.id.tvItemTime});
                 lvJoined.setAdapter(simpleAdapter);
