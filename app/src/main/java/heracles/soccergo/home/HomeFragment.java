@@ -266,6 +266,9 @@ public class HomeFragment extends Fragment
     public void onDestroyView()
     {
         super.onDestroyView();
+        if(Test.flag)
+            Log.d("HomeService","销毁服务");
         getContext().unbindService(raceCon);
+        serviceSwitch = true;
     }
 }

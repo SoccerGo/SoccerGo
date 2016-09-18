@@ -6,10 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import heracles.soccergo.Tools.Test;
 import heracles.soccergo.club.ClubFragment;
 import heracles.soccergo.community.CommunityFragment;
 import heracles.soccergo.home.HomeFragment;
@@ -155,5 +157,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ft.show(homeFragment).hide(clubFragment).hide(moreFragment).hide(raceFragment).hide(communityFragment).commit();
             currentFragmentID = R.id.ivHome;
         }
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        if(Test.flag)
+          Log.d("Main","销毁窗口");
     }
 }
