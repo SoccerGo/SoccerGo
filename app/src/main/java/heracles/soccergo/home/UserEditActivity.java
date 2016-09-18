@@ -78,6 +78,8 @@ public class UserEditActivity extends AppCompatActivity
             {
                 if(Integer.parseInt(etAge.getText().toString())>100&&Integer.parseInt(etAge.getText().toString())<1)
                     etAge.setError("请输入1-100之间的整数");
+                if(Integer.parseInt(etNumber.getText().toString())>100&&Integer.parseInt(etNumber.getText().toString())<1)
+                    etNumber.setError("请输入1-100之间的整数");
                 new Submit().execute();
             }
         });

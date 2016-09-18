@@ -234,7 +234,8 @@
             android:id="@+id/etNumber"
             android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/textView65" />
+            android:layout_toEndOf="@+id/textView65"
+            android:digits="0123456789"/>
     </RelativeLayout>
 
     <RelativeLayout
