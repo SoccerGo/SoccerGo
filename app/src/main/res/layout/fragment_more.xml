@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,11 +21,14 @@
             android:paddingTop="35dp"
             android:paddingBottom="35dp">
 
-            <heracles.soccergo.Tools.RoundImageView
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdvMoreUser"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:src="@drawable/more_img"/>
+                fresco:placeholderImage="@drawable/touxiang"
+                fresco:roundAsCircle="true"
+                />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -34,6 +38,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvMoreChineseName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="宋智恒"
@@ -41,14 +46,29 @@
                     android:textStyle="bold"/>
 
                 <TextView
+                    android:id="@+id/tvMoreEnglishName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Steven Song"/>
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="帐号：133****3606"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="帐号："/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tvMoreAccount"
+                        android:text="133****3606"/>
+
+                </LinearLayout>
+
+
 
 
                 <LinearLayout
@@ -64,6 +84,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:id="@+id/tvVip"
                         android:text="黄金LV3"/>
                 </LinearLayout>
             </LinearLayout>
@@ -83,6 +104,7 @@
                 android:text="赫拉币："/>
 
             <TextView
+                android:id="@+id/tvMoney"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

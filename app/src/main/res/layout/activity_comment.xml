@@ -116,7 +116,7 @@
         android:background="@color/LightWhiteGreen"
         android:orientation="horizontal"
         android:padding="10dp"
-        android:id="@+id/linearLayout7">
+        android:id="@+id/llPingLun">
 
         <ImageView
             android:layout_width="20dp"
