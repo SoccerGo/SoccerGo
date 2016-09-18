@@ -34,7 +34,8 @@
         android:background="@drawable/login_alpha"
         android:layout_below="@+id/imageView2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp">
+        android:layout_marginTop="20dp"
+        android:paddingTop="20dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +43,9 @@
             android:hint="用户名/邮箱/手机号"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
-            android:id="@+id/etUser" />
+            android:id="@+id/etUser"
+            android:background="@null"
+            android:singleLine="true"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,7 +54,9 @@
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:inputType="textPassword"
-            android:id="@+id/etPassword" />
+            android:id="@+id/etPassword"
+            android:background="@null"
+            android:singleLine="true"/>
 
         <LinearLayout
             android:layout_width="match_parent"
