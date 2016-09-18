@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,9 +92,18 @@ public class ClubMoreActivity extends AppCompatActivity
             }
             ImageView ivClubImage = (ImageView) convertView.findViewById(R.id.ivClubImage);
             TextView tvClubName = (TextView) convertView.findViewById(R.id.tvClubName);
+            Button button = (Button) convertView.findViewById(R.id.btnJoinClub);
 
             ivClubImage.setImageDrawable(getDrawable((Integer) list.get(position).get("img")));
             tvClubName.setText(list.get(position).get("name").toString());
+            button.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Toast.makeText(ClubMoreActivity.this,"已提交申请",Toast.LENGTH_LONG).show();
+                }
+            });
 
             return convertView;
         }
