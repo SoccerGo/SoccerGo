@@ -1,12 +1,14 @@
 package heracles.soccergo.club;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 import java.util.Map;
@@ -53,7 +55,7 @@ public class RVClubAdapter extends RecyclerView.Adapter<ClubViewHolder>
     public void onBindViewHolder(final ClubViewHolder holder, int position)
     {
         holder.tvName.setText((String)mDatas.get(position).get("name"));
-        holder.ivClub.setImageResource((Integer) mDatas.get(position).get("img"));
+        holder.sdvClub.setImageURI((Uri) mDatas.get(position).get("img"));
 
         if(mOnItemClickListener!=null)
         {
@@ -87,13 +89,13 @@ public class RVClubAdapter extends RecyclerView.Adapter<ClubViewHolder>
 
 class ClubViewHolder extends RecyclerView.ViewHolder
 {
-    public ImageView ivClub;
+    public SimpleDraweeView sdvClub;
     public TextView tvName;
 
     public ClubViewHolder(View itemView)
     {
         super(itemView);
-        ivClub = (ImageView) itemView.findViewById(R.id.ivClub);
+        sdvClub = (SimpleDraweeView) itemView.findViewById(R.id.sdvClub);
         tvName = (TextView) itemView.findViewById(R.id.tvName);
     }
 }

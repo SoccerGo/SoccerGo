@@ -328,7 +328,7 @@ public class HomeFragment extends Fragment
                 else
                     Log.d("MainRaceInfo:", "没数据");
             }
-        }, 5 * 1000, 10 * 1000);
+        }, 5 * 1000, 30 * 1000);
     }
 
     private class RaceServiceConnection implements ServiceConnection

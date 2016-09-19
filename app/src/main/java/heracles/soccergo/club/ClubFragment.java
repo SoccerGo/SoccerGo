@@ -1,6 +1,7 @@
 package heracles.soccergo.club;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -121,6 +122,8 @@ public class ClubFragment extends Fragment
                 startActivity(intent);
             }
         });
+//        Uri uri = Uri.parse("res://" +getContext().getPackageName()+"/"+ R.drawable.more_img);
+//        sdvTest.setImageURI(uri);
     }
 
     private void initClubDatas()
@@ -128,47 +131,47 @@ public class ClubFragment extends Fragment
         clubDatas = new ArrayList<>();
         Map<String,Object> club = new HashMap<>();
         club.put("name","大连ASIA俱乐部");
-        club.put("img",R.drawable.club_asia);
+        club.put("img", Uri.parse("res://" +getContext().getPackageName()+"/"+ R.drawable.club_asia));
         clubDatas.add(club);
 
         club = new HashMap<>();
         club.put("name","哈诺伊俱乐部");
-        club.put("img",R.drawable.club_hanoi);
+        club.put("img", Uri.parse("res://" +getContext().getPackageName()+"/"+ R.drawable.club_hanoi));
         clubDatas.add(club);
 
         club = new HashMap<>();
         club.put("name","菲戈俱乐部");
-        club.put("img",R.drawable.club_feige);
+        club.put("img", Uri.parse("res://" +getContext().getPackageName()+"/"+ R.drawable.club_feige));
         clubDatas.add(club);
 
         club = new HashMap<>();
         club.put("name","大连娃娃头俱乐部");
-        club.put("img",R.drawable.club_wawatou);
+        club.put("img", Uri.parse("res://" +getContext().getPackageName()+"/"+ R.drawable.club_wawatou));
         clubDatas.add(club);
 
         club = new HashMap<>();
         club.put("name","特刃加努俱乐部");
-        club.put("img",R.drawable.club_asia);
+        club.put("img", Uri.parse("res://" +getContext().getPackageName()+"/"+ R.drawable.club_terengganu));
         clubDatas.add(club);
 
         club = new HashMap<>();
         club.put("name","擦枪走火俱乐部");
-        club.put("img",R.drawable.club_caqiangzouhuo);
+        club.put("img", Uri.parse("res://" +getContext().getPackageName()+"/"+ R.drawable.club_caqiangzouhuo));
         clubDatas.add(club);
 
         club = new HashMap<>();
         club.put("name","足球小将俱乐部");
-        club.put("img",R.drawable.club_zuqiuxiaojiang);
+        club.put("img", Uri.parse("res://" +getContext().getPackageName()+"/"+ R.drawable.club_zuqiuxiaojiang));
         clubDatas.add(club);
 
         club = new HashMap<>();
         club.put("name","讷马足球俱乐部");
-        club.put("img",R.drawable.club_nama);
+        club.put("img", Uri.parse("res://" +getContext().getPackageName()+"/"+ R.drawable.club_nama));
         clubDatas.add(club);
 
         club = new HashMap<>();
         club.put("name","大连甘井子区俱乐部");
-        club.put("img",R.drawable.club_ganjingzi);
+        club.put("img", Uri.parse("res://" +getContext().getPackageName()+"/"+ R.drawable.club_ganjingzi));
         clubDatas.add(club);
     }
 

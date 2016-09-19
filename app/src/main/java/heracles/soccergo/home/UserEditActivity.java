@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -49,7 +50,7 @@ public class UserEditActivity extends AppCompatActivity
     private Spinner spiGender,spiPosition;
     private Button btnSumbit;
     private ImageView ivBack;
-
+    private RelativeLayout rlGetTouXiang;
     private File tempFile;
 
     private ProgressDialog progressDialog;
@@ -100,7 +101,7 @@ public class UserEditActivity extends AppCompatActivity
         else if(position.equals("前锋"))
             spiPosition.setSelection(3);
 
-        sdvUser.setOnClickListener(new View.OnClickListener()
+        rlGetTouXiang.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -207,6 +208,7 @@ public class UserEditActivity extends AppCompatActivity
         spiGender = (Spinner) findViewById(R.id.spiGender);
         spiPosition = (Spinner) findViewById(R.id.spiPosition);
         ivBack = (ImageView) findViewById(R.id.ivBack);
+        rlGetTouXiang = (RelativeLayout) findViewById(R.id.rlGetTouXiang);
 
         progressDialog = new ProgressDialog(this);
     }

@@ -2,6 +2,7 @@ package heracles.soccergo;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -169,6 +170,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d("MAIN","OK");
         if(homeFragment!=null)
             ((HomeFragment)homeFragment).update();
+
+        new Handler().postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                if(moreFragment!=null)
+                    ((MoreFragment)moreFragment).update();
+            }
+        },3000);
     }
 
     @Override

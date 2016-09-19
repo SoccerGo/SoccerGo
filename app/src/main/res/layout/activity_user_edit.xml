@@ -44,7 +44,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:paddingRight="10dp"
-        android:id="@+id/relativeLayout19"
+        android:id="@+id/rlGetTouXiang"
         android:layout_marginBottom="20dp">
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -77,7 +77,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout19"
+        android:layout_below="@+id/rlGetTouXiang"
         android:layout_alignParentStart="true"
         android:background="#ffffff"
         android:paddingLeft="25dp"

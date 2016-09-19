@@ -109,6 +109,16 @@ public class MoreFragment extends Fragment
         tvVip.setText("无");
     }
 
+    public void update()
+    {
+        sdvMoreUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/"+ User.mUserInfo.getHead_link()));
+        tvMoreChineseName.setText(Utils.strOrNull(User.mUserInfo.getChinese_name()));
+        tvMoreEnglishName.setText(Utils.strOrNull(User.mUserInfo.getEnglish_name()));
+        tvMoreAccount.setText(User.mUserInfo.getUser_name());
+        tvMoney.setText(String.valueOf(User.mUserInfo.getHelab()));
+        tvVip.setText("无");
+    }
+
     private void getWeight()
     {
         Activity activity = getActivity();
