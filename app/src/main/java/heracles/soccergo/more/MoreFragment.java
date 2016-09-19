@@ -100,8 +100,10 @@ public class MoreFragment extends Fragment
                 startActivity(intent);
             }
         });
-
-        sdvMoreUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/"+ User.mUserInfo.getHead_link()));
+        if(User.mUserInfo.getHead_link()!=null)
+            sdvMoreUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/"+ User.mUserInfo.getHead_link()));
+        else
+            sdvMoreUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/more_img.png"));
         tvMoreChineseName.setText(Utils.strOrNull(User.mUserInfo.getChinese_name()));
         tvMoreEnglishName.setText(Utils.strOrNull(User.mUserInfo.getEnglish_name()));
         tvMoreAccount.setText(User.mUserInfo.getUser_name());
