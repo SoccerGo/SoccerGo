@@ -137,7 +137,7 @@ public class CommunityFragment extends Fragment
                 intent.putExtra("from",friends_user.getAddress());
                 intent.putExtra("friendId",friends_user.getFriends_id());
                 if(friends_user.getHead_link()!=null)
-                    intent.putExtra("head_link",CONSTANT.HOST+"resources/upload/image/social/"+friends_user.getHead_link());
+                    intent.putExtra("head_link",CONSTANT.HOST+"resources/upload/image/user/"+friends_user.getHead_link());
                 else
                     intent.putExtra("head_link","");
                 if(friends_user.getPic()!=null)

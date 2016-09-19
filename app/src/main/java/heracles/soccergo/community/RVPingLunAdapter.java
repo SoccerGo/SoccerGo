@@ -50,7 +50,9 @@ public class RVPingLunAdapter extends RecyclerView.Adapter<PingLunViewHolder>
     {
         Comments_User comments_user = datas.get(position);
         if(comments_user.getHead_link()!=null)
-            holder.sdvUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/social/"+comments_user.getHead_link()));
+            holder.sdvUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/"+comments_user.getHead_link()));
+        else
+            holder.sdvUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/"+"more_img.png"));
         holder.tvContent.setText(comments_user.getC_content());
         holder.tvUser.setText(comments_user.getChinese_name());
     }

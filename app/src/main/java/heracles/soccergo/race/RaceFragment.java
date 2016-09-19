@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import heracles.soccergo.R;
  */
 public class RaceFragment extends Fragment
 {
-    private Toolbar tbTitleBar;
     private Button btnHoldRace,btnJoinRace;
     @Nullable
     @Override
@@ -42,8 +40,6 @@ public class RaceFragment extends Fragment
 
     private void setWidget()
     {
-        tbTitleBar.setTitle("约赛");
-        tbTitleBar.setTitleTextColor(0xFFFFFFFF);
         btnHoldRace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +58,6 @@ public class RaceFragment extends Fragment
 
     private void getWidget()
     {
-        tbTitleBar = (Toolbar) getActivity().findViewById(R.id.tbTitleBar);
         btnHoldRace = (Button) getActivity().findViewById(R.id.btnHoldRace);
         btnJoinRace = (Button) getActivity().findViewById(R.id.btnJoinRace);
     }

@@ -76,6 +76,8 @@ public class CommentActivity extends AppCompatActivity
             sdvContentImg.setImageURI(Uri.parse(intent.getStringExtra("pic")));
         if (!intent.getStringExtra("head_link").isEmpty())
             sdvUser.setImageURI(Uri.parse(intent.getStringExtra("head_link")));
+        else
+            sdvUser.setImageURI(Uri.parse(CONSTANT.HOST+"resources/upload/image/user/"+"more_img.png"));
         tvUser.setText(intent.getStringExtra("name"));
         content = intent.getStringExtra("content");
         tvContent.setText(content);
