@@ -81,6 +81,8 @@ public class HomeFragment extends Fragment
 
     private static boolean serviceSwitch = true;
 
+    private boolean uiUpdateSwitch = false;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
@@ -149,7 +151,11 @@ public class HomeFragment extends Fragment
 
     public void update()
     {
-        new UpDateUI().execute();
+        if(uiUpdateSwitch)
+        {
+            new UpDateUI().execute();
+        }
+
     }
 
     // 异步获取
@@ -225,6 +231,7 @@ public class HomeFragment extends Fragment
             rvHonor.setLayoutManager(new LinearLayoutManager(getContext()));
             rvHonor.setItemAnimator(new DefaultItemAnimator());
             progressDialog.close();
+            uiUpdateSwitch = true;
         }
     }
 
@@ -350,8 +357,8 @@ public class HomeFragment extends Fragment
     @Override
     public void onDestroy()
     {
+        uiUpdateSwitch = false;
         super.onDestroy();
-
     }
 
     @Override

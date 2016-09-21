@@ -13,7 +13,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
-        fresco:placeholderImage="@drawable/more_img"
+        fresco:placeholderImage="@drawable/touxiang"
         fresco:roundAsCircle="true"
         />
 

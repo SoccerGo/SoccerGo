@@ -21,7 +21,6 @@ import java.util.HashMap;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import cn.smssdk.gui.RegisterPage;
-import heracles.soccergo.MainActivity;
 import heracles.soccergo.R;
 import heracles.soccergo.Tools.Test;
 
@@ -84,8 +83,8 @@ public class LoginActivity extends AppCompatActivity
                     SharedPreferences pref = getSharedPreferences("user", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
                     if(cbAutoLogin.isChecked()){
-                        editor.putString("username", etUser.getText().toString());
-                        editor.putString("password", etPassword.getText().toString());
+                        editor.putString("username", user);
+                        editor.putString("password", password);
                         editor.putString("autoflag","1");
                         editor.commit();
                     }

@@ -131,7 +131,7 @@ public class CommunityFragment extends Fragment
                     Log.d("评论","ok");
                 Friends_User friends_user = datas.get(position);
                 Intent intent = new Intent(getContext(),CommentActivity.class);
-                intent.putExtra("name",friends_user.getUser_name());
+                intent.putExtra("name",friends_user.getChinese_name());
                 intent.putExtra("time",format.format(friends_user.getF_time()));
                 intent.putExtra("content",friends_user.getContent());
                 intent.putExtra("from",friends_user.getAddress());

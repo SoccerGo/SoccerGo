@@ -13,13 +13,12 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="heracles.soccergo.community.CommentActivity"
         android:id="@+id/relativeLayout33"
-        android:layout_above="@+id/linearLayout7"
         android:layout_alignParentTop="true">
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/sdvUser"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            fresco:placeholderImage="@drawable/more_img"
+            fresco:placeholderImage="@drawable/touxiang"
             fresco:roundAsCircle="true"
             />
 
@@ -63,7 +62,7 @@
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:layout_marginTop="4dp"
-                fresco:placeholderImage="@drawable/more_img"
+                fresco:placeholderImage="@drawable/placeholder"
                 />
 
             <LinearLayout
